@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Documentos" name="Relatório de Emissões de GEE" subtitle="Inventário GHG Protocol — A4 retrato, 5 páginas" viewport="794x1123" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Relatório de Emissões de GEE 2026</title>
+<link rel="stylesheet" href="doc.css">
+<style>
+  @page { size: A4; margin: 0; }
+  .sheet.portrait { display: flex; flex-direction: column; }
+
+  /* capa — padrão Proposta Comercial + hero fotográfico do Relatório */
+  .cv { position: relative; flex: 1; background: var(--ers-petrol); color: #fff; display: flex; flex-direction: column; padding: 22mm 20mm 0; overflow: hidden; }
+  .cv > * { position: relative; z-index: 1; }
+  .cv .photo { position: absolute; inset: 0; z-index: 0; background: url(../assets/photos/warehouse.jpg) center / cover; opacity: .2; }
+  .cv .scrim { position: absolute; inset: 0; z-index: 0; background: linear-gradient(160deg, var(--ers-petrol) 40%, rgba(4,48,53,.6) 100%); }
+  .cv .s-degrade { opacity: .16; }
+  .cv .logo { width: 64mm; }
+  .cv .eyebrow { margin-top: auto; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; font-size: 13px; color: var(--ers-orange); }
+  .cv h1 { font-size: 34px; font-weight: 800; line-height: 1.08; margin: 12px 0 0; letter-spacing: -.01em; }
+  .cv h1 em { font-style: normal; color: var(--ers-green); }
+  .cv .sub { margin: 14px 0 0; font-size: 15px; line-height: 1.5; color: var(--green-300); max-width: 155mm; }
+  .cv .rule { width: 70px; height: 4px; background: var(--ers-green); border-radius: 2px; margin: 20px 0; }
+  .cv-meta { margin: 4px 0 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 30px; }
+  .cv-meta .m .l { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 9px; color: var(--ers-green); }
+  .cv-meta .m .v { font-size: 13.5px; font-weight: 600; color: #fff; margin-top: 3px; line-height: 1.35; }
+  .cv-foot { margin-top: auto; margin-left: -20mm; margin-right: -20mm; padding: 7mm 20mm; background: var(--bg-dark-deep); display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .cv-foot .addr { font-size: 9.5px; line-height: 1.55; color: var(--fg-on-dark-2); }
+  .cv-foot .addr b { color: #fff; }
+  .cv-foot .chips { display: flex; gap: 5px; flex-wrap: wrap; max-width: 150px; justify-content: flex-end; }
+  .cv-foot .chip { font-size: 8px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 4px; padding: 3px 6px; white-space: nowrap; }
+  .confid { margin: 0 0 8mm; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); }
+
+  /* páginas internas — cabeçalho e rodapé corridos */
+  .pg-head { display: flex; align-items: center; justify-content: space-between; padding: 12mm 18mm 0; }
+  .pg-head img { height: 9mm; }
+  .pg-head .hx { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 10px; color: var(--fg-3); }
+  .pg-rule { margin: 8px 18mm 0; height: 2px; background: var(--ers-green); display: flex; }
+  .pg-rule .o { width: 46px; background: var(--ers-orange); }
+  .pg-body { position: relative; flex: 1; padding: 8mm 18mm 5mm; overflow: hidden; }
+  .pg-body > *:not(.s-mark) { position: relative; z-index: 1; }
+  .pg-body .s-mark { right: -42mm; bottom: -14mm; width: 120mm; height: 120mm; opacity: .04; }
+  .pg-foot { margin-top: auto; background: var(--ers-petrol); color: #fff; padding: 4.5mm 18mm; display: flex; align-items: center; justify-content: space-between; font-size: 9px; letter-spacing: .04em; }
+  .pg-foot .l { color: var(--fg-on-dark-2); text-transform: uppercase; letter-spacing: .1em; }
+  .pg-foot .r { color: var(--ers-green); font-weight: 600; }
+  .pg-foot .mid { display: flex; align-items: center; gap: 10px; }
+
+  /* seções */
+  .sec { margin: 0 0 12px; }
+  .sec-h { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 10px; }
+  .sec-h .n { font-family: var(--font-display); font-size: 26px; line-height: .92; color: var(--ers-green); flex: none; }
+  .sec-h .t { font-size: 15px; font-weight: 700; color: var(--ers-petrol); line-height: 1.3; }
+  .sub-h { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 9.5px; color: var(--ers-orange); margin: 18px 0 7px; }
+  p.tx { margin: 0 0 10px; font-size: 11.5px; line-height: 1.5; color: var(--fg-1); }
+  p.tx b { color: var(--ers-petrol); }
+  .fn { font-size: 9px; color: var(--fg-3); line-height: 1.45; margin: -6px 0 8px; }
+
+  /* tabelas */
+  table.tbl { width: 100%; border-collapse: collapse; margin: 4px 0 12px; font-variant-numeric: tabular-nums; }
+  table.tbl th { background: var(--ers-petrol); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-align: left; padding: 7px 10px; }
+  table.tbl td { font-size: 11px; color: var(--fg-1); padding: 7px 10px; border-bottom: 1px solid var(--border-subtle); vertical-align: top; line-height: 1.35; }
+  table.tbl tr:nth-child(even) td { background: var(--off-white); }
+  table.tbl td.k { font-weight: 600; color: var(--ers-petrol); }
+  table.tbl td.hl { color: var(--green-700); font-weight: 700; }
+  table.tbl .r { text-align: right; }
+  table.tbl tr.tot td { background: var(--green-tint); font-weight: 700; color: var(--ers-petrol); border-top: 1.5px solid var(--ers-petrol); }
+  table.tbl.dense th { padding: 7px 5px; font-size: 7.8px; letter-spacing: .05em; }
+  table.tbl.dense td { font-size: 10px; padding: 6px 5px; }
+
+  /* números-chave — padrão Relatório de Sustentabilidade */
+  .rp-stats { display: grid; grid-template-columns: repeat(3,1fr); border-top: 1px solid var(--border-subtle); border-bottom: 1px solid var(--border-subtle); margin: 4px 0 10px; }
+  .rp-stats .s { padding: 9mm 4mm; text-align: center; border-right: 1px solid var(--border-subtle); }
+  .rp-stats .s:last-child { border-right: none; }
+  .rp-stats .s .n { font-family: var(--font-display); font-size: 54px; line-height: .85; color: var(--ers-petrol); letter-spacing: .02em; }
+  .rp-stats .s .n em { color: var(--ers-green); font-style: normal; font-size: 30px; }
+  .rp-stats .s .l { font-size: 10.5px; color: var(--fg-2); margin-top: 6px; line-height: 1.35; }
+
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; margin-bottom: 4px; }
+  .kv .c .l { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 8.5px; color: var(--ers-orange); }
+  .kv .c .v { font-size: 11.5px; color: var(--ers-petrol); font-weight: 600; margin-top: 2px; line-height: 1.4; }
+  .kv .c .v small { display: block; font-weight: 500; color: var(--fg-3); font-size: 10px; }
+
+  .rp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .rp-card { background: var(--off-white); border-radius: 8px; padding: 14px 16px; }
+  .rp-card .ct { display: flex; align-items: center; gap: 8px; font-weight: 700; color: var(--ers-petrol); font-size: 12px; }
+  .rp-card .ct i, .rp-card .ct svg { width: 16px; height: 16px; color: var(--green-700); flex: none; }
+  .rp-card.w .ct i, .rp-card.w .ct svg { color: var(--orange-600); }
+  .rp-card p { margin: 5px 0 0; font-size: 10.3px; line-height: 1.45; color: var(--fg-2); }
+
+  .note { background: var(--off-white); border-left: 3px solid var(--ers-green); border-radius: 6px; padding: 9px 13px; margin: 4px 0 10px; font-size: 10.3px; line-height: 1.45; color: var(--fg-1); }
+  .note.orange { border-left-color: var(--ers-orange); }
+  .note b { color: var(--ers-petrol); }
+
+  ul.bl { margin: 2px 0 10px; padding: 0; list-style: none; }
+  ul.bl li { font-size: 10.5px; line-height: 1.4; color: var(--fg-1); padding-left: 16px; position: relative; margin-bottom: 5px; }
+  ul.bl li::before { content: ''; position: absolute; left: 0; top: 5px; width: 7px; height: 7px; border-radius: 50%; background: var(--ers-orange); }
+  ul.bl li b { color: var(--ers-petrol); }
+
+  .formula { background: var(--ers-petrol); color: #fff; border-radius: 8px; padding: 11px 16px; margin: 4px 0 10px; }
+  .formula .f { font-size: 12px; font-weight: 600; line-height: 1.5; }
+  .formula .f .var { color: var(--ers-green); }
+  .formula .pt { font-size: 9.5px; color: var(--fg-on-dark-2); margin-top: 2px; }
+
+  /* barra de participação e gráfico */
+  .share { display: flex; height: 22px; border-radius: 4px; overflow: hidden; margin: 2px 0 5px; }
+  .share div { display: flex; align-items: center; padding-left: 7px; font-size: 9px; font-weight: 700; color: #fff; white-space: nowrap; }
+  .lg { display: flex; gap: 14px; font-size: 9.5px; flex-wrap: wrap; color: var(--fg-2); margin-bottom: 8px; }
+  .lg span::before { content: ""; display: inline-block; width: 9px; height: 9px; border-radius: 2px; margin-right: 5px; background: var(--c); vertical-align: -1px; }
+  .k-d { --c: var(--ers-petrol); } .k-e { --c: var(--ers-green); } .k-g { --c: var(--ers-orange); }
+  .c-d { background: var(--ers-petrol); } .c-e { background: var(--ers-green); } .c-g { background: var(--ers-orange); }
+
+  .chart-wrap { display: flex; gap: 3mm; margin: 7mm 0 0; }
+  .chart { flex: 1; display: flex; align-items: flex-end; gap: 5mm; height: 56mm; padding: 0 2mm; border-bottom: 1.5px solid var(--ers-petrol); position: relative; }
+  .chart .gl { position: absolute; left: 0; right: 0; border-top: 1px dashed var(--border-default); font-size: 8px; color: var(--fg-3); }
+  .chart .gl span { position: absolute; left: -1.5mm; top: -5px; transform: translateX(-100%); }
+  .bar { flex: 1; display: flex; flex-direction: column-reverse; position: relative; z-index: 1; }
+  .bar .t { position: absolute; left: 0; right: 0; text-align: center; font-size: 9px; font-weight: 700; color: var(--ers-petrol); }
+  .xl { display: flex; gap: 5mm; padding: 5px 2mm 0 calc(8mm + 2mm); }
+  .xl span { flex: 1; text-align: center; font-size: 9px; font-weight: 700; color: var(--fg-2); text-transform: uppercase; letter-spacing: .08em; }
+
+  /* assinaturas — padrão Proposta Comercial */
+  .sign-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px 26px; margin-top: 14px; }
+  .sign-grid .ln { border-bottom: 1.5px solid var(--ers-petrol); height: 30px; }
+  .sign-grid .nm { font-size: 10.5px; font-weight: 600; color: var(--ers-petrol); margin-top: 6px; }
+  .sign-grid .lb { font-size: 8.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-3); margin-top: 2px; }
+</style>
+</head>
+<body>
+
+<div class="doc-caption no-print">Relatório de Emissões de GEE · ERS-GEE-001-2026 · A4 retrato · 5 páginas · <span>imprima com Ctrl/Cmd + P</span></div>
+
+<!-- ============ PÁGINA 1 — CAPA ============ -->
+<div class="sheet portrait">
+  <div class="cv">
+    <div class="photo"></div><div class="scrim"></div><div class="s-degrade"></div>
+    <img class="logo" src="../assets/logo-primary-white.png" alt="ERS Brazil">
+    <div class="eyebrow">Relatório de Emissões de GEE · Inventário 2026</div>
+    <h1>Emissões de gases de efeito estufa<br><em>escopos 1 e 2</em></h1>
+    <div class="sub">Inventário parcial de janeiro a agosto de 2026 da unidade Indaiatuba — SP, calculado pelo Programa Brasileiro GHG Protocol como evidência para a auditoria R2v3.</div>
+    <div class="rule"></div>
+    <div class="cv-meta">
+      <div class="m"><div class="l">Documento Nº</div><div class="v">ERS-GEE-001-2026 · Rev. 00</div></div>
+      <div class="m"><div class="l">Emissões totais</div><div class="v">7,56 tCO<sub>2</sub>e<br><span style="font-weight:500;color:var(--fg-on-dark-2)">Escopo 1: 4,99 t · Escopo 2: 2,58 t</span></div></div>
+      <div class="m"><div class="l">Metodologia</div><div class="v">Programa Brasileiro GHG Protocol<br><span style="font-weight:500;color:var(--fg-on-dark-2)">Ferramenta de cálculo v2026.0.1 · GWP IPCC AR5</span></div></div>
+      <div class="m"><div class="l">Período</div><div class="v">01/01/2026 a 31/08/2026</div></div>
+      <div class="m"><div class="l">Fonte dos dados</div><div class="v">ERS BR 6166 — Monitoramento de energia, GLP e diesel 2026</div></div>
+      <div class="m"><div class="l">Data</div><div class="v">28 de setembro de 2026</div></div>
+    </div>
+    <div class="confid">Documento controlado · Uso interno e auditoria</div>
+    <div class="cv-foot">
+      <div class="addr"><b>ERS BRAZIL — Environmental Recovery Solutions Ltda.</b><br>CNPJ 32.443.438/0001-30 · Alameda Plutão, 555 · American Park Empresarial NR · Indaiatuba — SP · CEP 13347-656</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px">
+        <div class="chips"><span class="chip">R2v3</span><span class="chip">ISO 9001</span><span class="chip">ISO 14001</span><span class="chip">ISO 45001</span><span class="chip">ISO 27001</span></div>
+        <div class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PÁGINA 2 — SUMÁRIO EXECUTIVO ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Relatório ERS-GEE-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="s-mark petrol"></div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">01</span><span class="t">Sumário executivo</span></div>
+      <p class="tx">De janeiro a agosto de 2026, a operação da ERS Brazil em Indaiatuba emitiu <b>7,56 toneladas de CO<sub>2</sub> equivalente</b> nos escopos 1 e 2. Os dados de atividade vêm da planilha de monitoramento ERS BR 6166, e os fatores de emissão, da Ferramenta GHG Protocol v2026.0.1.</p>
+      <div class="rp-stats">
+        <div class="s"><div class="n tnum">7,56 <em>t</em></div><div class="l">tCO<sub>2</sub>e totais<br>escopos 1 + 2</div></div>
+        <div class="s"><div class="n tnum">4,99 <em>t</em></div><div class="l">escopo 1 · emissões diretas<br>diesel e GLP</div></div>
+        <div class="s"><div class="n tnum">2,58 <em>t</em></div><div class="l">escopo 2 · energia elétrica<br>abordagem por localização</div></div>
+      </div>
+      <div class="kv">
+        <div class="c"><div class="l">Intensidade de emissão</div><div class="v">0,29 kgCO<sub>2</sub>e por hora trabalhada<small>7.563 kgCO<sub>2</sub>e ÷ 26.023,72 h</small></div></div>
+        <div class="c"><div class="l">CO<sub>2</sub> biogênico (reportado à parte)</div><div class="v">0,68 tCO<sub>2</sub><small>fração de biodiesel B15 do diesel comercial</small></div></div>
+      </div>
+    </div>
+
+    <div class="sub-h">Participação por fonte</div>
+    <div class="share">
+      <div class="c-d" style="width:57.9%">Diesel · 57,9%</div>
+      <div class="c-e" style="width:34.1%;color:var(--ers-petrol)">Energia elétrica · 34,1%</div>
+      <div class="c-g" style="width:8.0%">8,0%</div>
+    </div>
+    <div class="lg"><span class="k-d">Óleo diesel B15 · 4,38 tCO<sub>2</sub>e</span><span class="k-e">Energia elétrica (SIN) · 2,58 tCO<sub>2</sub>e</span><span class="k-g">GLP · empilhadeiras · 0,60 tCO<sub>2</sub>e</span></div>
+
+    <div class="sub-h">Emissões por gás</div>
+    <table class="tbl">
+      <tr><th>Gás</th><th class="r">Emissão (t)</th><th class="r">GWP (AR5)</th><th class="r">tCO<sub>2</sub>e</th><th class="r">Participação</th></tr>
+      <tr><td class="k">Dióxido de carbono (CO<sub>2</sub>) fóssil</td><td class="r">7,4846</td><td class="r">1</td><td class="r">7,485</td><td class="r">98,96%</td></tr>
+      <tr><td class="k">Metano (CH<sub>4</sub>)</td><td class="r">0,000883</td><td class="r">28</td><td class="r">0,025</td><td class="r">0,33%</td></tr>
+      <tr><td class="k">Óxido nitroso (N<sub>2</sub>O)</td><td class="r">0,000203</td><td class="r">265</td><td class="r">0,054</td><td class="r">0,71%</td></tr>
+      <tr class="tot"><td>Total</td><td></td><td></td><td class="r">7,563</td><td class="r">100%</td></tr>
+    </table>
+
+    <div class="sub-h">Principais constatações</div>
+    <div class="rp-cards">
+      <div class="rp-card"><div class="ct"><i data-lucide="fuel"></i> Diesel é a maior fonte</div><p>Os 1.931,94 L consumidos pelo caminhão e pelo gerador respondem por 57,9% das emissões. É a principal alavanca de redução.</p></div>
+      <div class="rp-card w"><div class="ct"><i data-lucide="triangle-alert"></i> Diesel sem segregação</div><p>O consumo do caminhão e do gerador está registrado em conjunto, o que impede separar combustão móvel de estacionária.</p></div>
+      <div class="rp-card"><div class="ct"><i data-lucide="zap"></i> Energia de baixo carbono</div><p>71.770,5 kWh com fator médio de 0,0359 tCO<sub>2</sub>/MWh. Julho e agosto concentram 41% do escopo 2 porque o fator da rede subiu.</p></div>
+      <div class="rp-card w"><div class="ct"><i data-lucide="snowflake"></i> Lacuna no escopo 1</div><p>As emissões fugitivas (gás refrigerante do ar-condicionado e extintores de CO<sub>2</sub>) não são monitoradas e devem entrar no inventário.</p></div>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Documento controlado · Inventário de GEE 2026</span><span class="mid"><span class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></span></span><span class="r">ERS-GEE-001-2026 · pág. 02</span></div>
+</div>
+
+<!-- ============ PÁGINA 3 — METODOLOGIA ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Relatório ERS-GEE-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="s-mark petrol"></div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">02</span><span class="t">Metodologia e limites do inventário</span></div>
+      <div class="kv">
+        <div class="c"><div class="l">Referência</div><div class="v">Programa Brasileiro GHG Protocol (FGV EAESP)<small>Ferramenta v2026.0.1 · compatível com o GHG Protocol Corporate Standard</small></div></div>
+        <div class="c"><div class="l">Limite organizacional</div><div class="v">Controle operacional<small>Planta de Indaiatuba — SP · Alameda Plutão, 555</small></div></div>
+        <div class="c"><div class="l">Período inventariado</div><div class="v">01/01/2026 a 31/08/2026<small>Oito meses · relatório parcial do ano-base 2026</small></div></div>
+        <div class="c"><div class="l">Potencial de aquecimento global</div><div class="v">IPCC AR5 (2013)<small>CO<sub>2</sub> = 1 · CH<sub>4</sub> = 28 · N<sub>2</sub>O = 265 (Tabela 23 da ferramenta)</small></div></div>
+      </div>
+      <div class="formula">
+        <div class="f">Emissão = <span class="var">Dado de atividade</span> × <span class="var">Fator de emissão</span> &nbsp;·&nbsp; CO<sub>2</sub>e = CO<sub>2</sub> + 28 × CH<sub>4</sub> + 265 × N<sub>2</sub>O</div>
+        <div class="pt">O CO<sub>2</sub> de origem biogênica (biodiesel) é calculado e reportado separadamente, fora do total de escopo 1.</div>
+      </div>
+    </div>
+
+    <div class="sub-h">Fontes de emissão inventariadas</div>
+    <table class="tbl">
+      <tr><th>Fonte</th><th>Escopo</th><th>Categoria na ferramenta</th><th class="r">Atividade</th><th>Registro de origem</th></tr>
+      <tr><td class="k">Óleo diesel B15 · caminhão e gerador</td><td>1</td><td>Combustão móvel*</td><td class="r">1.931,94 L</td><td>Aba "Consumo - Diesel (L)"</td></tr>
+      <tr><td class="k">GLP · empilhadeiras (cilindros de 20 kg)</td><td>1</td><td>Combustão móvel · fora de estrada</td><td class="r">200 kg</td><td>Aba "Consumo GLP"</td></tr>
+      <tr><td class="k">Energia elétrica da rede (SIN)</td><td>2</td><td>Energia elétrica · localização</td><td class="r">71.770,5 kWh</td><td>Aba "Consumo - Energia Elétrica"</td></tr>
+    </table>
+    <p class="fn">* O diesel não é segregado entre o caminhão (fonte móvel) e o gerador de emergência (fonte estacionária). Todo o volume foi calculado com os fatores de fonte móvel, a opção conservadora para N<sub>2</sub>O (ver seção 04).</p>
+
+    <div class="sub-h">Fatores de emissão aplicados · Ferramenta GHG Protocol v2026.0.1</div>
+    <table class="tbl">
+      <tr><th>Combustível</th><th class="r">CO<sub>2</sub></th><th class="r">CH<sub>4</sub></th><th class="r">N<sub>2</sub>O</th><th class="r">Fator CO<sub>2</sub>e</th><th>Referência</th></tr>
+      <tr><td class="k">Óleo diesel puro (kg/L)</td><td class="r">2,63103</td><td class="r">0,000185</td><td class="r">0,0000995</td><td class="r">—</td><td>Tabela 3 · BEN 2023</td></tr>
+      <tr><td class="k">Biodiesel B100 (kg/L)</td><td class="r">2,34669 bio</td><td class="r">0,0000118</td><td class="r">0,000129</td><td class="r">—</td><td>Tabela 3 · BEN 2023</td></tr>
+      <tr><td class="k">Diesel comercial B15 (kg/L)</td><td class="r">2,23637</td><td class="r">0,000159</td><td class="r">0,000104</td><td class="r hl">2,26834</td><td>85% diesel + 15% biodiesel</td></tr>
+      <tr><td class="k">GLP (kg/kg)</td><td class="r">2,93248</td><td class="r">0,002881</td><td class="r">0,0000093</td><td class="r hl">3,01562</td><td>Tabela 3 · BEN 2023</td></tr>
+    </table>
+    <p class="fn">No diesel B15, soma-se ao CO<sub>2</sub> fóssil 0,35200 kgCO<sub>2</sub>/L de CO<sub>2</sub> biogênico, reportado à parte.</p>
+
+    <div class="sub-h">Fora do escopo desta versão</div>
+    <ul class="bl">
+      <li><b>Escopo 1, emissões fugitivas:</b> recargas de gás refrigerante (ar-condicionado) e de extintores não constam da planilha de origem.</li>
+      <li><b>Escopo 2, escolha de compra:</b> não há contratos de energia renovável nem certificados I-REC. Reporta-se apenas a abordagem por localização.</li>
+      <li><b>Escopo 3:</b> reporte opcional no Programa GHG Protocol, não incluído nesta versão.</li>
+    </ul>
+  </div>
+  <div class="pg-foot"><span class="l">Documento controlado · Inventário de GEE 2026</span><span class="mid"><span class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></span></span><span class="r">ERS-GEE-001-2026 · pág. 03</span></div>
+</div>
+
+<!-- ============ PÁGINA 4 — RESULTADOS MENSAIS ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Relatório ERS-GEE-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="s-mark petrol"></div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">03</span><span class="t">Resultados mensais</span></div>
+      <p class="tx">Emissões mensais em tCO<sub>2</sub>e por fonte. O pico de julho (1,53 t) combina o maior consumo de diesel do período (399 L) com um fator do SIN mais alto (0,0603 tCO<sub>2</sub>/MWh).</p>
+    </div>
+
+    <div class="chart-wrap">
+      <div style="width:8mm"></div>
+      <div class="chart">
+        <div class="gl" style="bottom:46.9mm"><span>1,5</span></div>
+        <div class="gl" style="bottom:31.3mm"><span>1,0</span></div>
+        <div class="gl" style="bottom:15.6mm"><span>0,5</span></div>
+        <div class="bar"><div class="c-e" style="height:8.2mm"></div><div class="c-d" style="height:9.6mm"></div><span class="t" style="bottom:19mm">0,57</span></div>
+        <div class="bar"><div class="c-e" style="height:7.7mm"></div><div class="c-d" style="height:17.2mm"></div><span class="t" style="bottom:26.1mm">0,80</span></div>
+        <div class="bar"><div class="c-e" style="height:7.9mm"></div><div class="c-d" style="height:15.9mm"></div><div class="c-g" style="height:7.5mm"></div><span class="t" style="bottom:32.5mm">1,00</span></div>
+        <div class="bar"><div class="c-e" style="height:8.7mm"></div><div class="c-d" style="height:18.2mm"></div><span class="t" style="bottom:28.1mm">0,86</span></div>
+        <div class="bar"><div class="c-e" style="height:6.3mm"></div><div class="c-d" style="height:23.7mm"></div><div class="c-g" style="height:3.8mm"></div><span class="t" style="bottom:35mm">1,08</span></div>
+        <div class="bar"><div class="c-e" style="height:8.7mm"></div><div class="c-d" style="height:9.1mm"></div><div class="c-g" style="height:3.8mm"></div><span class="t" style="bottom:22.8mm">0,69</span></div>
+        <div class="bar"><div class="c-e" style="height:17.6mm"></div><div class="c-d" style="height:28.3mm"></div><div class="c-g" style="height:1.9mm"></div><span class="t" style="bottom:49mm">1,53</span></div>
+        <div class="bar"><div class="c-e" style="height:15.5mm"></div><div class="c-d" style="height:15mm"></div><div class="c-g" style="height:1.9mm"></div><span class="t" style="bottom:33.6mm">1,04</span></div>
+      </div>
+    </div>
+    <div class="xl"><span>jan</span><span>fev</span><span>mar</span><span>abr</span><span>mai</span><span>jun</span><span>jul</span><span>ago</span></div>
+    <div class="lg" style="margin:8px 0 4px 10mm"><span class="k-d">Diesel B15</span><span class="k-e">Energia elétrica</span><span class="k-g">GLP</span><span style="color:var(--fg-3)">valores em tCO<sub>2</sub>e</span></div>
+
+    <div class="sub-h">Memória de cálculo mensal</div>
+    <table class="tbl dense">
+      <tr><th>Mês</th><th class="r">Energia (kWh)</th><th class="r">FE SIN</th><th class="r">Escopo 2 (t)</th><th class="r">Diesel (L)</th><th class="r">GLP (kg)</th><th class="r">Escopo 1 (t)</th><th class="r">Total (t)</th><th class="r">Horas trab.</th><th class="r">kg/h</th></tr>
+      <tr><td class="k">jan</td><td class="r">11.062,62</td><td class="r">0,0237</td><td class="r">0,262</td><td class="r">134,85</td><td class="r">0</td><td class="r">0,306</td><td class="r">0,568</td><td class="r">2.679,11</td><td class="r">0,212</td></tr>
+      <tr><td class="k">fev</td><td class="r">9.977,40</td><td class="r">0,0248</td><td class="r">0,247</td><td class="r">242,72</td><td class="r">0</td><td class="r">0,551</td><td class="r">0,798</td><td class="r">2.772,77</td><td class="r">0,288</td></tr>
+      <tr><td class="k">mar</td><td class="r">11.710,08</td><td class="r">0,0215</td><td class="r">0,252</td><td class="r">223,86</td><td class="r">80</td><td class="r">0,749</td><td class="r">1,001</td><td class="r">2.949,81</td><td class="r">0,339</td></tr>
+      <tr><td class="k">abr</td><td class="r">9.626,40</td><td class="r">0,0289</td><td class="r">0,278</td><td class="r">256,39</td><td class="r">0</td><td class="r">0,582</td><td class="r">0,860</td><td class="r">2.679,11</td><td class="r">0,321</td></tr>
+      <tr><td class="k">mai</td><td class="r">6.524,00</td><td class="r">0,0309</td><td class="r">0,202</td><td class="r">334,88</td><td class="r">40</td><td class="r">0,880</td><td class="r">1,082</td><td class="r">2.329,56</td><td class="r">0,464</td></tr>
+      <tr><td class="k">jun</td><td class="r">6.106,00</td><td class="r">0,0455</td><td class="r">0,278</td><td class="r">128,47</td><td class="r">40</td><td class="r">0,412</td><td class="r">0,690</td><td class="r">1.810,97</td><td class="r">0,381</td></tr>
+      <tr><td class="k">jul</td><td class="r">9.315,00</td><td class="r">0,0603</td><td class="r">0,562</td><td class="r">399,42</td><td class="r">20</td><td class="r">0,966</td><td class="r">1,528</td><td class="r">5.202,39</td><td class="r">0,294</td></tr>
+      <tr><td class="k">ago</td><td class="r">7.449,00</td><td class="r">0,0667</td><td class="r">0,497</td><td class="r">211,35</td><td class="r">20</td><td class="r">0,540</td><td class="r">1,037</td><td class="r">5.600,00</td><td class="r">0,185</td></tr>
+      <tr class="tot"><td>Total</td><td class="r">71.770,50</td><td class="r">0,0359*</td><td class="r">2,578</td><td class="r">1.931,94</td><td class="r">200</td><td class="r">4,985</td><td class="r">7,563</td><td class="r">26.023,72</td><td class="r">0,291</td></tr>
+    </table>
+    <p class="fn">* Média ponderada pelo consumo. Escopo 1 = diesel × 2,26834 kgCO<sub>2</sub>e/L + GLP × 3,01562 kgCO<sub>2</sub>e/kg. Escopo 2 = kWh ÷ 1.000 × FE SIN do mês. Totais calculados sem arredondamento intermediário.</p>
+
+    <div class="note orange"><b>Fator do SIN provisório.</b> A ferramenta v2026.0.1 traz os parâmetros do inventário de 2025, e o MCTI ainda não publicou os fatores do SIN de 2026. Foi aplicado o fator de 2025 do mesmo mês. O escopo 2 deve ser recalculado quando os fatores oficiais forem publicados.</div>
+    <div class="note orange"><b>Normalização.</b> As horas trabalhadas de julho (5.202,39 h) e agosto (5.600 h) são cerca de duas vezes as dos meses anteriores (1.811 a 2.950 h), o que reduz artificialmente a intensidade. Validar a base de horas antes de usar o indicador em metas.</div>
+  </div>
+  <div class="pg-foot"><span class="l">Documento controlado · Inventário de GEE 2026</span><span class="mid"><span class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></span></span><span class="r">ERS-GEE-001-2026 · pág. 04</span></div>
+</div>
+
+<!-- ============ PÁGINA 5 — PREMISSAS, AÇÕES E APROVAÇÃO ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Relatório ERS-GEE-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="s-mark petrol"></div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">04</span><span class="t">Premissas, qualidade dos dados e plano de ação</span></div>
+      <div class="sub-h" style="margin-top:0">Premissas adotadas</div>
+      <ul class="bl">
+        <li><b>Biodiesel a 15% (B15),</b> teor vigente desde agosto de 2025, segundo a ferramenta e a ANP. Se o teor mudar em 2026, recalcular.</li>
+        <li><b>Diesel não segregado:</b> calculado como fonte móvel. Com fatores estacionários, o resultado cairia menos de 1% (menos CH<sub>4</sub> e N<sub>2</sub>O). O CO<sub>2</sub>, 98,6% do total do diesel, não muda.</li>
+        <li><b>GLP em kg:</b> registro em múltiplos de cilindros de 20 kg das empilhadeiras.</li>
+        <li><b>Fatores do SIN de 2025</b> usados como proxy de 2026 (ver seção 03).</li>
+      </ul>
+    </div>
+
+    <div class="sub-h">Não conformidades de dados na planilha ERS BR 6166</div>
+    <table class="tbl">
+      <tr><th style="width:42%">Achado</th><th>Ação recomendada</th></tr>
+      <tr><td class="k">Diesel do caminhão e do gerador em um único registro</td><td>Medir e registrar separadamente (horímetro ou abastecimento por equipamento)</td></tr>
+      <tr><td class="k">Recargas de gás refrigerante e de extintores não monitoradas</td><td>Incluir aba de emissões fugitivas com base nas ordens de serviço de manutenção</td></tr>
+      <tr><td class="k">Horas trabalhadas de jul–ago cerca de 2× a média</td><td>Validar a base com o RH e corrigir o fator de normalização</td></tr>
+      <tr><td class="k">Erros #DIV/0! nos meses sem dados; meta de −2% sem valor</td><td>Tratar as fórmulas (SEERRO) e registrar a meta numérica de referência</td></tr>
+      <tr><td class="k">Abas ocultas BSC de 2013 (Jundiaí) e aba "OFENSOR" vazia</td><td>Arquivar fora do registro controlado para evitar confusão em auditoria</td></tr>
+    </table>
+
+    <div class="sub-h">Plano de redução · Avaliação de Fontes de Energia · prazo 31/12/2026</div>
+    <table class="tbl">
+      <tr><th style="width:17%">Fonte</th><th class="r" style="width:11%">tCO<sub>2</sub>e</th><th>Estratégia registrada</th><th style="width:13%">Status</th></tr>
+      <tr><td class="k">Óleo diesel</td><td class="r">4,38</td><td>Substituir por equipamento mais eficiente (caminhão e gerador)</td><td>Em análise</td></tr>
+      <tr><td class="k">Energia elétrica</td><td class="r">2,58</td><td>Iluminação LED, sensores de presença e redução da capacidade dos equipamentos (ar-condicionado, iluminação, máquinas)</td><td>Em análise</td></tr>
+      <tr><td class="k">GLP</td><td class="r">0,60</td><td>Trocar as empilhadeiras a gás por elétricas. Com a matriz do SIN de baixo carbono, a troca desloca as emissões para o escopo 2 e as reduz</td><td>Em análise</td></tr>
+    </table>
+
+    <div class="note"><b>Rastreabilidade para auditoria R2v3.</b> Este relatório evidencia o monitoramento de aspectos ambientais (energia e emissões de GEE) no sistema de gestão EHS exigido pelo R2v3, alinhado à ISO 14001. Evidências a manter: planilha ERS BR 6166 (revisão vigente), faturas de energia, notas fiscais de diesel e GLP, Ferramenta GHG Protocol v2026.0.1 preenchida e este relatório aprovado.</div>
+
+    <div class="sign-grid">
+      <div><div class="ln"></div><div class="nm">Luana Delega</div><div class="lb">Elaborado por · EHS</div></div>
+      <div><div class="ln"></div><div class="nm">Oseias Gomes</div><div class="lb">Revisado por · Qualidade</div></div>
+      <div><div class="ln"></div><div class="nm">Parham Maafi</div><div class="lb">Aprovado por · Direção</div></div>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Documento controlado · Inventário de GEE 2026</span><span class="mid"><span class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></span></span><span class="r">ERS-GEE-001-2026 · pág. 05</span></div>
+</div>
+
+<script>if (window.self !== window.top) document.body.classList.add('embed');</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>

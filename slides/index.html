@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Slides" name="Commercial deck slides" subtitle="Apresentação Comercial 2026 — bold editorial" viewport="1280x720" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Comercial 2026</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  deck-stage:not(:defined) { visibility: hidden; }
+  html, body { margin: 0; background: #02181b; }
+
+  section.slide {
+    font-family: var(--font-sans);
+    color: var(--ers-petrol);
+    background: var(--off-white);
+    overflow: hidden;
+    position: relative;
+  }
+  section.slide.dark { background: var(--ers-petrol); color: #fff; }
+
+  /* ---------- persistent editorial chrome ---------- */
+  .eyebrow-top { position: absolute; top: 54px; left: 96px; font-size: 18px; font-weight: 700;
+    letter-spacing: .3em; text-transform: uppercase; color: var(--gray-500); z-index: 9; }
+  .dark .eyebrow-top { color: rgba(255,255,255,.6); }
+  .vlabel { position: absolute; left: 42px; top: 50%; transform: translateY(-50%) rotate(180deg);
+    writing-mode: vertical-rl; font-size: 15px; font-weight: 700; letter-spacing: .3em;
+    text-transform: uppercase; color: var(--gray-400); z-index: 9; }
+  .dark .vlabel { color: rgba(255,255,255,.42); }
+  .pgmark { position: absolute; right: 96px; bottom: 52px; font-family: var(--font-display);
+    font-size: 30px; letter-spacing: .04em; color: var(--ers-green); z-index: 9; }
+
+  /* ---------- title system ---------- */
+  .trow { display: flex; align-items: center; gap: 24px; }
+  .trow .lr { width: 50px; height: 4px; background: var(--ers-petrol); flex: none; }
+  .dark .trow .lr { background: #fff; }
+  .trow .rule { flex: 1; height: 2px; background: var(--border-strong); }
+  .dark .trow .rule { background: rgba(255,255,255,.2); }
+  .htitle { font-family: var(--font-sans); font-weight: 800; text-transform: uppercase;
+    letter-spacing: .02em; line-height: .96; font-size: 66px; white-space: nowrap; }
+  .sublabel { font-size: 22px; font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+    color: var(--ers-orange); margin-top: 18px; }
+  .body-cell p { font-size: 31px; line-height: 1.5; color: var(--fg-2); margin: 0 0 18px; }
+  .dark .body-cell p { color: var(--fg-on-dark-2); }
+  .body-cell p b { color: var(--ers-petrol); font-weight: 700; }
+  .hl-para { background: var(--ers-green); color: var(--ers-petrol); padding: 22px 26px;
+    font-size: 26px; line-height: 1.45; font-weight: 600; }
+
+  /* photo + grading */
+  .photo { position: relative; overflow: hidden; }
+  .photo > .img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .grade { position: absolute; inset: 0; mix-blend-mode: multiply; background: linear-gradient(140deg, rgba(4,48,53,.25), rgba(101,206,33,.18)); }
+
+  .pad { position: absolute; inset: 0; padding: 156px 96px 104px; display: flex; flex-direction: column; z-index: 3; }
+
+  /* ---------- COVER ---------- */
+  .cover-photo { position: absolute; right: 0; top: 0; bottom: 0; width: 42%; }
+  .cover-photo .img { position: absolute; inset: 0; background-size: cover; background-position: center; filter: grayscale(.55) contrast(1.05); }
+  .cover-photo .grade { background: linear-gradient(160deg, rgba(4,48,53,.35), rgba(101,206,33,.22)); }
+  .cover-block { position: absolute; left: 0; top: 0; bottom: 0; width: 30%; background: var(--ers-green); z-index: 1; }
+  .cover-c { position: absolute; left: 96px; right: 46%; top: 50%; transform: translateY(-50%); z-index: 4; }
+  .cover-c .htitle { font-size: 96px; line-height: .9; color: var(--ers-petrol); white-space: normal; }
+  .cover-c .lead { font-size: 30px; line-height: 1.5; color: var(--ers-petrol); max-width: 560px; margin-top: 26px; font-weight: 500; }
+  .cover-logo { position: absolute; left: 96px; top: 50px; height: 64px; z-index: 5; }
+
+  /* ---------- stats ---------- */
+  .stat-row { display: flex; margin-top: auto; }
+  .stat { flex: 1; padding-right: 26px; }
+  .stat + .stat { border-left: 1px solid var(--border-default); padding-left: 26px; }
+  .dark .stat + .stat { border-left-color: rgba(255,255,255,.18); }
+  .stat .n { font-family: var(--font-display); font-size: 80px; line-height: .8; color: var(--green-600); }
+  .stat .l { font-size: 23px; color: var(--fg-2); margin-top: 12px; line-height: 1.3; }
+  .dark .stat .l { color: var(--fg-on-dark-2); }
+
+  /* ---------- services (dark, green band + cards) ---------- */
+  .band { position: absolute; top: 0; left: 0; right: 0; height: 232px; background: var(--ers-green); z-index: 1; }
+  .band-c { position: absolute; top: 96px; left: 96px; right: 96px; z-index: 4; }
+  .band-c .htitle { color: var(--ers-petrol); }
+  .band-c .trow .lr, .band-c .trow .rule { background: var(--ers-petrol); opacity: .85; }
+  .band-c .sublabel { color: var(--ers-petrol); opacity: .75; }
+  .svc-grid { position: absolute; left: 96px; right: 96px; top: 300px; bottom: 90px; display: grid;
+    grid-template-columns: 1fr 1fr 1fr; gap: 24px; z-index: 4; }
+  .svc { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); border-top: 5px solid var(--ers-green);
+    border-radius: 6px; padding: 32px 30px; display: flex; flex-direction: column; min-width: 0; }
+  .svc .sn { font-family: var(--font-display); font-size: 58px; line-height: .8; color: var(--ers-green); }
+  .svc .sh { display: flex; align-items: center; gap: 14px; margin: 16px 0 0; }
+  .svc .sh i { width: 32px; height: 32px; color: var(--ers-green); flex: none; }
+  .svc .st { font-size: 30px; font-weight: 700; color: #fff; line-height: 1.08; }
+  .svc .sd { font-size: 22px; line-height: 1.4; color: var(--fg-on-dark-2); margin: 18px 0 20px; }
+  .svc ul { margin: auto 0 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 12px; }
+  .svc li { font-size: 21px; display: flex; gap: 11px; align-items: center; color: #fff; line-height: 1.25; }
+  .svc li i { width: 19px; height: 19px; color: var(--ers-green); flex: none; }
+
+  /* ---------- differentials (dark, two feature blocks) ---------- */
+  .feat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 28px; margin-top: 40px; flex: 1; }
+  .feat { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); border-top: 5px solid var(--ers-green);
+    border-radius: 6px; padding: 40px 42px; display: flex; flex-direction: column; min-width: 0; }
+  .feat .fh { display: flex; align-items: center; gap: 18px; }
+  .feat .fic { width: 72px; height: 72px; border-radius: 16px; background: rgba(101,206,33,.16); display: flex;
+    align-items: center; justify-content: center; flex: none; }
+  .feat .fic i { width: 36px; height: 36px; color: var(--ers-green); }
+  .feat .ft { font-size: 38px; font-weight: 800; color: #fff; line-height: 1.05; letter-spacing: -.01em; }
+  .feat .fsub { font-size: 17px; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; color: var(--ers-green); margin-top: 6px; }
+  .feat .fp { font-size: 27px; line-height: 1.5; color: var(--fg-on-dark-2); margin: 26px 0 26px; }
+  .feat .fp b { color: #fff; font-weight: 600; }
+  .feat .chips { display: flex; flex-wrap: wrap; gap: 11px; margin-top: auto; }
+  .feat .chip2 { font-size: 20px; font-weight: 600; letter-spacing: .02em; color: #fff; border: 1px solid rgba(255,255,255,.24);
+    border-radius: 999px; padding: 9px 18px; }
+  .feat .chip2.g { background: var(--ers-green); color: var(--ers-petrol); border-color: transparent; }
+
+  /* ---------- certifications (green band + dark body, ledger + highlight) ---------- */
+  .cert-wrap { position: absolute; left: 96px; right: 96px; top: 312px; bottom: 90px; display: grid;
+    grid-template-columns: 1.2fr .8fr; gap: 54px; z-index: 4; align-items: center; }
+  .cert-list { display: flex; flex-direction: column; }
+  .cert-line { display: grid; grid-template-columns: 240px 1fr; align-items: center; gap: 24px; padding: 22px 0;
+    border-top: 1px solid rgba(255,255,255,.16); }
+  .cert-line:last-child { border-bottom: 1px solid rgba(255,255,255,.16); }
+  .cert-line .tag { font-family: var(--font-display); font-size: 52px; color: var(--ers-green); letter-spacing: .02em; }
+  .cert-line .desc { font-size: 26px; color: #fff; }
+  .cert-side { background: var(--ers-green); color: var(--ers-petrol); border-radius: 8px; padding: 38px 36px; }
+  .cert-side .ct { font-size: 32px; font-weight: 800; line-height: 1.12; }
+  .cert-side .cp { font-size: 23px; line-height: 1.45; margin-top: 16px; font-weight: 500; }
+  .cert-side img { width: 118px; margin-top: 24px; }
+
+  /* ---------- cases (dark, metrics) ---------- */
+  .case-cols { display: grid; grid-template-columns: 1fr 1px 1fr; gap: 60px; margin-top: 40px; flex: 1; align-items: center; }
+  .case-div { background: rgba(255,255,255,.16); width: 1px; height: 88%; align-self: center; }
+  .case .chip { display: inline-flex; align-items: center; gap: 9px; background: var(--ers-green); color: var(--ers-petrol);
+    font-weight: 700; font-size: 19px; letter-spacing: .12em; text-transform: uppercase; padding: 10px 20px; border-radius: 5px; }
+  .case h3 { font-size: 34px; font-weight: 700; color: #fff; margin: 20px 0 6px; }
+  .case .sub { font-size: 22px; color: var(--fg-on-dark-2); margin: 0 0 24px; }
+  .metric { display: flex; align-items: baseline; gap: 24px; padding: 16px 0; border-bottom: 1px solid rgba(255,255,255,.1); }
+  .metric:last-child { border-bottom: none; }
+  .metric .m { font-family: var(--font-display); font-size: 62px; line-height: .8; color: var(--ers-green); min-width: 250px; }
+  .metric .d { font-size: 22px; color: #fff; line-height: 1.3; }
+
+  /* ---------- thank you (light, photo right) ---------- */
+  .ty-photo { position: absolute; right: 0; top: 0; bottom: 0; width: 44%; }
+  .ty-photo .img { position: absolute; inset: 0; background-size: cover; background-position: center; }
+  .ty-photo .grade { background: linear-gradient(150deg, rgba(101,206,33,.25), rgba(4,48,53,.3)); }
+  .ty-c { position: absolute; left: 96px; right: 48%; top: 50%; transform: translateY(-50%); z-index: 4; }
+  .ty-c .contact { margin-top: 34px; font-size: 24px; letter-spacing: .03em; color: var(--fg-2); }
+  .ty-c .contact b { color: var(--ers-petrol); font-weight: 700; }
+
+  .anim, .anim2, .anim3 { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    [data-deck-active] .anim  { animation: rise .6s var(--ease-out); }
+    [data-deck-active] .anim2 { animation: rise .6s .12s var(--ease-out); }
+    [data-deck-active] .anim3 { animation: rise .6s .24s var(--ease-out); }
+    @keyframes rise { from { transform: translateY(24px); } to { transform: none; } }
+  }
+</style>
+</head>
+<body>
+<deck-stage width="1920" height="1080">
+
+  <!-- 1 — CAPA -->
+  <section class="slide" data-label="Capa">
+    <div class="cover-block" style="width: 100px"></div>
+    <div class="cover-photo"><div class="img" style="background-image:url(../assets/photos/warehouse.jpg)"></div><div class="grade" style="width: 1000px"></div></div>
+    <img class="cover-logo" src="../assets/logo-primary-white-tight.png" alt="ERS Brazil">
+    <div class="vlabel" style="color:rgba(4,48,53,.55)">ERS Brazil · Environmental Recovery Solutions</div>
+    <div class="cover-c">
+      <div class="sublabel anim" style="margin:0 0 16px">Apresentação Comercial · Do What's Right</div>
+      <div class="trow anim" style="font-weight: 700; width: 900px"><span class="lr"></span><span class="htitle" style="font-size:40px">Comercial</span><span class="rule" style="width: 500px; font-weight: 700; background-color: rgb(5, 48, 53)"></span></div>
+      <h1 class="htitle anim2" style="font-size:140px;margin:8px 0 0">2026</h1>
+      <p class="lead anim3" style="font-size: 40px">Transformando e-waste em soluções sustentáveis para um futuro responsável.</p>
+    </div>
+    <div class="pgmark">01</div>
+  </section>
+
+  <!-- 2 — SOBRE -->
+  <section class="slide" data-label="Sobre">
+    <div class="eyebrow-top">ERS Brazil · Comercial 2026</div>
+    <div class="vlabel">Sobre a ERS</div>
+    <div class="cover-photo" style="width:36%"><div class="img" style="background-image:url(../assets/photos/sorting.jpg)"></div><div class="grade"></div></div>
+    <div class="pad" style="right:38%;padding-right:64px">
+      <div class="trow anim"><span class="lr"></span><h2 class="htitle">About Us</h2><span class="rule"></span></div>
+      <div class="sublabel anim">Sobre a ERS Brazil_</div>
+      <div class="body-cell anim2" style="margin-top:30px">
+        <p>Empresa canadense com mais de <b>25 anos de experiência</b>, em operação no Brasil desde 2014 — especialista em reciclagem e extensão do ciclo de vida de eletrônicos.</p>
+      </div>
+      <div class="hl-para anim2">Transformamos o descarte eletrônico em valor: segurança, conformidade ambiental e retorno real.</div>
+      <div class="stat-row anim3">
+        <div class="stat"><div class="n">2014</div><div class="l">no Brasil</div></div>
+        <div class="stat"><div class="n">5.000 m²</div><div class="l">em Indaiatuba — SP</div></div>
+        <div class="stat"><div class="n">400 t</div><div class="l">por mês</div></div>
+      </div>
+    </div>
+    <div class="pgmark" style="color:var(--green-600)">02</div>
+  </section>
+
+  <!-- 3 — SERVIÇOS -->
+  <section class="slide dark" data-label="Serviços">
+    <div class="band"></div>
+    <div class="eyebrow-top" style="color:rgba(4,48,53,.6)">ERS Brazil · Comercial 2026</div>
+    <div class="vlabel">Nossos serviços</div>
+    <div class="band-c">
+      <div class="trow anim"><span class="lr"></span><h2 class="htitle">Serviços</h2><span class="rule"></span></div>
+      <div class="sublabel anim" style="height: 27px">Três frentes, um ciclo completo_</div>
+    </div>
+    <div class="svc-grid">
+      <div class="svc anim2" style="width: 498px; height: 500px; border-width: 5px 1px 1px; padding: 32px 30px">
+        <div class="sn">01</div>
+        <div class="sh"><i data-lucide="server"></i><span class="st">ITAD ou IT Asset Disposition</span></div>
+        <div class="sd">Disposição ponta a ponta de ativos de TI.</div>
+        <ul>
+          <li><i data-lucide="check"></i>Compra de ativos obsoletos</li>
+          <li><i data-lucide="check"></i>Remanufatura de dispositivos</li>
+          <li><i data-lucide="check"></i>Higienização de dados garantida</li>
+        </ul>
+      </div>
+      <div class="svc anim2" style="height: 500px">
+        <div class="sn">02</div>
+        <div class="sh"><i data-lucide="recycle"></i><span class="st">Reciclagem</span></div>
+        <div class="sd">Para empresas que descartam resíduos tecnológicos ou obsoletos.</div>
+        <ul>
+          <li><i data-lucide="check"></i>Relatório de sustentabilidade</li>
+          <li><i data-lucide="check"></i>Coleta segura em todo o Brasil</li>
+          <li><i data-lucide="check"></i>Higienização de dados garantida</li>
+        </ul>
+      </div>
+      <div class="svc anim3" style="height: 500px">
+        <div class="sn">03</div>
+        <div class="sh"><i data-lucide="truck"></i><span class="st">Logística Reversa</span></div>
+        <div class="sd">Retorno ambientalmente responsável de resíduos à cadeia de produção.</div>
+        <ul>
+          <li><i data-lucide="check"></i>Coleta segura em todo o Brasil</li>
+          <li><i data-lucide="check"></i>Solução com foco corporativo</li>
+        </ul>
+      </div>
+    </div>
+    <div class="pgmark">03</div>
+  </section>
+
+  <!-- 4 — DIFERENCIAIS -->
+  <section class="slide dark" data-label="Diferenciais">
+    <div class="eyebrow-top">ERS Brazil · Comercial 2026</div>
+    <div class="vlabel">Diferenciais</div>
+    <div class="pad">
+      <div class="trow anim"><span class="lr"></span><h2 class="htitle" style="font-size:58px">Diferenciais</h2><span class="rule"></span></div>
+      <div class="sublabel anim">Onde está o que realmente importa_</div>
+      <div class="feat-grid">
+        <div class="feat anim2">
+          <div class="fh"><div class="fic"><i data-lucide="shield-check"></i></div><div><div class="ft">Segurança TAPA</div><div class="fsub">Transported Asset Protection</div></div></div>
+          <div class="fp">É no transporte que mora o maior risco de extravio. Operamos no padrão <b>TAPA</b>, com custódia controlada da coleta à destinação final.</div>
+          <div class="chips"><span class="chip2 g">Padrão TAPA</span><span class="chip2">Monitoramento 24h</span><span class="chip2">Câmeras de calor</span><span class="chip2">Rastreio ponta a ponta</span></div>
+        </div>
+        <div class="feat anim3">
+          <div class="fh"><div class="fic"><i data-lucide="hard-drive"></i></div><div><div class="ft">Sanitização de Dados</div><div class="fsub">Destruição irrecuperável</div></div></div>
+          <div class="fp">Um único vazamento custa reputação e multas de LGPD. Garantimos apagamento <b>irrecuperável</b> com Blancco e laudo individual por ativo.</div>
+          <div class="chips"><span class="chip2 g">Blancco</span><span class="chip2">≤ 6 mm³</span><span class="chip2">DoD 5220.22-M</span><span class="chip2">LGPD</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">04</div>
+  </section>
+
+  <!-- 5 — CERTIFICAÇÕES -->
+  <section class="slide dark" data-label="Certificações">
+    <div class="band"></div>
+    <div class="eyebrow-top" style="color:rgba(4,48,53,.6)">ERS Brazil · Comercial 2026</div>
+    <div class="vlabel">Certificações</div>
+    <div class="band-c">
+      <div class="trow anim"><span class="lr"></span><h2 class="htitle">Certificações</h2><span class="rule"></span></div>
+      <div class="sublabel anim">Conformidade levada a sério_</div>
+    </div>
+    <div class="cert-wrap">
+      <div class="cert-list anim2">
+        <div class="cert-line"><span class="tag">R2v3</span><span class="desc">Responsible Recycling, Version 3</span></div>
+        <div class="cert-line"><span class="tag">ISO 9001</span><span class="desc">Gestão da Qualidade</span></div>
+        <div class="cert-line"><span class="tag">ISO 14001</span><span class="desc">Gestão Ambiental</span></div>
+        <div class="cert-line"><span class="tag">ISO 45001</span><span class="desc">Saúde e Segurança no Trabalho</span></div>
+        <div class="cert-line"><span class="tag">ISO 27001</span><span class="desc">Segurança da Informação</span></div>
+      </div>
+      <div class="cert-side anim3">
+        <div class="ct">Certificação de destino final</div>
+        <div class="cp">Zero resíduo, zero aterro, zero incineração — com rastreabilidade ponta a ponta e laudo individual por ativo.</div>
+        <img src="../assets/logos/badge-dark.svg" alt="Selo e-waste ERS">
+      </div>
+    </div>
+    <div class="pgmark">05</div>
+  </section>
+
+  <!-- 6 — CASES -->
+  <section class="slide dark" data-label="Cases">
+    <div class="eyebrow-top">ERS Brazil · Comercial 2026</div>
+    <div class="vlabel">Cases de sucesso</div>
+    <div class="pad">
+      <div class="trow anim"><span class="lr"></span><h2 class="htitle" style="font-size:58px">Cases de Sucesso</h2><span class="rule"></span></div>
+      <div class="sublabel anim">Resultados que comprovam_</div>
+      <div class="case-cols">
+        <div class="case anim2">
+          <span class="chip">ITAD · TJSP</span>
+          <h3>Tribunal de Justiça de São Paulo</h3>
+          <p class="sub">Renovação de parque tecnológico com retorno de valor.</p>
+          <div class="metric"><span class="m">+150 mil</span><span class="d">itens coletados — PCs, monitores e servidores</span></div>
+          <div class="metric"><span class="m">R$ 45 Mi</span><span class="d">em bens coletados e negociados</span></div>
+          <div class="metric"><span class="m">18 meses</span><span class="d">duração total do projeto</span></div>
+        </div>
+        <div class="case-div"></div>
+        <div class="case anim3">
+          <span class="chip">Logística Reversa</span>
+          <h3>Operação nacional</h3>
+          <p class="sub">Coleta ambientalmente responsável em escala de país.</p>
+          <div class="metric"><span class="m">27 estados</span><span class="d">+ Distrito Federal atendidos</span></div>
+          <div class="metric"><span class="m">5.200</span><span class="d">agências atendidas</span></div>
+          <div class="metric"><span class="m">5 anos</span><span class="d">duração do projeto</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">06</div>
+  </section>
+
+  <!-- 7 — OBRIGADO -->
+  <section class="slide" data-label="Encerramento">
+    <div class="ty-photo"><div class="img" style="background-image:url(../assets/photos/data-wipe.jpg)"></div><div class="grade"></div></div>
+    <img class="cover-logo" src="../assets/logo-primary-color-tight.png" alt="ERS Brazil" style="width: 2px; height: 140px">
+    <div class="vlabel">Do What's Right</div>
+    <div class="ty-c">
+      <div class="trow anim" style="margin: 0px"><span class="lr"></span><h2 class="htitle" style="font-size:62px">Obrigado</h2><span class="rule"></span></div>
+      <div class="sublabel anim" style="margin-bottom:30px">Pela sua atenção_</div>
+      <div class="anim2" style="font-family:var(--font-display);font-size:96px;line-height:.82;letter-spacing:.02em;text-transform:uppercase;color:var(--ers-petrol)">DO 
+WHAT'S 
+RIGHT</div>
+      <div class="contact anim3"><b>Indaiatuba — SP</b> · @ersbrazil · contato@ersbrazil.com</div>
+    </div>
+    <div class="pgmark" style="color:var(--green-600)">07</div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  function drawIcons(){ if (window.lucide) lucide.createIcons(); }
+  window.addEventListener('load', drawIcons);
+  document.addEventListener('slidechange', drawIcons);
+</script>
+</body>
+</html>

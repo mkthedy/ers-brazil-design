@@ -1,0 +1,8 @@
+/* ============================================================
+   ERS BRAZIL — Design System root stylesheet
+   Consumers should link this single file. It pulls in the
+   color, type, spacing, elevation and motion foundations.
+   Component/surface styles (documents/doc.css, ui_kits/landing/kit.css)
+   are scoped to their own surfaces and imported there as needed.
+   ============================================================ */
+@import url('colors_and_type.css');

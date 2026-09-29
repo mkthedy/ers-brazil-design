@@ -1,0 +1,455 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Proposta Comercial (Dell)" subtitle="Bilingual commercial proposal — A4 portrait, multipage" viewport="794x1123" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Proposta Comercial · Dell Technologies</title>
+<link rel="stylesheet" href="doc.css">
+<style>
+  /* ---------- proposal-specific ---------- */
+  .sheet.portrait { display: flex; flex-direction: column; }
+
+  /* cover */
+  .cv { position: relative; flex: 1; background: var(--ers-petrol); color: #fff; display: flex; flex-direction: column; padding: 22mm 20mm 0; overflow: hidden; }
+  .cv > * { position: relative; z-index: 1; }
+  .cv .s-degrade { opacity: .18; }
+  .cv .logo { width: 64mm; }
+  .cv .eyebrow { margin-top: auto; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; font-size: 13px; color: var(--ers-orange); }
+  .cv h1 { font-size: 33px; font-weight: 800; line-height: 1.08; margin: 12px 0 0; letter-spacing: -.01em; }
+  .cv .sub { margin: 14px 0 0; font-size: 15px; line-height: 1.5; color: var(--green-300); max-width: 150mm; }
+  .cv .sub .pt { color: var(--fg-on-dark-2); font-style: italic; display: block; margin-top: 3px; font-size: 13.5px; }
+  .cv .rule { width: 70px; height: 4px; background: var(--ers-green); border-radius: 2px; margin: 20px 0; }
+  .cv-meta { margin: 4px 0 26px; display: grid; grid-template-columns: 1fr 1fr; gap: 12px 30px; }
+  .cv-meta .m .l { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 9px; color: var(--ers-green); }
+  .cv-meta .m .v { font-size: 13.5px; font-weight: 600; color: #fff; margin-top: 3px; line-height: 1.35; }
+  .cv-foot { margin-top: auto; margin-left: -20mm; margin-right: -20mm; padding: 7mm 20mm; background: var(--bg-dark-deep); display: flex; align-items: center; justify-content: space-between; gap: 14px; }
+  .cv-foot .addr { font-size: 9.5px; line-height: 1.55; color: var(--fg-on-dark-2); }
+  .cv-foot .addr b { color: #fff; }
+  .cv-foot .chips { display: flex; gap: 5px; flex-wrap: wrap; max-width: 150px; justify-content: flex-end; }
+  .cv-foot .chip { font-size: 8px; font-weight: 700; letter-spacing: .04em; text-transform: uppercase; color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 4px; padding: 3px 6px; white-space: nowrap; }
+  .confid { position: absolute; left: 20mm; bottom: 30mm; font-size: 10px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,.45); z-index: 1; }
+
+  /* content page chrome */
+  .pg-head { display: flex; align-items: center; justify-content: space-between; padding: 12mm 18mm 0; }
+  .pg-head img { height: 9mm; }
+  .pg-head .hx { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 10px; color: var(--fg-3); }
+  .pg-rule { margin: 8px 18mm 0; height: 2px; background: var(--ers-green); display: flex; }
+  .pg-rule .o { width: 46px; background: var(--ers-orange); }
+  .pg-body { flex: 1; padding: 9mm 18mm 6mm; overflow: hidden; }
+  .pg-foot { margin-top: auto; background: var(--ers-petrol); color: #fff; padding: 4.5mm 18mm; display: flex; align-items: center; justify-content: space-between; font-size: 9px; letter-spacing: .04em; }
+  .pg-foot .l { color: var(--fg-on-dark-2); text-transform: uppercase; letter-spacing: .1em; }
+  .pg-foot .r { color: var(--ers-green); font-weight: 600; }
+
+  /* section headings */
+  .sec { margin: 0 0 14px; }
+  .sec:first-child { margin-top: 0; }
+  .sec-h { display: flex; align-items: flex-start; gap: 10px; margin-bottom: 14px; }
+  .sec-h .n { font-family: var(--font-display); font-size: 26px; line-height: .92; color: var(--ers-green); flex: none; }
+  .sec-h .t { font-size: 15px; font-weight: 700; color: var(--ers-petrol); line-height: 1.3; }
+  .sec-h .t .pt { color: var(--fg-3); font-weight: 600; }
+
+  /* bilingual prose */
+  .bi { margin: 0 0 10px; }
+  .bi .en { margin: 0; font-size: 11.5px; line-height: 1.5; color: var(--fg-1); }
+  .bi .pt { margin: 2px 0 0; font-size: 10.5px; line-height: 1.45; color: var(--fg-3); font-style: italic; }
+
+  /* data tables */
+  table.tbl { width: 100%; border-collapse: collapse; margin: 4px 0 12px; }
+  table.tbl th { background: var(--ers-petrol); color: #fff; font-size: 9px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-align: left; padding: 7px 10px; }
+  table.tbl td { font-size: 11px; color: var(--fg-1); padding: 7px 10px; border-bottom: 1px solid var(--border-subtle); vertical-align: top; line-height: 1.35; }
+  table.tbl td .pt { color: var(--fg-3); font-style: italic; font-size: 9.5px; display: block; margin-top: 1px; }
+  table.tbl tr:nth-child(even) td { background: var(--off-white); }
+  table.tbl td.k { font-weight: 600; color: var(--ers-petrol); width: 42%; }
+  table.tbl td.v { font-variant-numeric: tabular-nums; }
+  table.tbl td.hl { color: var(--green-700); font-weight: 700; }
+
+  /* key-value pairs (parties) */
+  .kv { display: grid; grid-template-columns: 1fr 1fr; gap: 10px 26px; }
+  .kv.one { grid-template-columns: 1fr; }
+  .kv .c .l { font-weight: 700; letter-spacing: .1em; text-transform: uppercase; font-size: 8.5px; color: var(--ers-orange); }
+  .kv .c .v { font-size: 12px; color: var(--ers-petrol); font-weight: 600; margin-top: 2px; line-height: 1.4; }
+  .kv .c .v small { display: block; font-weight: 500; color: var(--fg-3); font-size: 10.5px; font-style: italic; }
+
+  /* callout box */
+  .note { background: var(--off-white); border-left: 3px solid var(--ers-green); border-radius: 6px; padding: 10px 14px; margin: 4px 0 12px; }
+  .note .en { font-size: 11px; line-height: 1.45; color: var(--fg-1); margin: 0; }
+  .note .pt { font-size: 10px; line-height: 1.4; color: var(--fg-3); font-style: italic; margin: 3px 0 0; }
+  .note.orange { border-left-color: var(--ers-orange); }
+
+  /* bullet lists */
+  ul.bl { margin: 2px 0 12px; padding: 0; list-style: none; }
+  ul.bl li { font-size: 11px; line-height: 1.4; color: var(--fg-1); padding-left: 16px; position: relative; margin-bottom: 6px; }
+  ul.bl li::before { content: ''; position: absolute; left: 0; top: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--ers-orange); }
+  ul.bl li .pt { color: var(--fg-3); font-style: italic; font-size: 9.5px; display: block; }
+
+  /* formula block */
+  .formula { background: var(--ers-petrol); color: #fff; border-radius: 8px; padding: 12px 16px; margin: 4px 0 10px; }
+  .formula .f { font-size: 12.5px; font-weight: 600; line-height: 1.4; }
+  .formula .f .var { color: var(--ers-green); }
+  .formula .pt { font-size: 10px; color: var(--fg-on-dark-2); font-style: italic; margin-top: 3px; }
+
+  /* signature */
+  .sign-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px 40px; margin-top: 16px; }
+  .sign-grid .row { }
+  .sign-grid .row .ln { border-bottom: 1.5px solid var(--ers-petrol); height: 30px; }
+  .sign-grid .row .lb { font-size: 10px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--fg-3); margin-top: 6px; }
+  .accept-note { margin-top: 22px; padding-top: 14px; border-top: 1px solid var(--border-subtle); font-size: 10px; color: var(--fg-3); line-height: 1.5; text-align: center; }
+</style>
+</head>
+<body>
+
+<template id="__bundler_thumbnail">
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+    <rect width="100" height="100" fill="#043035"/>
+    <text x="50" y="46" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#65CE21" text-anchor="middle">ERS</text>
+    <text x="50" y="66" font-family="Arial, sans-serif" font-size="9" font-weight="bold" fill="#ffffff" text-anchor="middle" letter-spacing="1">PROPOSTA</text>
+  </svg>
+</template>
+
+<div class="doc-caption no-print">Proposta Comercial · Dell Technologies · A4 retrato · 10 páginas · <span>imprima com Ctrl/Cmd + P</span></div>
+
+<!-- ============ PAGE 1 — COVER ============ -->
+<div class="sheet portrait">
+  <div class="cv">
+    <div class="s-degrade"></div>
+    <img class="logo" src="../assets/logo-primary-white.png" alt="ERS Brazil">
+    <div class="eyebrow">Commercial Proposal · Proposta Comercial</div>
+    <h1>On-site Data Wipe with Blancco Certificate<br>+ Freight to HPEFS/SP</h1>
+    <div class="sub">Logical data wiping executed on-site with mandatory Blancco certification, followed by transport of processed assets.
+      <span class="pt">Apagamento lógico de dados on-site com certificação Blancco obrigatória e transporte dos ativos processados.</span>
+    </div>
+    <div class="rule"></div>
+    <div class="cv-meta">
+      <div class="m"><div class="l">Proposal No. / Proposta Nº</div><div class="v">ERS-DELL-001-2026</div></div>
+      <div class="m"><div class="l">Client / Cliente</div><div class="v">Dell Technologies<br>Global Professional Services · Global Takeback</div></div>
+      <div class="m"><div class="l">Prepared by / Proponente</div><div class="v">ERS Brazil Environmental Recovery Solutions Ltda.</div></div>
+      <div class="m"><div class="l">Validity / Validade</div><div class="v">15 days / 15 dias</div></div>
+      <div class="m"><div class="l">Payment / Pagamento</div><div class="v">Bank slip — 15 days after invoice<br><span style="font-weight:500;color:var(--fg-on-dark-2)">Boleto — 15 dias após NF</span></div></div>
+      <div class="m"><div class="l">Date / Data</div><div class="v">June 2026 / Junho de 2026</div></div>
+    </div>
+    <div class="cv-foot">
+      <div class="addr"><b>ERS BRAZIL — Environmental Recovery Solutions Ltda.</b><br>CNPJ 32.443.438/0001-30 · Alameda Plutão, 555 · American Park · Indaiatuba/SP · CEP 13347-656</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px">
+        <div class="chips"><span class="chip">R2v3</span><span class="chip">ISO 9001</span><span class="chip">ISO 14001</span><span class="chip">ISO 45001</span><span class="chip">ISO 27001</span></div>
+        <div class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ============ PAGE 2 — PARTIES ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">01</span><span class="t">Identification of the Parties <span class="pt">/ Identificação das Partes</span></span></div>
+      <div class="kv">
+        <div class="c"><div class="l">Client / Cliente</div><div class="v">Dell Technologies</div></div>
+        <div class="c"><div class="l">Area / Área</div><div class="v">Global Professional Services<small>Global Takeback — Asset Recovery Services</small></div></div>
+        <div class="c"><div class="l">Requester / Solicitante</div><div class="v">Craig DiGiulio, PMP®<small>Custom Solutions · Global Takeback · +1 512.720.3108</small></div></div>
+        <div class="c"><div class="l">Requester / Solicitante</div><div class="v">Breno Lúcio<small>LATAM Project Management · +55 (19) 3500-5240 · Breno.Lucio@dell.com</small></div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="t" style="font-size:13px">Proponent <span class="pt">/ Proponente</span></span></div>
+      <div class="kv">
+        <div class="c"><div class="l">Legal Name / Razão Social</div><div class="v">ERS Brazil Environmental Recovery Solutions Ltda.</div></div>
+        <div class="c"><div class="l">CNPJ</div><div class="v tnum">32.443.438/0001-30</div></div>
+        <div class="c"><div class="l">State Reg. / Inscrição Estadual</div><div class="v tnum">353.707.324.111</div></div>
+        <div class="c"><div class="l">Municipal Reg. / CCM</div><div class="v tnum">152.150-9</div></div>
+      </div>
+      <div class="kv one" style="margin-top:10px">
+        <div class="c"><div class="l">Address / Endereço</div><div class="v">Alameda Plutão, 555 — Distrito Empresarial American Park — Indaiatuba/SP — CEP 13347-656</div></div>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">02</span><span class="t">Executive Summary <span class="pt">/ Resumo Executivo</span></span></div>
+      <div class="bi">
+        <p class="en">ERS Brazil submits this commercial proposal to Dell Technologies for a consolidated scope covering on-site logical data wiping with Blancco certification as mandatory Proof of Data Wipe / Proof of Destruction, followed by transportation of the processed PCs to the HPEFS/Global address in Barueri/SP.</p>
+        <p class="pt">A ERS Brazil apresenta esta proposta para o serviço de apagamento lógico de dados on-site, com emissão de Certificado Blancco como comprovação obrigatória, seguido do transporte dos equipamentos processados para a unidade HPEFS/Global em Barueri/SP.</p>
+      </div>
+      <div class="note">
+        <p class="en">Estimated volume informed by Dell: <b>3,057 units over 4 years</b>, with monthly execution according to demand. The commercial model has <b>no fixed monthly fee</b> and <b>no minimum quantity</b> per demand.</p>
+        <p class="pt">Volume estimado informado pela Dell: 3.057 unidades em 4 anos, execução mensal conforme demanda. Sem mensalidade fixa e sem quantidade mínima por demanda.</p>
+      </div>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 02</span></div>
+</div>
+
+<!-- ============ PAGE 3 — SCOPE ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">03</span><span class="t">Scope of Work <span class="pt">/ Escopo dos Serviços</span></span></div>
+      <div class="bi"><p class="en"><b>3.1 · On-site Data Wipe / Apagamento de Dados On-site.</b> ERS Brazil will perform logical data wiping at the address indicated by Dell, using Blancco software and issuing the corresponding certificate/report per processed unit.</p>
+        <p class="pt">A ERS Brazil realizará o apagamento lógico de dados no endereço indicado pela Dell, utilizando solução Blancco e emitindo o respectivo certificado/relatório por unidade processada.</p></div>
+      <div class="note">
+        <p class="en"><b>On-site Address / Endereço de Execução</b><br>Avenida Comendador Aladino Selmi, 4.630 — Condomínio GR Campinas 2 — Vila San Martin — Campinas/SP — CEP 13069-096</p>
+      </div>
+      <div class="bi"><p class="en"><b>3.2 · Freight to HPEFS/SP / Transporte para HPEFS/SP.</b> After completion of the data wipe and issuance of certificates/reports, ERS Brazil will transport the processed PCs to the HPEFS/Global delivery address in Barueri/SP.</p>
+        <p class="pt">Após a conclusão do apagamento e emissão dos certificados/relatórios, a ERS Brazil transportará os PCs processados até o endereço HPEFS/Global em Barueri/SP.</p></div>
+      <div class="note">
+        <p class="en"><b>Delivery Address / Endereço de Entrega</b><br>Mainstream Global Brazil Serviços Tecnológicos Ltda. — Marginal Projetada, 1652 — Galpão 09 — Jardim Mutinga — Barueri/SP — CEP 06460-200</p>
+        <p class="pt">CNPJ 21.860.757/0001-25 · Inscrição Estadual 206.386.668.115</p>
+      </div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">04</span><span class="t">Estimated Volume <span class="pt">/ Volume Estimado</span></span></div>
+      <table class="tbl">
+        <thead><tr><th>Description / Descrição</th><th>Quantity / Quantidade</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Total estimated volume <span class="pt">Volume total estimado</span></td><td class="v hl">3,057 units / 3.057 unidades</td></tr>
+          <tr><td class="k">Estimated period <span class="pt">Período estimado</span></td><td class="v">4 years / 4 anos</td></tr>
+          <tr><td class="k">Estimated monthly average <span class="pt">Média mensal estimada</span></td><td class="v">≈ 64 units/month · 64 unidades/mês</td></tr>
+          <tr><td class="k">Execution frequency <span class="pt">Frequência de execução</span></td><td class="v">According to Dell demand / Conforme demanda</td></tr>
+          <tr><td class="k">Minimum quantity <span class="pt">Quantidade mínima</span></td><td class="v">Not applicable / Não aplicável</td></tr>
+          <tr><td class="k">Fixed monthly fee <span class="pt">Mensalidade fixa</span></td><td class="v">Not applicable / Não aplicável</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 03</span></div>
+</div>
+
+<!-- ============ PAGE 4 — METHODOLOGY + DELIVERABLES ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">05</span><span class="t">Execution Methodology <span class="pt">/ Metodologia de Execução</span></span></div>
+      <div class="bi"><p class="en">The operation will be scheduled in advance between Dell Technologies and ERS Brazil and executed during regular business hours. <span class="pt" style="display:block">A operação será previamente agendada e executada em horário comercial.</span></p></div>
+      <table class="tbl">
+        <thead><tr><th style="width:34%">Step / Etapa</th><th>Description / Descrição</th></tr></thead>
+        <tbody>
+          <tr><td class="k">1. Scheduling / Agendamento</td><td>Dell informs the demand and desired date <span class="pt">A Dell informa a demanda e a data desejada</span></td></tr>
+          <tr><td class="k">2. Mobilization / Mobilização</td><td>ERS mobilizes team and resources to the site <span class="pt">A ERS desloca equipe e recursos até o local</span></td></tr>
+          <tr><td class="k">3. Initial check / Conferência</td><td>Equipment checked per local availability <span class="pt">Equipamentos conferidos conforme disponibilidade</span></td></tr>
+          <tr><td class="k">4. Data wipe / Apagamento</td><td>Logical data wipe using Blancco software <span class="pt">Execução do data wipe utilizando Blancco</span></td></tr>
+          <tr><td class="k">5. Reports / Relatórios</td><td>Certificate/report per processed unit <span class="pt">Certificado/relatório por unidade processada</span></td></tr>
+          <tr><td class="k">6. Organization / Organização</td><td>Processed equipment prepared for transport <span class="pt">Organização dos equipamentos para transporte</span></td></tr>
+          <tr><td class="k">7. Freight / Transporte</td><td>Delivery to HPEFS/Global in Barueri/SP <span class="pt">Entrega na HPEFS/Global em Barueri/SP</span></td></tr>
+          <tr><td class="k">8. Closing / Finalização</td><td>Operational closing and delivery record <span class="pt">Encerramento operacional e registro da entrega</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">06</span><span class="t">Deliverables <span class="pt">/ Entregáveis</span></span></div>
+      <table class="tbl">
+        <thead><tr><th style="width:38%">Deliverable / Entregável</th><th>Description / Descrição</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Blancco Certificate <span class="pt">Certificado Blancco</span></td><td>Mandatory certificate per processed unit <span class="pt">Certificado obrigatório por unidade</span></td></tr>
+          <tr><td class="k">Unit Report <span class="pt">Relatório por unidade</span></td><td>Included in the service <span class="pt">Incluso no serviço</span></td></tr>
+          <tr><td class="k">Data wipe evidence <span class="pt">Evidência de apagamento</span></td><td>Based on Blancco report <span class="pt">Conforme relatório Blancco</span></td></tr>
+          <tr><td class="k">Freight <span class="pt">Transporte</span></td><td>Delivery to HPEFS/Global Barueri/SP <span class="pt">Entrega na HPEFS/Global Barueri/SP</span></td></tr>
+          <tr><td class="k">Delivery proof <span class="pt">Comprovação de entrega</span></td><td>According to receiving procedure <span class="pt">Conforme procedimento do recebedor</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 04</span></div>
+</div>
+
+<!-- ============ PAGE 5 — LOGISTICS + PRICING CRITERIA ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">07</span><span class="t">Logistics Basis <span class="pt">/ Base Logística</span></span></div>
+      <div class="bi"><p class="en">Complete same-day operational route considered: <b>ERS/Indaiatuba → Campinas/SP → HPEFS/Global Barueri/SP → ERS/Indaiatuba.</b><span class="pt" style="display:block">Rota operacional completa no mesmo dia.</span></p></div>
+      <table class="tbl">
+        <thead><tr><th>Description / Descrição</th><th>Amount / Valor</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Total traveled distance <span class="pt">Km rodado total estimado</span></td><td class="v">233.7 km / 233,7 km</td></tr>
+          <tr><td class="k">Freight rate <span class="pt">Valor por km rodado</span></td><td class="v">R$ 8.21/km · R$ 8,21/km</td></tr>
+          <tr><td class="k">Freight per demand <span class="pt">Frete por demanda</span></td><td class="v hl">R$ 1,918.68 · R$ 1.918,68</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">08</span><span class="t">Commercial Pricing Criteria <span class="pt">/ Critérios de Precificação</span></span></div>
+      <table class="tbl">
+        <thead><tr><th style="width:40%">Component / Componente</th><th>Criteria / Critério</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Blancco License <span class="pt">Certificado Blancco</span></td><td class="hl">USD 7.50 per processed unit <span class="pt" style="color:var(--fg-3);font-weight:400">USD 7,50 por unidade</span></td></tr>
+          <tr><td class="k">Exchange rate <span class="pt">Conversão do Blancco</span></td><td>Commercial USD rate on invoice date <span class="pt">Dólar comercial vigente na data do faturamento</span></td></tr>
+          <tr><td class="k">Unit report <span class="pt">Relatório por unidade</span></td><td>Included in Blancco certificate/report <span class="pt">Incluso no certificado Blancco</span></td></tr>
+          <tr><td class="k">Operational labor <span class="pt">Mão de obra</span></td><td class="hl">R$ 10.00 per processed unit <span class="pt" style="color:var(--fg-3);font-weight:400">R$ 10,00 por unidade</span></td></tr>
+          <tr><td class="k">Freight <span class="pt">Frete</span></td><td>R$ 8.21 per traveled km · R$ 8,21 por km</td></tr>
+          <tr><td class="k">Logistics route <span class="pt">Rota logística</span></td><td>233.7 km per demand · 233,7 km por demanda</td></tr>
+          <tr><td class="k">Taxes <span class="pt">Impostos</span></td><td class="hl">15% over invoice amount <span class="pt" style="color:var(--fg-3);font-weight:400">15% sobre a nota fiscal</span></td></tr>
+          <tr><td class="k">Payment <span class="pt">Pagamento</span></td><td>Bank slip, 15 days after invoice <span class="pt">Boleto, 15 dias após NF</span></td></tr>
+          <tr><td class="k">Certificate issuance <span class="pt">Prazo dos certificados</span></td><td>Up to 10 calendar days after execution <span class="pt">Até 10 dias corridos após execução</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 05</span></div>
+</div>
+
+<!-- ============ PAGE 6 — FORMULA + SIMULATION ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">09</span><span class="t">Pricing Formula <span class="pt">/ Fórmula de Cálculo</span></span></div>
+      <div class="formula"><div class="f"><span class="var">Blancco Cost</span> = units × USD 7.50 × commercial USD rate on invoice date</div><div class="pt">Custo Blancco = unidades × USD 7,50 × dólar comercial na data do faturamento</div></div>
+      <div class="formula"><div class="f"><span class="var">Operational Labor</span> = units × R$ 10.00</div><div class="pt">Mão de obra = unidades × R$ 10,00</div></div>
+      <div class="formula"><div class="f"><span class="var">Freight</span> = 233.7 km × R$ 8.21 = R$ 1,918.68</div><div class="pt">Frete = 233,7 km × R$ 8,21 = R$ 1.918,68</div></div>
+      <div class="formula"><div class="f"><span class="var">Total per Demand</span> = (Blancco + Labor + Freight) × 1.15</div><div class="pt">Valor total por demanda = (Custo Blancco + Mão de obra + Frete) × 1,15</div></div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">10</span><span class="t">Commercial Simulation <span class="pt">/ Simulação por Demanda</span></span></div>
+      <div class="note orange"><p class="en">Based on the estimated average of <b>64 units</b> per demand/month. Final billing reflects the actual number of processed units and the commercial USD exchange rate on invoice date.</p>
+        <p class="pt">Considera a média estimada de 64 unidades por demanda/mês. O faturamento final seguirá a quantidade real e o dólar comercial vigente.</p></div>
+      <table class="tbl">
+        <thead><tr><th style="width:24%">Item</th><th>Calculation / Cálculo</th><th style="width:26%">Amount / Valor</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Blancco</td><td>64 × USD 7.50 × USD rate <span class="pt">64 × USD 7,50 × dólar</span></td><td class="v">R$ ___</td></tr>
+          <tr><td class="k">Operational labor <span class="pt">Mão de obra</span></td><td>64 × R$ 10.00 · 64 × R$ 10,00</td><td class="v">R$ 640,00</td></tr>
+          <tr><td class="k">Freight <span class="pt">Frete</span></td><td>233.7 km × R$ 8.21 · 233,7 × R$ 8,21</td><td class="v">R$ 1.918,68</td></tr>
+          <tr><td class="k">Subtotal <span class="pt">antes dos impostos</span></td><td>Blancco + labor + freight</td><td class="v">R$ ___</td></tr>
+          <tr><td class="k">Taxes / Impostos</td><td>15% over invoice · 15% sobre a NF</td><td class="v">R$ ___</td></tr>
+          <tr><td class="k">Total per demand <span class="pt">Valor total por demanda</span></td><td>Subtotal × 1.15</td><td class="v hl">R$ ___</td></tr>
+          <tr><td class="k">Estimated unit price <span class="pt">Valor estimado por unidade</span></td><td>Total ÷ processed quantity</td><td class="v">R$ ___</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 06</span></div>
+</div>
+
+<!-- ============ PAGE 7 — CONDITIONS + BANKING ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">11</span><span class="t">Commercial Conditions <span class="pt">/ Condições Comerciais</span></span></div>
+      <table class="tbl">
+        <thead><tr><th style="width:40%">Condition / Condição</th><th>Description / Descrição</th></tr></thead>
+        <tbody>
+          <tr><td class="k">Billing model <span class="pt">Modelo de cobrança</span></td><td>Per executed demand / Por demanda executada</td></tr>
+          <tr><td class="k">Billing method <span class="pt">Forma de cobrança</span></td><td>Bank slip / Boleto bancário</td></tr>
+          <tr><td class="k">Fixed monthly fee <span class="pt">Mensalidade fixa</span></td><td>Not applicable / Não aplicável</td></tr>
+          <tr><td class="k">Minimum quantity <span class="pt">Quantidade mínima</span></td><td>Not applicable / Não aplicável</td></tr>
+          <tr><td class="k">Payment term <span class="pt">Prazo de pagamento</span></td><td>15 days after invoice / 15 dias após NF</td></tr>
+          <tr><td class="k">Proposal validity <span class="pt">Validade da proposta</span></td><td>15 days / 15 dias</td></tr>
+          <tr><td class="k">Billing currency <span class="pt">Moeda de faturamento</span></td><td>Brazilian Real — BRL / Real — BRL</td></tr>
+          <tr><td class="k">Blancco exchange rate <span class="pt">Câmbio Blancco</span></td><td>Commercial USD rate on invoice date <span class="pt">Dólar comercial na data do faturamento</span></td></tr>
+          <tr><td class="k">Taxes / Impostos</td><td>15% over invoice amount / 15% sobre a NF</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">12</span><span class="t">Banking Details <span class="pt">/ Dados Bancários</span></span></div>
+      <div class="kv">
+        <div class="c"><div class="l">Bank / Banco</div><div class="v">Inter — 077</div></div>
+        <div class="c"><div class="l">Beneficiary / Favorecido</div><div class="v">ERS Brazil Environmental Recovery Solutions Ltda.</div></div>
+        <div class="c"><div class="l">CNPJ</div><div class="v tnum">32.443.438/0001-30</div></div>
+        <div class="c"><div class="l">Agency · Account / Agência · Conta</div><div class="v tnum">0001 · 2523158-8</div></div>
+      </div>
+      <div class="note"><p class="en">Billing is performed through bank slip after service execution and invoice issuance, with payment due in 15 days.</p>
+        <p class="pt">A cobrança será realizada por boleto bancário após a execução da demanda e emissão da NF, com pagamento em 15 dias.</p></div>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 07</span></div>
+</div>
+
+<!-- ============ PAGE 8 — ASSUMPTIONS + MOBILIZATION ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">13</span><span class="t">Operational Assumptions <span class="pt">/ Premissas Operacionais</span></span></div>
+      <ul class="bl">
+        <li>Dell will schedule the demand in advance <span class="pt">A Dell realizará o agendamento prévio da demanda</span></li>
+        <li>Dell will ensure access authorization for the ERS team <span class="pt">A Dell garantirá autorização de acesso da equipe ERS</span></li>
+        <li>Equipment must be available and accessible at the informed address <span class="pt">Os equipamentos deverão estar disponíveis e acessíveis</span></li>
+        <li>Service performed during regular business hours <span class="pt">Atendimento em horário comercial</span></li>
+        <li>No fixed monthly fee and no minimum quantity per demand <span class="pt">Sem mensalidade fixa nem quantidade mínima</span></li>
+        <li>Blancco report/certificate per unit is included <span class="pt">Relatório/certificado Blancco por unidade incluso</span></li>
+        <li>Freight considers the complete route of 233.7 km per demand <span class="pt">Frete considera a rota completa de 233,7 km por demanda</span></li>
+      </ul>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">14</span><span class="t">Mobilization &amp; Non-Execution <span class="pt">/ Mobilização e Impossibilidade</span></span></div>
+      <div class="bi"><p class="en">If ERS mobilizes its team and travels to the site, but the service cannot be executed for reasons not attributable to ERS, the logistics/displacement cost and the operational labor related to the mobilization will be charged.</p>
+        <p class="pt">Caso a ERS realize o deslocamento e o serviço não possa ser executado por motivo não atribuível à ERS, serão cobrados os custos de logística/deslocamento e a mão de obra da mobilização.</p></div>
+      <table class="tbl">
+        <thead><tr><th>Example / Exemplo</th><th>Commercial condition / Condição comercial</th></tr></thead>
+        <tbody>
+          <tr><td class="k">No access authorization <span class="pt">Falta de autorização de acesso</span></td><td>Freight/displacement + labor charged <span class="pt">Cobrança de deslocamento e mão de obra</span></td></tr>
+          <tr><td class="k">Equipment unavailable <span class="pt">Equipamentos indisponíveis</span></td><td>Freight/displacement + labor charged <span class="pt">Cobrança de deslocamento e mão de obra</span></td></tr>
+          <tr><td class="k">No required site structure <span class="pt">Falta de estrutura mínima</span></td><td>Freight/displacement + labor charged <span class="pt">Cobrança de deslocamento e mão de obra</span></td></tr>
+          <tr><td class="k">Late cancellation after mobilization <span class="pt">Cancelamento após mobilização</span></td><td>Freight/displacement + labor charged <span class="pt">Cobrança de deslocamento e mão de obra</span></td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 08</span></div>
+</div>
+
+<!-- ============ PAGE 9 — EXCLUSIONS + COMPLIANCE ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">15</span><span class="t">Exceptions &amp; Exclusions <span class="pt">/ Exceções e Exclusões</span></span></div>
+      <ul class="bl">
+        <li>Physical destruction of HDD, SSD or any storage media <span class="pt">Destruição física de HD, SSD ou mídia</span></li>
+        <li>Technical dismantling, repair, upgrade or refurbishment <span class="pt">Desmontagem, reparo, upgrade ou recondicionamento</span></li>
+        <li>Purchase or resale of equipment <span class="pt">Compra ou revenda dos equipamentos</span></li>
+        <li>Special packaging not previously agreed <span class="pt">Embalagens especiais não acordadas</span></li>
+        <li>Extended storage of equipment <span class="pt">Armazenagem prolongada dos equipamentos</span></li>
+        <li>Additional pickup or delivery addresses <span class="pt">Coletas ou entregas em endereços adicionais</span></li>
+        <li>Activities outside business hours <span class="pt">Serviço fora do horário comercial</span></li>
+        <li>Additional transportation insurance, unless contracted <span class="pt">Seguro adicional de transporte, salvo contratação</span></li>
+        <li>Re-execution due to physical failure, BIOS lock, no power or defective media <span class="pt">Reexecução por falha física, BIOS bloqueada ou mídia defeituosa</span></li>
+      </ul>
+      <div class="note orange"><p class="en">For equipment with technical failure, BIOS lock, missing/defective media or impossibility of completion in Blancco, ERS may issue an exception report. The unit will be considered a technical processing attempt for billing purposes.</p>
+        <p class="pt">Para equipamentos com falha técnica, bloqueio de BIOS ou impossibilidade de conclusão no Blancco, a ERS poderá emitir relatório de exceção. A unidade será considerada tentativa técnica de processamento para fins de faturamento.</p></div>
+    </div>
+    <div class="sec">
+      <div class="sec-h"><span class="n">16</span><span class="t">Compliance, Security &amp; Chain of Custody <span class="pt">/ Compliance e Custódia</span></span></div>
+      <div class="bi"><p class="en">ERS Brazil will execute the services following internal operational controls, information security practices and operational traceability throughout the process. Blancco certificates/reports support formal evidence of logical data wiping, with control from on-site execution through delivery at HPEFS/Global Barueri/SP.</p>
+        <p class="pt">A ERS executará os serviços seguindo controles operacionais internos, boas práticas de segurança da informação e rastreabilidade durante todo o processo. Os certificados Blancco suportam a comprovação formal do apagamento, com controle desde a execução on-site até a entrega na HPEFS/Global.</p></div>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 09</span></div>
+</div>
+
+<!-- ============ PAGE 10 — ACCEPTANCE ============ -->
+<div class="sheet portrait">
+  <div class="pg-head"><img src="../assets/logos/horizontal-color.svg" alt="ERS Brazil"><span class="hx">Proposta ERS-DELL-001-2026</span></div>
+  <div class="pg-rule"><div class="o"></div></div>
+  <div class="pg-body">
+    <div class="sec">
+      <div class="sec-h"><span class="n">17</span><span class="t">Acceptance <span class="pt">/ Aceite</span></span></div>
+      <div class="bi"><p class="en">By approving this proposal, Dell Technologies authorizes ERS Brazil to execute the services described herein according to the commercial, operational and technical conditions presented in this document.</p>
+        <p class="pt">Ao aprovar esta proposta, a Dell Technologies autoriza a ERS Brazil a executar os serviços descritos neste documento, conforme as condições comerciais, operacionais e técnicas aqui apresentadas.</p></div>
+      <div class="sign-grid">
+        <div class="row"><div class="ln"></div><div class="lb">Name / Nome</div></div>
+        <div class="row"><div class="ln"></div><div class="lb">Title / Cargo</div></div>
+        <div class="row"><div class="ln"></div><div class="lb">Company / Empresa</div></div>
+        <div class="row"><div class="ln"></div><div class="lb">Date / Data</div></div>
+        <div class="row" style="grid-column:1 / -1"><div class="ln"></div><div class="lb">Signature / Assinatura</div></div>
+      </div>
+      <div class="accept-note">ERS BRAZIL — Environmental Recovery Solutions Ltda. · CNPJ 32.443.438/0001-30<br>Alameda Plutão, 555 — Distrito Empresarial American Park — Indaiatuba/SP — CEP 13347-656</div>
+    </div>
+  </div>
+  <div class="pg-foot"><span class="l">Confidential · Prepared for Dell Technologies</span><span class="r">ERS-DELL-001-2026 · pág. 10</span></div>
+</div>
+
+<script>if (window.self !== window.top) document.body.classList.add('embed');</script>
+</body>
+</html>

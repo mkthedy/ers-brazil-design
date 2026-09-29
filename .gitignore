@@ -1,0 +1,7 @@
+# temporários
+_chk.html
+*.tmp
+~$*
+Thumbs.db
+Desktop.ini
+.DS_Store

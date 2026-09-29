@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Papel Timbrado" subtitle="Letterhead — A4 portrait" viewport="794x1123" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Papel Timbrado</title>
+<link rel="stylesheet" href="doc.css">
+<style>
+  .lt { position: relative; height: 100%; display: flex; flex-direction: column; }
+  .lt-head { padding: 14mm 18mm 0; display: flex; align-items: center; justify-content: space-between; }
+  .lt-head .logo { height: 22mm; }
+  .lt-head .contact { text-align: right; font-size: 10.5px; line-height: 1.7; color: var(--fg-3); white-space: nowrap; }
+  .lt-head .contact b { color: var(--ers-petrol); }
+  .lt-rule { margin: 10mm 18mm 0; height: 3px; background: var(--ers-green); display: flex; }
+  .lt-rule .o { width: 60px; background: var(--ers-orange); }
+
+  .lt-body { position: relative; flex: 1; padding: 12mm 18mm; font-size: 13px; line-height: 1.7; color: var(--fg-2); }
+  .lt-body > *:not(.s-mark) { position: relative; z-index: 1; }
+  .lt-body .s-mark { right: -34mm; bottom: 24mm; width: 150mm; height: 150mm; opacity: .05; }
+  .lt-body .date { color: var(--fg-3); font-size: 12px; }
+  .lt-body .to { margin: 14px 0 22px; }
+  .lt-body .to b { color: var(--ers-petrol); }
+  .lt-body h2 { font-size: 17px; color: var(--ers-petrol); font-weight: 700; margin: 0 0 14px; }
+  .lt-body p { margin: 0 0 13px; max-width: 165mm; }
+  .lt-body .sign { margin-top: 30px; }
+  .lt-body .sign .nm { font-weight: 700; color: var(--ers-petrol); font-size: 13px; }
+  .lt-body .sign .rl { font-size: 11.5px; color: var(--fg-3); }
+  .lt-watermark { position: absolute; right: -30px; bottom: 60mm; font-family: var(--font-display); font-size: 360px; color: rgba(4,48,53,.03); line-height: .8; pointer-events: none; }
+
+  .lt-foot { position: relative; flex: none; background: var(--ers-petrol); color: #fff; padding: 7mm 18mm; display: flex; align-items: center; justify-content: space-between; }
+  .lt-foot > * { position: relative; z-index: 1; }
+  .lt-foot .s-degrade { opacity: .18; }
+  .lt-foot .addr { font-size: 10.5px; line-height: 1.6; color: var(--fg-on-dark-2); text-align: left; }
+  .lt-foot .addr b { color: #fff; }
+  .lt-foot .chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 175px; }
+  .lt-foot .chip { font-size: 8.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 4px; padding: 3px 7px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="doc-caption no-print">Papel timbrado · A4 retrato (210 × 297 mm)</div>
+
+<div class="sheet portrait">
+  <div class="lt">
+    <div class="lt-head" style="padding: 14px 68px 0px">
+      <img class="logo" src="../assets/logo-primary-color.png" alt="ERS Brazil" style="object-fit: scale-down; width: 115px; height: 50px; opacity: 1">
+      <div class="contact"><b style="font-size: 16px">ERS Brazil</b><br>
+        Indaiatuba — SP<br>
+        +55 19 99668-4397 · ersbrazil.com
+      </div>
+    </div>
+    <div class="lt-rule" style="margin: 10px 68px 0"><div class="o"></div></div>
+
+    <div class="lt-body" style="opacity: 1">
+      <div class="s-mark petrol"></div>
+      <div class="date">Indaiatuba, 02 de junho de 2026.</div>
+      <div class="to"><b>À</b> ACME Tecnologia Ltda.<br>A/C Departamento de Sustentabilidade e TI</div>
+
+      <h2>Proposta de gestão de resíduos eletrônicos</h2>
+      <p>Prezados,</p>
+      <p>É com satisfação que apresentamos a ERS Brazil — Environmental Recovery Solutions como parceira para a gestão do ciclo de vida dos seus ativos eletrônicos. Atuamos com controle total do processo, da coleta segura à destinação final certificada, garantindo segurança da informação, conformidade ambiental e retorno de valor.</p>
+      <p>Nossa operação em Indaiatuba — SP processa até 400 toneladas por mês e oferece sanitização de dados com padrões internacionais, fragmentação física até 6&nbsp;mm³ e rastreabilidade ponta a ponta, sob certificações R2v3 e ISO 9001, 14001, 45001 e 27001.</p>
+      <p>Permanecemos à disposição para detalhar escopo, prazos e indicadores de sustentabilidade aplicáveis ao seu parque tecnológico.</p>
+
+      <div class="sign">
+        <p style="margin:0">Atenciosamente,</p>
+        <div style="margin-top:26px">
+          <div class="nm">Nome do Responsável</div>
+          <div class="rl">Diretoria Comercial · ERS Brazil</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="lt-foot" style="min-height: 80px">
+      <div class="s-degrade"></div>
+      <div class="addr" style="width: 500px; text-align: left">ERS Brazil — Environmental Recovery Solutions 
+Alameda Plutão, 555 · American Park Empresarial NR · Indaiatuba — SP · CEP 13347-656</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px">
+        <div class="chips">
+          <span class="chip">R2v3</span><span class="chip">ISO 9001</span><span class="chip">ISO 14001</span><span class="chip">ISO 45001</span><span class="chip">ISO 27001</span>
+        </div>
+        <div class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>if (window.self !== window.top) document.body.classList.add('embed');</script>
+</body>
+</html>

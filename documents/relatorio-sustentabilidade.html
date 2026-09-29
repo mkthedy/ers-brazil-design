@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Relatório de Sustentabilidade" subtitle="Sustainability one-pager — A4 portrait" viewport="794x1123" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Relatório de Sustentabilidade</title>
+<link rel="stylesheet" href="doc.css">
+<style>
+  .rp { position: relative; height: 100%; display: flex; flex-direction: column; }
+  .rp-hero { position: relative; background: var(--ers-petrol); color: #fff; padding: 16mm 16mm 14mm; overflow: hidden; }
+  .rp-hero .photo { position: absolute; inset: 0; background-size: cover; background-position: center; opacity: .22; }
+  .rp-hero .scrim { position: absolute; inset: 0; background: linear-gradient(120deg, var(--ers-petrol) 35%, rgba(4,48,53,.55) 100%); }
+  .rp-hero .inner { position: relative; }
+  .rp-hero .logo { height: 34mm; }
+  .rp-hero .eyebrow { font-weight: 700; letter-spacing: .22em; text-transform: uppercase; font-size: 11px; color: var(--ers-orange); margin-top: 9mm; }
+  .rp-hero h1 { font-size: 38px; font-weight: 800; line-height: 1.04; margin: 8px 0 0; }
+  .rp-hero h1 em { color: var(--ers-green); font-style: normal; }
+  .rp-hero .period { margin-top: 12px; font-size: 13px; color: var(--fg-on-dark-2); }
+
+  .rp-stats { display: grid; grid-template-columns: repeat(3,1fr); }
+  .rp-stats .s { padding: 12mm 8mm; text-align: center; border-right: 1px solid var(--border-subtle); }
+  .rp-stats .s:last-child { border-right: none; }
+  .rp-stats .s .n { font-family: var(--font-display); font-size: 58px; line-height: .85; color: var(--ers-petrol); letter-spacing: .02em; }
+  .rp-stats .s .n em { color: var(--ers-green); font-style: normal; }
+  .rp-stats .s .l { font-size: 12px; color: var(--fg-2); margin-top: 8px; line-height: 1.35; }
+
+  .rp-body { flex: 1; padding: 4mm 16mm 14mm; }
+  .rp-body .sec-eyebrow { font-weight: 700; letter-spacing: .18em; text-transform: uppercase; font-size: 11px; color: var(--ers-orange); }
+  .rp-body h3 { font-size: 19px; color: var(--ers-petrol); font-weight: 700; margin: 6px 0 14px; }
+  .rp-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .rp-card { background: var(--off-white); border-radius: 8px; padding: 16px 18px; }
+  .rp-card .ct { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ers-petrol); font-size: 14px; }
+  .rp-card .ct i { width: 18px; height: 18px; color: var(--green-700); }
+  .rp-card p { margin: 8px 0 0; font-size: 12px; line-height: 1.5; color: var(--fg-2); }
+
+  .rp-note { margin-top: 14px; font-size: 11.5px; line-height: 1.55; color: var(--fg-3); border-top: 1px solid var(--border-subtle); padding-top: 12px; }
+
+  .rp-foot { background: var(--ers-petrol); color: #fff; padding: 7mm 16mm; display: flex; align-items: center; justify-content: space-between; }
+  .rp-foot .h { font-family: var(--font-display); font-size: 22px; color: var(--ers-green); letter-spacing: .02em; }
+  .rp-foot .a { font-size: 10.5px; color: var(--fg-on-dark-2); text-align: right; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<div class="doc-caption no-print">Relatório de Sustentabilidade · A4 retrato (210 × 297 mm)</div>
+
+<div class="sheet portrait">
+  <div class="rp">
+    <div class="rp-hero">
+      <div class="photo" style="background-image:url(../assets/photos/recycling.jpg)"></div>
+      <div class="scrim"></div>
+      <div class="s-degrade" style="opacity:.14"></div>
+      <div class="inner">
+        <img class="logo" src="../assets/logo-primary-white.png" alt="ERS Brazil" style="width: 170px; height: 100px">
+        <div class="eyebrow">Relatório de Sustentabilidade</div>
+        <h1>Economia circular em<br><em>resultados reais</em></h1>
+        <div class="period">ACME Tecnologia Ltda. · Período: Janeiro a Março de 2026</div>
+      </div>
+    </div>
+
+    <div class="rp-stats">
+      <div class="s"><div class="n tnum">1.250</div><div class="l">itens coletados e processados</div></div>
+      <div class="s"><div class="n tnum">3,48 <em>t</em></div><div class="l">desviadas de aterro e incineração</div></div>
+      <div class="s"><div class="n"><em>100%</em></div><div class="l">de rastreabilidade ponta a ponta</div></div>
+    </div>
+
+    <div class="rp-body">
+      <div class="sec-eyebrow">Resultados do período</div>
+      <h3>O que a destinação responsável entregou</h3>
+      <div class="rp-cards">
+        <div class="rp-card"><div class="ct"><i data-lucide="recycle"></i> Materiais recuperados</div><p>Metais, plásticos e placas retornaram à cadeia produtiva, reduzindo a extração de matéria-prima virgem.</p></div>
+        <div class="rp-card"><div class="ct"><i data-lucide="shield-check"></i> Dados protegidos</div><p>348 dispositivos sanitizados com Blancco e fragmentação ≤ 6&nbsp;mm³, em conformidade com a LGPD.</p></div>
+        <div class="rp-card"><div class="ct"><i data-lucide="leaf"></i> Zero aterro</div><p>Nenhum resíduo enviado a aterro ou incineração — política de zero resíduo aplicada em 100% do volume.</p></div>
+        <div class="rp-card"><div class="ct"><i data-lucide="file-check"></i> Conformidade comprovada</div><p>Certificados de destinação final e laudos individuais emitidos sob R2v3 e ISO 9001/14001/45001/27001.</p></div>
+      </div>
+      <p class="rp-note"><strong>Metodologia:</strong> indicadores apurados a partir do volume efetivamente recebido, pesado e processado na unidade de Indaiatuba — SP, com lastro documental e auditável. Valores ilustrativos para fins de modelo de documento.</p>
+    </div>
+
+    <div class="rp-foot">
+      <div class="h" style="line-height: 1; letter-spacing: 0px">Do 
+What's 
+Right</div>
+      <div class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></div>
+      <div class="a"><b>ERS Brazil</b> · Indaiatuba — SP<br>@ersbrazil · ersbrazil.com</div>
+    </div>
+  </div>
+</div>
+
+<script>if (window.self !== window.top) document.body.classList.add('embed');</script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>

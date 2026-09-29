@@ -1,0 +1,753 @@
+<!DOCTYPE html><html lang="pt-BR"><head>
+
+
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Brand Book (Apresentação)</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  deck-stage:not(:defined) { visibility: hidden; }
+  html, body { margin: 0; background: #02181b; }
+
+  section.s {
+    font-family: var(--font-sans);
+    color: var(--ers-petrol);
+    background: var(--off-white);
+    overflow: hidden;
+    position: relative;
+  }
+  section.s.dark { background: var(--ers-petrol); color: #fff; }
+  section.s.deep { background: var(--bg-dark-deep); color: #fff; }
+
+  /* chrome */
+  .head { position: absolute; top: 56px; left: 96px; right: 96px; display: flex; align-items: center;
+    justify-content: space-between; z-index: 8; }
+  .head img { height: 46px; width: auto; }
+  .head .hx { font-size: 22px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--gray-500); }
+  .dark .head .hx, .deep .head .hx { color: rgba(255,255,255,.6); }
+  .head-rule { position: absolute; top: 128px; left: 96px; right: 96px; height: 2px; background: var(--border-strong); z-index: 8; }
+  .head-rule::before { content: ''; position: absolute; left: 0; top: 0; width: 60px; height: 2px; background: var(--ers-green); }
+  .dark .head-rule, .deep .head-rule { background: rgba(255,255,255,.18); }
+  .pgmark { position: absolute; right: 96px; bottom: 54px; font-family: var(--font-display); font-size: 36px;
+    letter-spacing: .04em; color: var(--ers-green); z-index: 8; }
+
+  /* content frame */
+  .body { position: absolute; left: 96px; right: 96px; top: 188px; bottom: 104px; z-index: 2; }
+  .eyebrow { font-size: 26px; font-weight: 700; letter-spacing: .24em; text-transform: uppercase; color: var(--ers-orange); }
+  .title { font-size: 78px; font-weight: 800; line-height: 1.0; letter-spacing: -.015em; margin: 12px 0 0; color: var(--ers-petrol); }
+  .dark .title, .deep .title { color: #fff; }
+  .title .g { color: var(--ers-green); }
+  .krule { width: 60px; height: 5px; background: var(--ers-green); border-radius: 2px; margin: 22px 0; }
+  p.lead { font-size: 38px; line-height: 1.5; color: var(--fg-2); max-width: 1500px; margin: 0 0 16px; }
+  .dark p.lead, .deep p.lead { color: var(--fg-on-dark-2); }
+  p.lead b { color: var(--ers-petrol); font-weight: 700; } .dark p.lead b, .deep p.lead b { color: #fff; }
+  h3.h3 { font-size: 31px; font-weight: 700; letter-spacing: .04em; color: var(--ers-petrol); margin: 0 0 14px; }
+  .dark h3.h3 { color: var(--ers-green); }
+
+  .two { display: grid; grid-template-columns: 1fr 1fr; gap: 64px; align-items: center; height: 100%; }
+  .two.wide-l { grid-template-columns: 1.15fr .85fr; }
+  .two.wide-r { grid-template-columns: .85fr 1.15fr; }
+
+  /* S pattern */
+  .s-degrade { position: absolute; inset: 0; z-index: 0; pointer-events: none; background: url('../assets/pattern/degrade-texture.png') center/cover no-repeat; }
+  .s-mark { position: absolute; z-index: 0; pointer-events: none; background: no-repeat center/contain; }
+  .s-mark.white { background-image: url('../assets/pattern/s-white.png'); }
+  .body > * { position: relative; z-index: 1; }
+  .body > .s-mark, .body > .s-degrade { position: absolute; }
+
+  /* COVER */
+  .cover { position: absolute; inset: 0; z-index: 2; padding: 90px 96px; display: flex; flex-direction: column; }
+  .cover .s-degrade { opacity: .16; }
+  .cover > * { position: relative; z-index: 1; }
+  .cover .logo { width: 300px; }
+  .cover .big { font-family: var(--font-display); font-size: 197px; line-height: .82; letter-spacing: .02em;
+    text-transform: uppercase; color: #fff; margin-top: auto; }
+  .cover .big .g { color: var(--ers-green); }
+  .cover .sub { font-size: 34px; line-height: 1.5; color: var(--fg-on-dark-2); max-width: 1100px; margin-top: 22px; }
+  .cover .meta { font-size: 25px; letter-spacing: .16em; text-transform: uppercase; color: var(--ers-green); font-weight: 700; margin-top: 26px; }
+
+  /* INDEX */
+  .toc { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 10px 56px; }
+  .toc .row { display: flex; align-items: baseline; gap: 16px; padding: 10px 0; border-bottom: 1px solid var(--border-default); }
+  .toc .row .n { font-family: var(--font-display); font-size: 39px; color: var(--ers-green); min-width: 40px; }
+  .toc .row .t { font-size: 26px; font-weight: 600; color: var(--ers-petrol); line-height: 1.2; }
+
+  /* photo */
+  .photo { position: relative; overflow: hidden; border-radius: 14px; box-shadow: var(--shadow-card); height: 100%; }
+  .photo > img { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .photo.grade::after { content: ''; position: absolute; inset: 0; background: linear-gradient(140deg, rgba(4,48,53,.2), rgba(101,206,33,.15)); mix-blend-mode: multiply; }
+
+  /* stat cards */
+  .stats { display: flex; gap: 24px; margin-top: 36px; }
+  .stat { flex: 1; background: var(--off-white); border: 1px solid var(--border-subtle); border-top: 5px solid var(--ers-green);
+    border-radius: 10px; padding: 26px 28px; }
+  .dark .stat { background: rgba(255,255,255,.05); border-color: rgba(255,255,255,.14); }
+  .stat .n { font-family: var(--font-display); font-size: 76px; line-height: .8; color: var(--green-600); }
+  .stat .l { font-size: 26px; color: var(--fg-2); margin-top: 10px; line-height: 1.3; }
+  .dark .stat .l { color: var(--fg-on-dark-2); }
+
+  /* purpose/vision/slogan cards */
+  .pvv { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 24px; }
+  .pvv .c { background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.14); border-radius: 12px; padding: 30px 30px; }
+  .pvv .c .l { font-family: var(--font-display); font-size: 42px; color: var(--ers-green); letter-spacing: .02em; }
+  .pvv .c .d { font-size: 27px; line-height: 1.45; color: var(--fg-on-dark-2); margin-top: 12px; }
+  .vals { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; margin-top: 26px; }
+  .val { background: rgba(255,255,255,.05); border-left: 4px solid var(--ers-green); border-radius: 8px; padding: 18px 22px; }
+  .val .vt { font-size: 29px; font-weight: 700; color: #fff; }
+  .val .vd { font-size: 23px; color: var(--fg-on-dark-2); margin-top: 5px; line-height: 1.4; }
+
+  /* logo showcase */
+  .logo-hero { background: var(--off-white); border: 1px solid var(--border-subtle); border-radius: 16px; display: flex;
+    align-items: center; justify-content: center; height: 100%; padding: 50px; }
+  .logo-hero img { width: 70%; max-height: 360px; }
+  .logo-grid3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 22px; }
+  .lcell { border: 1px solid var(--border-default); border-radius: 14px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 16px; padding: 38px; min-height: 220px; }
+  .lcell.d { background: var(--ers-petrol); border-color: transparent; }
+  .lcell.k { background: #000; border-color: transparent; }
+  .lcell.green { background: var(--ers-green); border-color: transparent; }
+  .lcell img { max-width: 80%; max-height: 110px; }
+  .lcell .cap { font-size: 21px; letter-spacing: .06em; text-transform: uppercase; color: var(--fg-3); text-align: center; }
+  .lcell.d .cap, .lcell.k .cap, .lcell.green .cap { color: rgba(255,255,255,.7); }
+
+  /* clear space + minsize */
+  .csbox { position: relative; background: var(--off-white); border: 1px solid var(--border-subtle); border-radius: 16px;
+    display: flex; align-items: center; justify-content: center; height: 100%; }
+  .csbox .frame { position: relative; padding: 14%; outline: 2px dashed var(--green-400); }
+  .csbox .frame img { width: 320px; display: block; }
+  .minsize { display: flex; gap: 50px; align-items: flex-end; margin-top: 30px; }
+  .minsize .m { text-align: center; }
+  .minsize .m img { display: block; margin: 0 auto 14px; }
+  .minsize .m .lab { font-size: 22px; color: var(--fg-3); }
+
+  /* misuse */
+  .dont-grid { display: grid; grid-template-columns: repeat(3,1fr); gap: 22px; margin-top: 6px; }
+  .dont { border: 1px solid var(--border-default); border-radius: 12px; overflow: hidden; }
+  .dont .vis { height: 150px; display: flex; align-items: center; justify-content: center; background: var(--off-white); position: relative; }
+  .dont .vis img { max-width: 64%; max-height: 90px; }
+  .dont .x { position: absolute; top: 12px; right: 12px; width: 32px; height: 32px; border-radius: 50%; background: var(--ers-orange);
+    color: #fff; font-size: 25px; font-weight: 700; display: flex; align-items: center; justify-content: center; }
+  .dont .lab { font-size: 23px; line-height: 1.35; color: var(--fg-2); padding: 16px 18px; }
+
+  /* colors */
+  .col-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; }
+  .col-grid.comp { grid-template-columns: 1fr 1fr 1fr; }
+  .swatch { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); border: 1px solid var(--border-subtle); }
+  .swatch .chip { height: 150px; }
+  .swatch .info { padding: 18px 22px; background: #fff; }
+  .swatch .nm { font-size: 31px; font-weight: 700; color: var(--ers-petrol); }
+  .swatch .hex { font-size: 23px; color: var(--fg-2); margin-top: 4px; font-variant-numeric: tabular-nums; }
+  .swatch .pant { font-size: 21px; color: var(--fg-3); margin-top: 2px; }
+  .ramp { display: flex; border-radius: 10px; overflow: hidden; margin-top: 14px; box-shadow: var(--shadow-sm); }
+  .ramp .st { flex: 1; height: 72px; display: flex; align-items: flex-end; justify-content: center; padding-bottom: 8px; font-size: 18px; font-weight: 600; }
+
+  /* type */
+  .type-row { display: flex; gap: 16px; flex-wrap: wrap; align-items: baseline; margin: 4px 0 22px; }
+  .type-row .w { font-size: 49px; color: var(--ers-petrol); }
+  .tspec { display: flex; align-items: baseline; gap: 26px; padding: 12px 0; border-bottom: 1px solid var(--border-subtle); }
+  .tspec .meta { width: 110px; flex: none; font-size: 22px; color: var(--fg-3); font-variant-numeric: tabular-nums; }
+  .bebas-spec { font-family: var(--font-display); font-size: 122px; line-height: .85; letter-spacing: .03em; text-transform: uppercase; color: var(--ers-green); }
+  .bebas-nums { display: flex; gap: 50px; margin-top: 30px; align-items: baseline; }
+  .bebas-nums div { font-family: var(--font-display); font-size: 104px; line-height: .82; }
+
+  /* pattern */
+  .pat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; height: 100%; }
+  .pat { border-radius: 14px; position: relative; overflow: hidden; display: flex; align-items: flex-end; padding: 24px; }
+  .pat .pl { position: relative; z-index: 2; font-size: 25px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; }
+  .pat.p1 { background: var(--ers-petrol); } .pat.p1 .pl { color: #fff; }
+  .pat.p2 { background: var(--ers-green); } .pat.p2 .pl { color: var(--ers-petrol); }
+  .pat.p3 { background: #fff; border: 1px solid var(--border-subtle); } .pat.p3 .pl { color: var(--fg-2); }
+  .pat.p4 { background: var(--bg-dark-deep); } .pat.p4 .pl { color: #fff; }
+  .pat .ps { position: absolute; inset: 0; z-index: 1; background: no-repeat center/cover; }
+
+  /* icons */
+  .icon-row { display: grid; grid-template-columns: repeat(6,1fr); gap: 22px; margin-top: 8px; }
+  .icell { aspect-ratio: 1.3; border: 1px solid var(--border-default); border-radius: 14px; display: flex; flex-direction: column;
+    align-items: center; justify-content: center; gap: 12px; color: var(--ers-petrol); }
+  .icell i, .icell svg { width: 55px; height: 55px; }
+  .icell .il { font-size: 19px; color: var(--fg-3); letter-spacing: .04em; }
+
+  /* photography grid */
+  .photo-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; margin-top: 24px; }
+  .photo-strip .ph { border-radius: 12px; overflow: hidden; height: 200px; box-shadow: var(--shadow-sm); }
+  .photo-strip .ph img { width: 100%; height: 100%; object-fit: cover; }
+
+  /* certifications */
+  .cert-row { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px; margin-top: 16px; }
+  .cert-tok { border: 2px solid var(--border-default); border-radius: 14px; padding: 16px 14px; text-align: center; }
+  .cert-tok .tg { font-family: var(--font-display); font-size: 44px; color: var(--ers-green); letter-spacing: .02em; line-height: 1; }
+  .cert-tok .ds { font-size: 17px; color: var(--fg-3); margin-top: 6px; letter-spacing: .04em; line-height: 1.2; }
+
+  /* voice */
+  .voice-cols { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
+  .voice-col h4 { font-size: 25px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; margin: 0 0 14px; }
+  .voice-col.do h4 { color: var(--green-700); } .voice-col.dont h4 { color: var(--ers-orange); }
+  .voice-col ul { margin: 0; padding: 0; list-style: none; }
+  .voice-col li { font-size: 26px; line-height: 1.4; color: var(--fg-2); padding-left: 28px; position: relative; margin-bottom: 14px; }
+  .voice-col li::before { position: absolute; left: 0; top: 0; font-weight: 700; font-size: 26px; }
+  .voice-col.do li::before { content: '✓'; color: var(--green-600); }
+  .voice-col.dont li::before { content: '✕'; color: var(--ers-orange); }
+  .quote { background: var(--ers-petrol); color: #fff; border-radius: 16px; padding: 40px 44px; position: relative; overflow: hidden; display: flex; flex-direction: column; justify-content: center; height: 100%; }
+  .quote .q { font-size: 42px; line-height: 1.4; font-weight: 600; position: relative; z-index: 1; }
+  .quote .q .g { color: var(--ers-green); }
+  .quote .qa { font-size: 21px; letter-spacing: .16em; text-transform: uppercase; color: var(--fg-on-dark-2); margin-top: 20px; position: relative; z-index: 1; }
+
+  /* applications */
+  .app-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; height: 100%; }
+  .app { border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-card); position: relative; }
+  .app img { width: 100%; height: 100%; object-fit: cover; }
+  .app .cap { position: absolute; left: 0; right: 0; bottom: 0; background: linear-gradient(transparent, rgba(4,48,53,.9));
+    color: #fff; font-size: 23px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; padding: 30px 22px 18px; }
+
+  /* closing */
+  .closing { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center;
+    text-align: center; z-index: 2; }
+  .closing .s-degrade { opacity: .16; }
+  .closing > * { position: relative; z-index: 1; }
+  .closing .tag { width: 44%; max-width: 620px; }
+  .closing .ct { margin-top: 36px; font-size: 26px; letter-spacing: .12em; text-transform: uppercase; color: var(--fg-on-dark-2); }
+
+  .anim, .anim2, .anim3 { opacity: 1; }
+  @media (prefers-reduced-motion: no-preference) {
+    [data-deck-active] .anim  { animation: rise .6s var(--ease-out); }
+    [data-deck-active] .anim2 { animation: rise .6s .12s var(--ease-out); }
+    [data-deck-active] .anim3 { animation: rise .6s .24s var(--ease-out); }
+    @keyframes rise { from { transform: translateY(24px); } to { transform: none; } }
+  }
+</style>
+</head>
+<body style="">
+<deck-stage width="1920" height="1080" style="--deck-rail-w: 188px;">
+
+  <!-- 01 CAPA -->
+  <section class="s deep" data-label="Capa">
+    <div class="cover">
+      <div class="s-degrade"></div>
+      <img class="logo anim" src="../assets/logos/stacked-white.svg" alt="ERS Brazil">
+      <div class="big anim2">Brand<span class="g">Book</span></div>
+      <div class="sub anim3">Manual de identidade da marca ERS Brazil — Environmental Recovery Solutions. Diretrizes de logotipo, cor, tipografia, grafismo, fotografia, tom de voz e aplicações.</div>
+      <div class="meta anim3">Do What's Right · Edição 2026</div>
+    </div>
+  </section>
+
+  <!-- 02 SUMÁRIO -->
+  <section class="s" data-label="Sumário">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">Brand Book · ERS Brazil</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">Sumário</div>
+      <h2 class="title anim2">Índice do <span class="g">manual</span></h2>
+      <div class="krule"></div>
+      <div class="toc anim2">
+        <div class="row"><span class="n">01</span><span class="t">A Marca</span></div>
+        <div class="row"><span class="n">02</span><span class="t">Propósito · Visão · Valores</span></div>
+        <div class="row"><span class="n">03</span><span class="t">O Símbolo</span></div>
+        <div class="row"><span class="n">04</span><span class="t">Logotipo — principal</span></div>
+        <div class="row"><span class="n">05</span><span class="t">Logotipo — versões</span></div>
+        <div class="row"><span class="n">06</span><span class="t">Proteção e tamanho mínimo</span></div>
+        <div class="row"><span class="n">07</span><span class="t">Logotipo sobre fundos</span></div>
+        <div class="row"><span class="n">08</span><span class="t">Usos incorretos</span></div>
+        <div class="row"><span class="n">09</span><span class="t">Cores institucionais</span></div>
+        <div class="row"><span class="n">10</span><span class="t">Cores complementares</span></div>
+        <div class="row"><span class="n">11</span><span class="t">Tipografia — Montserrat</span></div>
+        <div class="row"><span class="n">12</span><span class="t">Tipografia — Bebas Neue</span></div>
+        <div class="row"><span class="n">13</span><span class="t">Grafismo S-Partner</span></div>
+        <div class="row"><span class="n">14</span><span class="t">Iconografia</span></div>
+        <div class="row"><span class="n">15</span><span class="t">Fotografia</span></div>
+        <div class="row"><span class="n">16</span><span class="t">Selo &amp; Certificações</span></div>
+        <div class="row"><span class="n">17</span><span class="t">Tom de voz</span></div>
+        <div class="row"><span class="n">18</span><span class="t">Aplicações</span></div>
+      </div>
+    </div>
+    <div class="pgmark">02</div>
+  </section>
+
+  <!-- 03 A MARCA -->
+  <section class="s" data-label="A Marca">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">01 · A Marca</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two wide-l">
+        <div>
+          <div class="eyebrow anim">01 · A Marca</div>
+          <h2 class="title anim2" style="font-size: 78px">Recuperação ambiental<br>como <span class="g">solução</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 34px">A <b>ERS Brazil</b> é a operação brasileira de uma empresa canadense com mais de 25 anos de experiência, no Brasil desde 2014 — especialista no <b>ciclo de vida e reciclagem de eletrônicos</b>.</p>
+          <div class="stats anim3">
+            <div class="stat"><div class="n">2014</div><div class="l">no Brasil</div></div>
+            <div class="stat"><div class="n">5.000 m²</div><div class="l">Indaiatuba — SP</div></div>
+            <div class="stat"><div class="n">400 t</div><div class="l">por mês</div></div>
+          </div>
+        </div>
+        <div class="photo grade anim3"><img src="../assets/photos/warehouse.jpg" alt="Operação ERS"></div>
+      </div>
+    </div>
+    <div class="pgmark">03</div>
+  </section>
+
+  <!-- 04 PROPÓSITO VISÃO VALORES -->
+  <section class="s dark" data-label="Essência">
+    <div class="head"><img src="../assets/logos/horizontal-white.svg" alt="ERS"><span class="hx">02 · Propósito · Visão · Valores</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="s-mark white" style="right:-200px;bottom:-200px;width:600px;height:600px;opacity:.05"></div>
+      <div class="eyebrow anim">02 · Essência</div>
+      <h2 class="title anim2" style="font-size: 62px;margin-top:6px">O que nos <span class="g">move</span>.</h2>
+      <div class="krule" style="margin:14px 0"></div>
+      <div class="two" style="height:auto;align-items:start;gap:48px">
+        <div class="anim2" style="display:flex;flex-direction:column;gap:14px">
+          <div class="c" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:18px 22px"><div class="l" style="font-family:var(--font-display);font-size: 34px;color:var(--ers-green)">Propósito</div><div style="font-size: 22px;line-height:1.4;color:var(--fg-on-dark-2);margin-top:6px">Transformar a gestão do e-waste em economia circular — inovação, responsabilidade ambiental e excelência operacional.</div></div>
+          <div class="c" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:18px 22px"><div class="l" style="font-family:var(--font-display);font-size: 34px;color:var(--ers-green)">Visão</div><div style="font-size: 22px;line-height:1.4;color:var(--fg-on-dark-2);margin-top:6px">Ser referência global em economia circular e excelência operacional no setor até 2030.</div></div>
+          <div class="c" style="background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.14);border-radius:12px;padding:18px 22px"><div class="l" style="font-family:var(--font-display);font-size: 34px;color:var(--ers-green)">Slogan</div><div style="font-size: 22px;line-height:1.4;color:var(--fg-on-dark-2);margin-top:6px">Do What's Right — transformando eletrônicos em soluções sustentáveis para um futuro responsável.</div></div>
+        </div>
+        <div class="anim3">
+          <h3 class="h3" style="margin-bottom:14px">Nossos valores</h3>
+          <div class="vals" style="margin-top:0;gap:14px">
+            <div class="val" style="padding:14px 20px"><div class="vt" style="font-size: 25px">Compromisso Ambiental</div><div class="vd" style="font-size: 19px">Zero resíduo, zero aterro, zero incineração.</div></div>
+            <div class="val" style="padding:14px 20px"><div class="vt" style="font-size: 25px">Governança Transparente</div><div class="vd" style="font-size: 19px">Rastreabilidade e conformidade ponta a ponta.</div></div>
+            <div class="val" style="padding:14px 20px"><div class="vt" style="font-size: 25px">Inovação</div><div class="vd" style="font-size: 19px">Referência mundial em sanitização.</div></div>
+            <div class="val" style="padding:14px 20px"><div class="vt" style="font-size: 25px">Responsabilidade Social</div><div class="vd" style="font-size: 19px">Integridade, colaboração e foco no cliente.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">04</div>
+  </section>
+
+  <!-- 05 O SÍMBOLO -->
+  <section class="s" data-label="O Símbolo">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">03 · O Símbolo</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two">
+        <div>
+          <div class="eyebrow anim">03 · O Símbolo</div>
+          <h2 class="title anim2" style="font-size: 75px">O <span class="g">"S"</span> de Solutions<br>e de ciclo.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 34px">Construído a partir de <b>setas que vão e retornam</b> — a economia circular: fluxo contínuo, transformação e retorno do material à cadeia produtiva. O "S" também remete a <b>Solutions</b>.</p>
+          <p class="lead anim3" style="font-size: 31px;color:var(--fg-3)">Nunca substitua o símbolo pelo ícone genérico de reciclagem (♻).</p>
+        </div>
+        <div class="logo-hero anim3"><img src="../assets/logos/badge-color.svg" alt="Símbolo ERS" style="height: 500px; width: 500px; object-fit: scale-down"></div>
+      </div>
+    </div>
+    <div class="pgmark">05</div>
+  </section>
+
+  <!-- 06 LOGOTIPO PRINCIPAL -->
+  <section class="s" data-label="Logotipo principal">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">04 · Logotipo</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two wide-r">
+        <div>
+          <div class="eyebrow anim">04 · Versão principal</div>
+          <h2 class="title anim2" style="font-size: 75px">A assinatura <span class="g">principal</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 34px">A versão <b>empilhada</b> (ERS sobre BRAZIL) é a assinatura principal da marca. Use sempre a partir dos arquivos vetoriais oficiais — nunca redesenhe ou recomponha o logotipo.</p>
+        </div>
+        <div class="logo-hero anim3"><img src="../assets/logos/stacked-color.svg" alt="ERS Brazil"></div>
+      </div>
+    </div>
+    <div class="pgmark">06</div>
+  </section>
+
+  <!-- 07 VERSÕES -->
+  <section class="s" data-label="Versões">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">05 · Logotipo</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">05 · Versões</div>
+      <h2 class="title anim2" style="font-size: 68px">Famílias de <span class="g">assinatura</span>.</h2>
+      <div class="krule" style="margin:16px 0"></div>
+      <div class="logo-grid3 anim2">
+        <div class="lcell"><img src="../assets/logos/stacked-color.svg" alt=""><div class="cap">Empilhado · principal</div></div>
+        <div class="lcell"><img src="../assets/logos/horizontal-color.svg" alt=""><div class="cap">Horizontal</div></div>
+        <div class="lcell"><img src="../assets/logos/full-color.svg" alt=""><div class="cap">Com descritor</div></div>
+      </div>
+      <div class="logo-grid3 anim3" style="margin-top:22px">
+        <div class="lcell"><img src="../assets/logos/badge-color.svg" alt="" style="max-height:120px"><div class="cap">Selo · cor</div></div>
+        <div class="lcell d"><img src="../assets/logos/badge-white.svg" alt="" style="max-height:120px"><div class="cap">Selo · branco</div></div>
+        <div class="lcell"><img src="../assets/logos/badge-dark.svg" alt="" style="max-height:120px"><div class="cap">Selo · petróleo</div></div>
+      </div>
+    </div>
+    <div class="pgmark">07</div>
+  </section>
+
+  <!-- 08 PROTEÇÃO -->
+  <section class="s" data-label="Proteção">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">06 · Proteção</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two">
+        <div class="csbox anim2"><div class="frame"><img src="../assets/logos/stacked-color.svg" alt=""></div></div>
+        <div>
+          <div class="eyebrow anim">06 · Proteção e tamanho mínimo</div>
+          <h2 class="title anim2" style="font-size: 68px">Espaço para <span class="g">respirar</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 32px">Mantenha uma <b>área de proteção</b> ao redor do logotipo, livre de outros elementos — equivalente à <b>altura da letra "E"</b> em todos os lados.</p>
+          <div class="minsize anim3">
+            <div class="m"><img src="../assets/logos/stacked-color.svg" alt="" style="width:150px"><div class="lab">Empilhado · 24 mm</div></div>
+            <div class="m"><img src="../assets/logos/horizontal-color.svg" alt="" style="width:190px"><div class="lab">Horizontal · 32 mm</div></div>
+            <div class="m"><img src="../assets/logos/badge-color.svg" alt="" style="width:60px"><div class="lab">Selo · 12 mm</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">08</div>
+  </section>
+
+  <!-- 09 SOBRE FUNDOS -->
+  <section class="s" data-label="Fundos">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">07 · Fundos</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">07 · Logotipo sobre fundos</div>
+      <h2 class="title anim2" style="font-size: 68px">Contraste em <span class="g">primeiro lugar</span>.</h2>
+      <div class="krule" style="margin:16px 0"></div>
+      <div class="logo-grid3 anim2" style="grid-template-columns:repeat(3,1fr);gap:20px">
+        <div class="lcell"><img src="../assets/logos/stacked-color.svg" alt=""><div class="cap">Colorida · fundo claro</div></div>
+        <div class="lcell d"><img src="../assets/logos/stacked-white.svg" alt=""><div class="cap">Branca · petróleo</div></div>
+        <div class="lcell k"><img src="../assets/logos/stacked-white.svg" alt=""><div class="cap">Branca · preto</div></div>
+        <div class="lcell"><img src="../assets/logos/stacked-black.svg" alt=""><div class="cap">Preta · monocromática</div></div>
+        <div class="lcell green"><img src="../assets/logos/stacked-white.svg" alt=""><div class="cap">Branca · verde</div></div>
+        <div class="lcell" style="position:relative;overflow:hidden;padding:0"><img src="../assets/photos/warehouse.jpg" alt="" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;max-width:none;max-height:none"><img src="../assets/logos/stacked-white.svg" alt="" style="position:relative;z-index:1;filter:drop-shadow(0 2px 10px rgba(0,0,0,.6))"></div>
+      </div>
+    </div>
+    <div class="pgmark">09</div>
+  </section>
+
+  <!-- 10 USOS INCORRETOS -->
+  <section class="s" data-label="Usos incorretos">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">08 · Usos incorretos</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">08 · Usos incorretos</div>
+      <h2 class="title anim2" style="font-size: 68px">O que <span style="color:var(--ers-orange)">nunca</span> fazer.</h2>
+      <div class="krule" style="margin:16px 0"></div>
+      <div class="dont-grid anim2">
+        <div class="dont"><div class="vis"><span class="x">✕</span><img src="../assets/logos/stacked-color.svg" style="transform:scaleX(1.6)"></div><div class="lab">Não distorça as proporções.</div></div>
+        <div class="dont"><div class="vis"><span class="x">✕</span><img src="../assets/logos/stacked-color.svg" style="transform:rotate(-12deg)"></div><div class="lab">Não gire nem incline.</div></div>
+        <div class="dont"><div class="vis"><span class="x">✕</span><img src="../assets/logos/stacked-white.svg"></div><div class="lab">Não use branca sobre fundo claro.</div></div>
+        <div class="dont"><div class="vis" style="background:#b34"><span class="x">✕</span><img src="../assets/logos/stacked-white.svg"></div><div class="lab">Não use cores fora da paleta.</div></div>
+        <div class="dont"><div class="vis"><span class="x">✕</span><img src="../assets/logos/stacked-color.svg" style="filter:blur(1.4px)"></div><div class="lab">Não use baixa resolução.</div></div>
+        <div class="dont"><div class="vis"><span class="x">✕</span><img src="../assets/logos/badge-color.svg" style="max-height:80px"></div><div class="lab">Não recomponha elementos.</div></div>
+      </div>
+    </div>
+    <div class="pgmark">10</div>
+  </section>
+
+  <!-- 11 CORES INSTITUCIONAIS -->
+  <section class="s" data-label="Cores institucionais">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">09 · Cores</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two">
+        <div>
+          <div class="eyebrow anim">09 · Cores institucionais</div>
+          <h2 class="title anim2" style="font-size: 70px">Petróleo &amp; <span class="g">verde</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 31px">O <b>petróleo</b> é a cor-mãe, base dominante. O <b>verde</b> representa vida, reciclagem e economia circular — destaques e CTAs.</p>
+          <div class="col-grid anim3">
+            <div class="swatch"><div class="chip" style="background:#043035"></div><div class="info"><div class="nm">Petróleo</div><div class="hex">#043035</div><div class="pant">Pantone 546 C</div></div></div>
+            <div class="swatch"><div class="chip" style="background:#65CE21"></div><div class="info"><div class="nm">Verde</div><div class="hex">#65CE21</div><div class="pant">Pantone 2726 C</div></div></div>
+          </div>
+        </div>
+        <div>
+          <h3 class="h3 anim2">Escala petróleo · interface</h3>
+          <div class="ramp anim2"><div class="st" style="background:#02181b;color:#fff">900</div><div class="st" style="background:#032529;color:#fff">800</div><div class="st" style="background:#043035;color:#fff">700</div><div class="st" style="background:#0a4148;color:#fff">600</div><div class="st" style="background:#14555d;color:#fff">500</div><div class="st" style="background:#2e7079;color:#fff">400</div></div>
+          <h3 class="h3 anim3" style="margin-top:28px">Escala verde</h3>
+          <div class="ramp anim3"><div class="st" style="background:#4ba514;color:#fff">700</div><div class="st" style="background:#58ba1b;color:#fff">600</div><div class="st" style="background:#65CE21;color:#053">500</div><div class="st" style="background:#82dc4a;color:#053">400</div><div class="st" style="background:#a6e87f;color:#053">300</div><div class="st" style="background:#eef9e4;color:#053">tint</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">11</div>
+  </section>
+
+  <!-- 12 CORES COMPLEMENTARES -->
+  <section class="s" data-label="Cores complementares">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">10 · Cores</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">10 · Cores complementares</div>
+      <h2 class="title anim2" style="font-size: 70px">Apoio &amp; <span style="color:var(--ers-orange)">atenção</span>.</h2>
+      <div class="krule"></div>
+      <p class="lead anim2" style="font-size: 31px">O <b>laranja</b> é o acento de energia e atenção (pequenas doses). Os <b>cinzas</b> dão suporte: textos secundários, legendas e divisores.</p>
+      <div class="col-grid comp anim3">
+        <div class="swatch"><div class="chip" style="background:#F4762F;height:120px"></div><div class="info"><div class="nm">Laranja</div><div class="hex">#F4762F</div><div class="pant">Pantone 1575 C</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#BFBFBF;height:120px"></div><div class="info"><div class="nm">Cinza claro</div><div class="hex">#BFBFBF</div><div class="pant">Pantone 420 C</div></div></div>
+        <div class="swatch"><div class="chip" style="background:#999999;height:120px"></div><div class="info"><div class="nm">Cinza médio</div><div class="hex">#999999</div><div class="pant">Cool Gray 7 C</div></div></div>
+      </div>
+      <h3 class="h3 anim3" style="margin-top:26px">Proporção de uso</h3>
+      <div class="ramp anim3" style="height:56px"><div class="st" style="background:#043035;flex:6"></div><div class="st" style="background:#f5f6f5;flex:4;color:#053">branco</div><div class="st" style="background:#65CE21;flex:2;color:#053">verde</div><div class="st" style="background:#F4762F;flex:.8"></div></div>
+    </div>
+    <div class="pgmark">12</div>
+  </section>
+
+  <!-- 13 TIPOGRAFIA MONTSERRAT -->
+  <section class="s" data-label="Montserrat">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">11 · Tipografia</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">11 · Tipografia — Montserrat</div>
+      <h2 class="title anim2" style="font-size: 70px">Montserrat para <span class="g">todo o texto</span>.</h2>
+      <div class="krule"></div>
+      <p class="lead anim2" style="font-size: 31px">Tipografia oficial de todo o conteúdo. O peso <b>Semi Bold</b> é a assinatura da marca para rótulos e títulos.</p>
+      <div class="type-row anim3">
+        <span class="w" style="font-weight:300">Light</span><span class="w" style="font-weight:400">Regular</span><span class="w" style="font-weight:500">Medium</span><span class="w" style="font-weight:600">Semi Bold ★</span><span class="w" style="font-weight:700">Bold</span><span class="w" style="font-weight:900">Black</span>
+      </div>
+      <div class="anim3">
+        <div class="tspec"><span class="meta">48 / 700</span><span style="font-size: 60px;font-weight:700;color:var(--ers-petrol)">Economia circular</span></div>
+        <div class="tspec"><span class="meta">28 / 600</span><span style="font-size: 39px;font-weight:600;color:var(--ers-petrol)">Rastreabilidade ponta a ponta</span></div>
+        <div class="tspec" style="border:none"><span class="meta">18 / 400</span><span style="font-size: 29px;font-weight:400;color:var(--fg-2)">Texto corrido em Montserrat Regular.</span></div>
+      </div>
+    </div>
+    <div class="pgmark">13</div>
+  </section>
+
+  <!-- 14 BEBAS -->
+  <section class="s dark" data-label="Bebas Neue">
+    <div class="head"><img src="../assets/logos/horizontal-white.svg" alt="ERS"><span class="hx">12 · Tipografia</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="s-mark white" style="right:-150px;top:-50px;width:520px;height:520px;opacity:.05"></div>
+      <div class="eyebrow anim">12 · Tipografia — Bebas Neue</div>
+      <h2 class="title anim2" style="font-size: 70px">Bebas para o <span class="g">impacto</span>.</h2>
+      <div class="krule"></div>
+      <p class="lead anim2" style="font-size: 30px;max-width:1300px">Reservada à <b>tagline</b> e grandes momentos de display — números de destaque e títulos heroicos. O logotipo "ERS" usa fonte proprietária — nunca redigite "ERS".</p>
+      <div class="bebas-spec anim3" style="font-size: 91px; margin: 0px; line-height: 0.92">DO<br>WHAT'S<br>RIGHT</div>
+      <div class="bebas-nums anim3" style="margin-top:14px">
+        <div style="color:#fff;font-size: 78px">2026</div>
+        <div style="color:var(--ers-green);font-size: 78px">400 t</div>
+        <div style="color:#fff;font-size: 78px">+150 mil</div>
+      </div>
+    </div>
+    <div class="pgmark">14</div>
+  </section>
+
+  <!-- 15 GRAFISMO -->
+  <section class="s" data-label="Grafismo">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">13 · Grafismo</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two wide-l">
+        <div>
+          <div class="eyebrow anim">13 · Grafismo S-Partner</div>
+          <h2 class="title anim2" style="font-size: 70px">O padrão de <span class="g">apoio</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 32px">O grafismo do símbolo "S" é o elemento de apoio. Aplique como <b>fundo negativo, 10–30% de opacidade</b>, com a cor que contrasta. Em áreas maiores, use a <b>textura degradê</b>.</p>
+          <p class="lead anim3" style="font-size: 29px;color:var(--fg-3)">Mantenha discreto — é textura, nunca protagonista.</p>
+        </div>
+        <div class="pat-grid anim3">
+          <div class="pat p1"><div class="ps" style="background-image:url(../assets/pattern/degrade-texture.png);opacity:.22"></div><div class="pl">Degradê · petróleo</div></div>
+          <div class="pat p2"><div class="ps" style="background-image:url(../assets/pattern/s-white.png);opacity:.24"></div><div class="pl">S branco · verde</div></div>
+          <div class="pat p3"><div class="ps" style="background-image:url(../assets/pattern/s-petrol.png);opacity:.12"></div><div class="pl">S petróleo · claro</div></div>
+          <div class="pat p4"><div class="ps" style="background-image:url(../assets/pattern/s-green.png);opacity:.18"></div><div class="pl">S verde · tom sobre tom</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">15</div>
+  </section>
+
+  <!-- 16 ICONOGRAFIA -->
+  <section class="s" data-label="Iconografia">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">14 · Iconografia</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">14 · Iconografia</div>
+      <h2 class="title anim2" style="font-size: 70px">Linhas <span class="g">limpas</span> e técnicas.</h2>
+      <div class="krule"></div>
+      <p class="lead anim2" style="font-size: 31px;max-width:1400px">Ícones de <b>traço (2px), cantos levemente arredondados</b> — padrão recomendado <b>Lucide</b>. Use verde ou petróleo; evite preenchimentos pesados, emoji e ícones decorativos.</p>
+      <div class="icon-row anim3">
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="shield-check" aria-hidden="true" class="lucide lucide-shield-check"><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"></path><path d="m9 12 2 2 4-4"></path></svg><span class="il">Segurança</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="recycle" aria-hidden="true" style="width: 55px; height: 55px" class="lucide lucide-recycle"><path d="M7 19H4.815a1.83 1.83 0 0 1-1.57-.881 1.785 1.785 0 0 1-.004-1.784L7.196 9.5"></path><path d="M11 19h8.203a1.83 1.83 0 0 0 1.556-.89 1.784 1.784 0 0 0 0-1.775l-1.226-2.12"></path><path d="m14 16-3 3 3 3"></path><path d="M8.293 13.596 7.196 9.5 3.1 10.598"></path><path d="m9.344 5.811 1.093-1.892A1.83 1.83 0 0 1 11.985 3a1.784 1.784 0 0 1 1.546.888l3.943 6.843"></path><path d="m13.378 9.633 4.096 1.098 1.097-4.096"></path></svg><span class="il">Reciclagem</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="hard-drive" aria-hidden="true" class="lucide lucide-hard-drive"><path d="M10 16h.01"></path><path d="M2.212 11.577a2 2 0 0 0-.212.896V18a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2v-5.527a2 2 0 0 0-.212-.896L18.55 5.11A2 2 0 0 0 16.76 4H7.24a2 2 0 0 0-1.79 1.11z"></path><path d="M21.946 12.013H2.054"></path><path d="M6 16h.01"></path></svg><span class="il">Dados</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="truck" aria-hidden="true" class="lucide lucide-truck"><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"></path><path d="M15 18H9"></path><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"></path><circle cx="17" cy="18" r="2"></circle><circle cx="7" cy="18" r="2"></circle></svg><span class="il">Logística</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="file-check" aria-hidden="true" class="lucide lucide-file-check"><path d="M6 22a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h8a2.4 2.4 0 0 1 1.704.706l3.588 3.588A2.4 2.4 0 0 1 20 8v12a2 2 0 0 1-2 2z"></path><path d="M14 2v5a1 1 0 0 0 1 1h5"></path><path d="m9 15 2 2 4-4"></path></svg><span class="il">Laudo</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="leaf" aria-hidden="true" class="lucide lucide-leaf"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10Z"></path><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"></path></svg><span class="il">Ambiental</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="map-pin" aria-hidden="true" class="lucide lucide-map-pin"><path d="M20 10c0 4.993-5.539 10.193-7.399 11.799a1 1 0 0 1-1.202 0C9.539 20.193 4 14.993 4 10a8 8 0 0 1 16 0"></path><circle cx="12" cy="10" r="3"></circle></svg><span class="il">Coleta</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="cpu" aria-hidden="true" class="lucide lucide-cpu"><path d="M12 20v2"></path><path d="M12 2v2"></path><path d="M17 20v2"></path><path d="M17 2v2"></path><path d="M2 12h2"></path><path d="M2 17h2"></path><path d="M2 7h2"></path><path d="M20 12h2"></path><path d="M20 17h2"></path><path d="M20 7h2"></path><path d="M7 20v2"></path><path d="M7 2v2"></path><rect x="4" y="4" width="16" height="16" rx="2"></rect><rect x="8" y="8" width="8" height="8" rx="1"></rect></svg><span class="il">Hardware</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="lock" aria-hidden="true" class="lucide lucide-lock"><rect width="18" height="11" x="3" y="11" rx="2" ry="2"></rect><path d="M7 11V7a5 5 0 0 1 10 0v4"></path></svg><span class="il">LGPD</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="badge-check" aria-hidden="true" class="lucide lucide-badge-check"><path d="M3.85 8.62a4 4 0 0 1 4.78-4.77 4 4 0 0 1 6.74 0 4 4 0 0 1 4.78 4.78 4 4 0 0 1 0 6.74 4 4 0 0 1-4.77 4.78 4 4 0 0 1-6.75 0 4 4 0 0 1-4.78-4.77 4 4 0 0 1 0-6.76Z"></path><path d="m9 12 2 2 4-4"></path></svg><span class="il">Certificado</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="refresh-cw" aria-hidden="true" class="lucide lucide-refresh-cw"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"></path><path d="M21 3v5h-5"></path><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"></path><path d="M8 16H3v5"></path></svg><span class="il">Ciclo</span></div>
+        <div class="icell"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" data-lucide="building-2" aria-hidden="true" class="lucide lucide-building-2"><path d="M10 12h4"></path><path d="M10 8h4"></path><path d="M14 21v-3a2 2 0 0 0-4 0v3"></path><path d="M6 10H4a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2h-2"></path><path d="M6 21V5a2 2 0 0 1 2-2h8a2 2 0 0 1 2 2v16"></path></svg><span class="il">Unidade</span></div>
+      </div>
+    </div>
+    <div class="pgmark">16</div>
+  </section>
+
+  <!-- 17 FOTOGRAFIA -->
+  <section class="s" data-label="Fotografia">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">15 · Fotografia</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="eyebrow anim">15 · Fotografia</div>
+      <h2 class="title anim2" style="font-size: 70px">Real, técnica e <span class="g">limpa</span>.</h2>
+      <div class="krule"></div>
+      <p class="lead anim2" style="font-size: 31px;max-width:1450px">Fotografia <b>real e industrial</b>: operação, equipamentos e hardware em macro. Tom <b>frio e técnico</b> (azul-petróleo), nunca quente ou granulado.</p>
+      <div class="photo-strip anim3">
+        <div class="ph"><img src="../assets/photos/warehouse.jpg" alt=""></div>
+        <div class="ph"><img src="../assets/photos/security-tapa.jpg" alt=""></div>
+        <div class="ph"><img src="../assets/photos/data-wipe.jpg" alt=""></div>
+        <div class="ph"><img src="../assets/photos/sorting.jpg" alt=""></div>
+        <div class="ph"><img src="../assets/photos/recycling.jpg" alt=""></div>
+        <div class="ph"><img src="../assets/photos/hd-shredder.jpg" alt=""></div>
+      </div>
+    </div>
+    <div class="pgmark">17</div>
+  </section>
+
+  <!-- 18 CERTIFICAÇÕES -->
+  <section class="s" data-label="Certificações">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">16 · Certificações</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two wide-r">
+        <div>
+          <div class="eyebrow anim">16 · Selo &amp; Certificações</div>
+          <h2 class="title anim2" style="font-size: 68px">Confiança <span class="g">comprovada</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 31px">O <b>selo circular</b> reforça a credibilidade e acompanha certificados e documentos oficiais. Exiba as certificações como tokens consistentes.</p>
+          <div class="cert-row anim3">
+            <div class="cert-tok"><div class="tg">R2v3</div><div class="ds">Responsible Recycling</div></div>
+            <div class="cert-tok"><div class="tg">ISO 9001</div><div class="ds">Qualidade</div></div>
+            <div class="cert-tok"><div class="tg">ISO 14001</div><div class="ds">Ambiental</div></div>
+            <div class="cert-tok"><div class="tg">ISO 45001</div><div class="ds">Saúde &amp; Segurança</div></div>
+            <div class="cert-tok"><div class="tg">ISO 27001</div><div class="ds">Segurança da Informação</div></div>
+          </div>
+        </div>
+        <div class="logo-hero anim3"><img src="../assets/logos/badge-color.svg" alt="" style="width: 62%; height: 530px; object-fit: scale-down"></div>
+      </div>
+    </div>
+    <div class="pgmark">18</div>
+  </section>
+
+  <!-- 19 TOM DE VOZ -->
+  <section class="s" data-label="Tom de voz">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">17 · Tom de voz</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two">
+        <div>
+          <div class="eyebrow anim">17 · Tom de voz</div>
+          <h2 class="title anim2" style="font-size: 70px">Como a marca <span class="g">fala</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 30px">Tom <b>confiante, técnico e tranquilizador</b> — apoiado em provas, números e certificações. Falamos como "nós" e nos dirigimos à "sua empresa".</p>
+          <div class="voice-cols anim3">
+            <div class="voice-col do"><h4>Faça</h4><ul>
+              <li style="font-size: 24px">Lidere com prova: números e normas.</li>
+              <li style="font-size: 24px">Destaque em verde ou laranja.</li>
+              <li style="font-size: 24px">Rótulos em caixa alta, Semi Bold.</li>
+            </ul></div>
+            <div class="voice-col dont" style="border-style: none"><h4>Evite</h4><ul>
+              <li style="font-size: 24px">Emoji — a marca nunca usa.</li>
+              <li>Promessas vagas / greenwashing.</li>
+              <li style="font-size: 24px">Reescrever a tagline.</li>
+            </ul></div>
+          </div>
+        </div>
+        <div class="quote anim3">
+          <div class="s-degrade" style="opacity:.12"></div>
+          <div class="q">"Seus eletrônicos parados ainda carregam riscos que sua empresa não pode ignorar. <span class="g">E é exatamente aí que mora o risco.</span>"</div>
+          <div class="qa">Exemplo de tom · comunicação institucional</div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">19</div>
+  </section>
+
+  <!-- 20 APLICAÇÕES -->
+  <section class="s" data-label="Aplicações">
+    <div class="head"><img src="../assets/logos/horizontal-color.svg" alt="ERS"><span class="hx">18 · Aplicações</span></div>
+    <div class="head-rule"></div>
+    <div class="body">
+      <div class="two">
+        <div>
+          <div class="eyebrow anim">18 · Aplicações</div>
+          <h2 class="title anim2" style="font-size: 70px">A marca em <span class="g">uso</span>.</h2>
+          <div class="krule"></div>
+          <p class="lead anim2" style="font-size: 31px">O sistema se aplica de forma consistente em papelaria, certificados, frota, apresentações e digital — sempre com petróleo dominante, verde de destaque e o grafismo S de apoio.</p>
+          <p class="lead anim3" style="font-size: 27px;color:var(--fg-3)">Modelos prontos de papelaria, certificados e proposta comercial estão no sistema de documentos da marca.</p>
+        </div>
+        <div class="app-grid anim3" style="grid-template-rows:auto auto;align-content:start;gap:22px">
+          <div class="app"><img src="../assets/mockup-truck.png" alt=""><div class="cap">Frota · Do What's Right</div></div>
+          <div class="app"><img src="../assets/facade.png" alt=""><div class="cap">Fachada · Indaiatuba</div></div>
+          <div class="app" style="aspect-ratio:3/4"><img src="../assets/reference-landingpage.png" alt="" style="object-position:center top"><div class="cap">Landing page</div></div>
+          <div class="app" style="aspect-ratio:3/4"><img src="../assets/hero-ewaste-roots.png" alt="" style="object-position:center center"><div class="cap">Campanha · e-waste</div></div>
+        </div>
+      </div>
+    </div>
+    <div class="pgmark">20</div>
+  </section>
+
+  <!-- 21 ENCERRAMENTO -->
+  <section class="s deep" data-label="Encerramento" data-deck-last-visible="">
+    <div class="closing">
+      <div class="s-degrade"></div>
+      <img class="tag anim2" src="../assets/tagline-dowhatsright-white.png" alt="Do What's Right">
+      <img class="anim3" src="../assets/logos/horizontal-white.svg" alt="ERS Brazil" style="width:300px;margin-top:40px">
+      <div class="ct anim3">Indaiatuba — SP · @ersbrazil · ersbrazil.com</div>
+    </div>
+  </section>
+
+</deck-stage>
+
+<script src="deck-stage.js"></script>
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>
+  function di(){ if (window.lucide) lucide.createIcons(); }
+  window.addEventListener('load', di);
+  document.addEventListener('slidechange', di);
+</script>
+
+
+
+<style id="__om-edit-overrides">
+[data-om-id="5ef0b234:496"] { width: 40px !important }
+[data-om-id="5ef0b234:496"] { height: 40px !important }
+[data-om-id="5ef0b234:514"] { width: 40px !important; height: 40px !important }
+[data-om-id="5ef0b234:499"] { width: 40px !important; height: 40px !important }
+[x="4"] { width: 36px !important }
+[x="4"] { height: 36px !important }
+[data-om-id="5ef0b234:502"] { width: 40px !important }
+[data-om-id="5ef0b234:502"] { height: 40px !important }
+[x="4"] { width: 16px !important }
+[x="4"] { height: 16px !important }
+[data-om-id="5ef0b234:508"] { width: 40px !important }
+[data-om-id="5ef0b234:508"] { height: 40px !important }
+[data-om-id="5ef0b234:523"] { width: 40px !important }
+[data-om-id="5ef0b234:523"] { height: 40px !important }
+[data-om-id="5ef0b234:511"] { width: 40px !important }
+[data-om-id="5ef0b234:511"] { height: 40px !important }
+[data-om-id="5ef0b234:529"] { width: 40px !important; height: 40px !important }
+[data-om-id="5ef0b234:526"] { width: 40px !important }
+[data-om-id="5ef0b234:526"] { height: 40px !important }
+[data-om-id="5ef0b234:505"] { width: 40px !important }
+[data-om-id="5ef0b234:505"] { height: 40px !important }
+[data-om-id="5ef0b234:520"] { width: 40px !important }
+[data-om-id="5ef0b234:520"] { height: 40px !important }
+[data-om-id="5ef0b234:517"] { width: 40px !important; height: 40px !important }
+[data-om-id="5ef0b234:496"] { width: 50px !important }
+[data-om-id="5ef0b234:496"] { height: 50px !important }
+[data-om-id="5ef0b234:514"] { width: 50px !important; height: 50px !important }
+[data-om-id="c9d871d5:496"] { width: 55px !important }
+[data-om-id="c9d871d5:496"] { height: 55px !important }
+[data-om-id="c9d871d5:514"] { width: 55px !important; height: 55px !important }
+[data-om-id="c9d871d5:517"] { width: 55px !important }
+[data-om-id="c9d871d5:517"] { height: 55px !important }
+[data-om-id="26ec512c:496"] { width: 55px !important }
+[data-om-id="26ec512c:496"] { height: 55px !important }
+[data-om-id="26ec512c:514"] { width: 55px !important; height: 55px !important }
+[data-om-id="26ec512c:517"] { width: 55px !important }
+[data-om-id="26ec512c:517"] { height: 55px !important }
+[data-om-id="26ec512c:520"] { width: 55px !important; height: 5px !important }
+[data-om-id="26ec512c:502"] { width: 55px !important; height: 55px !important }
+[data-om-id="26ec512c:505"] { width: 55px !important }
+[data-om-id="26ec512c:505"] { height: 55px !important }
+[data-om-id="26ec512c:523"] { width: 55px !important; height: 55px !important }
+[data-om-id="26ec512c:508"] { width: 55px !important }
+[data-om-id="26ec512c:508"] { height: 55px !important }
+[data-om-id="26ec512c:526"] { width: 55px !important; height: 55px !important }
+[data-om-id="26ec512c:511"] { width: 55px !important; height: 55px !important }
+[data-om-id="26ec512c:529"] { width: 55px !important }
+</style>
+</body><chatgpt-sidebar data-rendered="true" data-gpts-theme="light"></chatgpt-sidebar></html>

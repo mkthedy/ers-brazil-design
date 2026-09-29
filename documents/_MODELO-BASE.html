@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<!-- MODELO-BASE ERS Brazil · A4 retrato. Copie este arquivo, renomeie e substitua os [[PLACEHOLDERS]].
+     Cabeçalho (logo + contato) e rodapé (endereço + chips + bandeiras) são OBRIGATÓRIOS e já estão prontos.
+     Toda a marca vem de doc.css → colors_and_type.css (não escreva hex soltos).
+     Para paisagem: troque "portrait" por "landscape" na div.sheet e ajuste .doc-caption. -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — [[TÍTULO DO DOCUMENTO]]</title>
+<link rel="stylesheet" href="doc.css">
+<style>
+  /* Layout de papel timbrado — reutilizável para carta, comunicado, proposta simples, memorando. */
+  .lt { position: relative; height: 100%; display: flex; flex-direction: column; }
+  .lt-head { padding: 14px 68px 0; display: flex; align-items: center; justify-content: space-between; }
+  .lt-head .contact { text-align: right; font-size: 10.5px; line-height: 1.7; color: var(--fg-3); white-space: nowrap; }
+  .lt-head .contact b { color: var(--ers-petrol); }
+  .lt-rule { margin: 10px 68px 0; height: 3px; background: var(--ers-green); display: flex; }
+  .lt-rule .o { width: 60px; background: var(--ers-orange); }
+
+  .lt-body { position: relative; flex: 1; padding: 12mm 18mm; font-size: 13px; line-height: 1.7; color: var(--fg-2); }
+  .lt-body > *:not(.s-mark) { position: relative; z-index: 1; }
+  .lt-body .s-mark { right: -34mm; bottom: 24mm; width: 150mm; height: 150mm; opacity: .05; }
+  .lt-body .date { color: var(--fg-3); font-size: 12px; }
+  .lt-body .to { margin: 14px 0 22px; }
+  .lt-body .to b { color: var(--ers-petrol); }
+  .lt-body h2 { font-size: 17px; color: var(--ers-petrol); font-weight: 700; margin: 0 0 14px; }
+  .lt-body p { margin: 0 0 13px; max-width: 165mm; }
+  .lt-body .sign .nm { font-weight: 700; color: var(--ers-petrol); font-size: 13px; }
+  .lt-body .sign .rl { font-size: 11.5px; color: var(--fg-3); }
+
+  .lt-foot { position: relative; flex: none; background: var(--ers-petrol); color: #fff; padding: 7mm 18mm; min-height: 80px; display: flex; align-items: center; justify-content: space-between; }
+  .lt-foot > * { position: relative; z-index: 1; }
+  .lt-foot .s-degrade { opacity: .18; }
+  .lt-foot .addr { font-size: 10.5px; line-height: 1.6; color: var(--fg-on-dark-2); max-width: 500px; }
+  .lt-foot .addr b { color: #fff; }
+  .lt-foot .chips { display: flex; gap: 6px; flex-wrap: wrap; justify-content: flex-end; max-width: 175px; }
+  .lt-foot .chip { font-size: 8.5px; font-weight: 700; letter-spacing: .05em; text-transform: uppercase; color: #fff; border: 1px solid rgba(255,255,255,.4); border-radius: 4px; padding: 3px 7px; white-space: nowrap; }
+</style>
+</head>
+<body>
+
+<div class="doc-caption no-print">[[TÍTULO DO DOCUMENTO]] · A4 retrato (210 × 297 mm)</div>
+
+<div class="sheet portrait">
+  <div class="lt">
+
+    <!-- CABEÇALHO — logo ERS Brazil (sem descritor) + contato. Não retipografar "ERS". -->
+    <div class="lt-head">
+      <img class="logo" src="../assets/logo-primary-color.png" alt="ERS Brazil" style="width:115px;height:50px;object-fit:scale-down">
+      <div class="contact"><b style="font-size:16px">ERS Brazil</b><br>
+        Indaiatuba — SP<br>
+        +55 19 99668-4397 · ersbrazil.com
+      </div>
+    </div>
+    <div class="lt-rule"><div class="o"></div></div>
+
+    <!-- CORPO — substitua livremente. Marca uma palavra-chave com class="ink-green" (positivo) ou "ink-orange" (risco/atenção). -->
+    <div class="lt-body">
+      <div class="s-mark petrol"></div>
+      <div class="date">Indaiatuba, [[DIA]] de [[MÊS]] de [[ANO]].</div>
+      <div class="to"><b>À</b> [[DESTINATÁRIO]]<br>A/C [[SETOR / RESPONSÁVEL]]</div>
+
+      <h2>[[ASSUNTO / TÍTULO]]</h2>
+      <p>[[Parágrafo de abertura. Tom técnico, institucional, baseado em provas — números, padrões, certificações. Sem emoji.]]</p>
+      <p>[[Parágrafo de desenvolvimento.]]</p>
+      <p>[[Parágrafo de fechamento / próximos passos.]]</p>
+
+      <div class="sign">
+        <p style="margin:0">Atenciosamente,</p>
+        <div style="margin-top:26px">
+          <div class="nm">[[NOME DO RESPONSÁVEL]]</div>
+          <div class="rl">[[CARGO]] · ERS Brazil</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RODAPÉ INSTITUCIONAL — OBRIGATÓRIO. Endereço canônico + chips de certificação + bandeiras (Brasil → Canadá). Não editar valores. -->
+    <div class="lt-foot">
+      <div class="s-degrade"></div>
+      <div class="addr">ERS Brazil — Environmental Recovery Solutions<br>
+        Alameda Plutão, 555 · American Park Empresarial NR · Indaiatuba — SP · CEP 13347-656</div>
+      <div style="display:flex;flex-direction:column;align-items:flex-end;gap:9px">
+        <div class="chips">
+          <span class="chip">R2v3</span><span class="chip">ISO 9001</span><span class="chip">ISO 14001</span><span class="chip">ISO 45001</span><span class="chip">ISO 27001</span>
+        </div>
+        <div class="ers-flags"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<script>if (window.self !== window.top) document.body.classList.add('embed');</script>
+</body>
+</html>

@@ -1,0 +1,105 @@
+/* ERS Brazil — Document System shared styles
+   Print-ready A4 templates. Pair with ../colors_and_type.css */
+@import url('../colors_and_type.css');
+
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; }
+body {
+  font-family: var(--font-sans);
+  color: var(--fg-1);
+  background: #d9dcdb;            /* desk background on screen */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 28px;
+  padding: 36px 20px;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ---- A4 sheet ---- */
+.sheet {
+  position: relative;
+  background: #fff;
+  box-shadow: 0 18px 50px rgba(4,48,53,.22);
+  overflow: hidden;
+}
+.sheet.landscape { width: 297mm; height: 210mm; }
+.sheet.portrait  { width: 210mm; height: 297mm; }
+
+/* ---- ink / accents ---- */
+.ink-petrol { color: var(--ers-petrol); }
+.ink-green  { color: var(--ers-green); }
+.ink-orange { color: var(--ers-orange); }
+.bg-petrol  { background: var(--ers-petrol); }
+.bg-green   { background: var(--ers-green); }
+
+/* eyebrow / label */
+.doc-eyebrow {
+  font-weight: 700; letter-spacing: .22em; text-transform: uppercase;
+  font-size: 11px; color: var(--ers-orange);
+}
+
+/* certification chips */
+.cert-chips { display: flex; gap: 8px; flex-wrap: wrap; }
+.cert-chip {
+  font-family: var(--font-sans); font-weight: 700; font-size: 10px; letter-spacing: .06em;
+  text-transform: uppercase; color: var(--ers-petrol);
+  border: 1.5px solid var(--border-default); border-radius: 5px; padding: 5px 10px;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.cert-chip.solid { background: var(--green-tint); border-color: var(--green-300); color: var(--green-700); }
+
+/* ---- national flags reference (Canadian HQ · Brazilian operation) ---- */
+.ers-flags { display: flex; align-items: center; gap: 6px; }
+.ers-flags img { width: 21px; height: 14px; object-fit: cover; display: block; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.45); }
+.ers-flags.on-light img { box-shadow: 0 0 0 1px rgba(4,48,53,.2); }
+.ers-flags.center { justify-content: center; }
+
+/* signature line */
+.sig-line { border-top: 1.5px solid var(--ers-petrol); padding-top: 8px; }
+
+/* S-watermark */
+.doc-watermark {
+  position: absolute; font-family: var(--font-display);
+  color: rgba(4,48,53,.04); line-height: .8; pointer-events: none; user-select: none;
+  text-transform: uppercase; z-index: 0;
+}
+
+/* ---- S-Partner pattern system ----
+   Use the official S marks as NEGATIVE backgrounds at 10–30% opacity.
+   Solid single marks: s-petrol/s-green on light, s-white on dark.
+   Degrade texture: for larger composition areas (petrol panels, hero bands). */
+.s-mark {
+  position: absolute; z-index: 0; pointer-events: none; user-select: none;
+  background-repeat: no-repeat; background-size: contain; background-position: center;
+}
+.s-mark.petrol { background-image: url('../assets/pattern/s-petrol.png'); }
+.s-mark.green  { background-image: url('../assets/pattern/s-green.png'); }
+.s-mark.white  { background-image: url('../assets/pattern/s-white.png'); }
+.s-degrade {
+  position: absolute; inset: 0; z-index: 0; pointer-events: none;
+  background: url('../assets/pattern/degrade-texture.png') center / cover no-repeat;
+}
+
+/* screen-only caption above each sheet */
+.doc-caption {
+  font-family: var(--font-sans); color: var(--petrol-700);
+  font-size: 13px; font-weight: 600; letter-spacing: .04em;
+}
+.doc-caption span { color: var(--gray-600); font-weight: 500; }
+
+/* monospace-ish data values */
+.tnum { font-variant-numeric: tabular-nums; }
+
+/* ---- embedded in a thumbnail iframe ---- */
+body.embed { background: #fff; padding: 0; gap: 0; display: block; }
+body.embed .no-print { display: none !important; }
+body.embed .sheet { box-shadow: none; }
+
+/* ---- print ---- */
+@media print {
+  body { background: #fff; padding: 0; gap: 0; display: block; }
+  .doc-caption, .no-print { display: none !important; }
+  .sheet { box-shadow: none; margin: 0; page-break-after: always; }
+  @page { margin: 0; }
+}

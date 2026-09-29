@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Painel de Objetivos e Emissões 2026</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-sans); background: var(--bg-page); color: var(--fg-1); -webkit-font-smoothing: antialiased; }
+  header { position: relative; background: var(--ers-petrol); color: #fff; padding: 22px 32px 20px; overflow: hidden; }
+  header .s-deg { position: absolute; inset: 0; background: url(../assets/pattern/degrade-texture.png) center / cover; opacity: .16; }
+  header .in { position: relative; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 18px; max-width: 1400px; margin: 0 auto; }
+  header img { height: 34px; }
+  header .ttl .ey { font-size: 11px; font-weight: 700; letter-spacing: .2em; text-transform: uppercase; color: var(--ers-orange); }
+  header .ttl h1 { margin: 4px 0 0; font-size: 22px; font-weight: 700; }
+  header .ttl h1 em { font-style: normal; color: var(--ers-green); }
+  .filters { display: flex; flex-wrap: wrap; align-items: center; gap: 10px 16px; font-size: 12px; }
+  .filters label { color: var(--fg-on-dark-2); font-weight: 600; letter-spacing: .08em; text-transform: uppercase; font-size: 10px; }
+  .filters select { font: inherit; font-size: 13px; padding: 6px 8px; border-radius: 6px; border: 1px solid var(--border-on-dark); background: var(--petrol-600); color: #fff; }
+  .chip-f { display: inline-flex; align-items: center; gap: 6px; padding: 6px 11px; border-radius: 999px; border: 1px solid var(--border-on-dark); cursor: pointer; user-select: none; font-weight: 600; font-size: 12px; color: var(--fg-on-dark-2); }
+  .chip-f.on { background: #fff; color: var(--ers-petrol); border-color: #fff; }
+  .chip-f i { width: 9px; height: 9px; border-radius: 2px; background: var(--c); box-shadow: 0 0 0 1px rgba(255,255,255,.6); }
+
+  main { max-width: 1400px; margin: 0 auto; padding: 24px 32px 40px; }
+  .sec-t { display: flex; align-items: baseline; gap: 10px; margin: 30px 0 14px; }
+  .sec-t .n { font-family: var(--font-display); font-size: 28px; color: var(--green-700); line-height: 1; }
+  .sec-t h2 { margin: 0; font-size: 18px; color: var(--ers-petrol); }
+  .sec-t span { font-size: 12px; color: var(--fg-3); }
+
+  .kpis { display: grid; grid-template-columns: repeat(auto-fit, minmax(190px, 1fr)); gap: 14px; }
+  .kpi { background: #fff; border-radius: 8px; box-shadow: var(--shadow-md); padding: 16px 18px; border-top: 3px solid var(--c, var(--ers-petrol)); }
+  .kpi .l { font-size: 10px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--orange-600); }
+  .kpi .v { font-family: var(--font-display); font-size: 42px; line-height: 1; margin-top: 8px; color: var(--ers-petrol); }
+  .kpi .v small { font-family: var(--font-sans); font-size: 13px; font-weight: 600; color: var(--fg-3); margin-left: 4px; }
+  .kpi .d { font-size: 12px; color: var(--fg-2); margin-top: 6px; }
+  .kpi .d b.ok { color: var(--green-700); } .kpi .d b.bad { color: var(--orange-600); }
+
+  .grid { display: grid; grid-template-columns: repeat(12, 1fr); gap: 14px; }
+  .card { background: #fff; border-radius: 8px; box-shadow: var(--shadow-md); padding: 16px 18px; min-width: 0; }
+  .card h3 { margin: 0; font-size: 14px; color: var(--ers-petrol); }
+  .card .cap { font-size: 11.5px; color: var(--fg-3); margin: 3px 0 10px; }
+  .cv { position: relative; height: 280px; }
+  .w8 { grid-column: span 8; } .w4 { grid-column: span 4; } .w6 { grid-column: span 6; } .w12 { grid-column: span 12; }
+  @media (max-width: 1000px) { .w8, .w4, .w6 { grid-column: span 12; } header, main { padding-left: 16px; padding-right: 16px; } }
+
+  .objs { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 14px; }
+  .obj { background: #fff; border-radius: 8px; box-shadow: var(--shadow-md); padding: 16px 18px; display: flex; flex-direction: column; gap: 8px; }
+  .obj .top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
+  .pill { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; padding: 4px 9px; border-radius: 999px; background: var(--gray-50); color: var(--fg-2); }
+  .pill.amb { background: var(--green-tint); color: var(--green-700); }
+  .pill.qua { background: #e6eef0; color: var(--petrol-500); }
+  .pill.sst { background: var(--orange-tint); color: var(--orange-600); }
+  .st { font-size: 10.5px; font-weight: 700; padding: 4px 9px; border-radius: 4px; white-space: nowrap; }
+  .st.ok { background: var(--green-tint); color: var(--green-700); }
+  .st.risk { background: var(--orange-tint); color: var(--orange-600); }
+  .st.nd { background: var(--gray-50); color: var(--gray-600); }
+  .obj h4 { margin: 0; font-size: 14.5px; color: var(--ers-petrol); line-height: 1.3; }
+  .obj .mv { display: flex; gap: 18px; }
+  .obj .mv div { font-size: 11px; color: var(--fg-3); }
+  .obj .mv b { display: block; font-size: 16px; color: var(--ers-petrol); margin-top: 2px; }
+  .bar { height: 7px; border-radius: 4px; background: var(--gray-100); overflow: hidden; }
+  .bar i { display: block; height: 100%; background: var(--ers-green); }
+  .obj dl { margin: 2px 0 0; display: grid; grid-template-columns: auto 1fr; gap: 3px 10px; font-size: 11.5px; }
+  .obj dt { color: var(--fg-3); } .obj dd { margin: 0; color: var(--fg-2); }
+  .obj .alert { font-size: 11px; color: var(--orange-600); background: var(--orange-tint); border-radius: 4px; padding: 6px 8px; }
+
+  table { width: 100%; border-collapse: collapse; font-size: 12.5px; font-variant-numeric: tabular-nums; }
+  th { background: var(--ers-petrol); color: #fff; font-size: 10px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; text-align: right; padding: 8px 10px; }
+  th:first-child, td:first-child { text-align: left; }
+  td { padding: 7px 10px; text-align: right; border-bottom: 1px solid var(--border-subtle); }
+  tr:nth-child(even) td { background: var(--off-white); }
+  tr.tot td { background: var(--green-tint); font-weight: 700; color: var(--ers-petrol); border-top: 1.5px solid var(--ers-petrol); }
+  td.na { color: var(--gray-400); }
+  .tbl-wrap { overflow-x: auto; }
+  .btn { font: inherit; font-size: 12px; font-weight: 700; padding: 8px 14px; border-radius: 6px; border: 0; background: var(--ers-green); color: var(--ers-petrol); cursor: pointer; }
+  .btn:hover { background: var(--green-600); }
+  .note { font-size: 12px; color: var(--fg-2); background: #fff; border-left: 3px solid var(--ers-orange); border-radius: 0 6px 6px 0; padding: 10px 14px; margin-top: 14px; box-shadow: var(--shadow-sm); }
+  footer { background: var(--ers-petrol); color: var(--fg-on-dark-2); font-size: 11px; padding: 16px 32px; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; align-items: center; }
+  footer .fl { display: flex; gap: 6px; } footer .fl img { width: 21px; height: 14px; border-radius: 2px; box-shadow: 0 0 0 1px rgba(255,255,255,.45); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="s-deg"></div>
+  <div class="in">
+    <div style="display:flex;align-items:center;gap:22px">
+      <img src="../assets/logos/horizontal-white.svg" alt="ERS Brazil">
+      <div class="ttl"><div class="ey">ERS BR 6003 · ERS BR 6166 · ERS-GEE-001-2026</div><h1>Painel de objetivos e <em>emissões 2026</em></h1></div>
+    </div>
+    <div class="filters">
+      <label>Período</label>
+      <select id="fDe"></select><span style="color:var(--fg-on-dark-2)">a</span><select id="fAte"></select>
+      <label style="margin-left:6px">Fontes</label>
+      <span class="chip-f on" data-src="dsl" style="--c:var(--ers-petrol)"><i></i>Diesel</span>
+      <span class="chip-f on" data-src="ee" style="--c:var(--ers-green)"><i></i>Energia</span>
+      <span class="chip-f on" data-src="glp" style="--c:var(--ers-orange)"><i></i>GLP</span>
+    </div>
+  </div>
+</header>
+
+<main>
+  <div class="sec-t" style="margin-top:6px"><span class="n">01</span><h2>Visão geral do período</h2><span id="perLbl"></span></div>
+  <div class="kpis" id="kpis"></div>
+
+  <div class="sec-t"><span class="n">02</span><h2>Base de objetivos 2026</h2><span>ERS BR 6003 · ISO 9001 / 14001 / 45001</span></div>
+  <div class="objs" id="objs"></div>
+
+  <div class="sec-t"><span class="n">03</span><h2>Evolução no período</h2><span>clique na legenda para ocultar séries</span></div>
+  <div class="grid">
+    <div class="card w8"><h3>Energia elétrica e consumo específico</h3><div class="cap">kWh por mês (barras) e kWh por hora trabalhada contra a meta de −5% (linhas)</div><div class="cv"><canvas id="cEnergia"></canvas></div></div>
+    <div class="card w4"><h3>Participação nas emissões</h3><div class="cap">tCO<sub>2</sub>e no período por fonte</div><div class="cv"><canvas id="cShare"></canvas></div></div>
+    <div class="card w6"><h3>Emissões mensais por fonte</h3><div class="cap">tCO<sub>2</sub>e · escopo 1 (diesel, GLP) e escopo 2 (energia)</div><div class="cv"><canvas id="cEmiss"></canvas></div></div>
+    <div class="card w6"><h3>Emissões acumuladas no ano</h3><div class="cap">tCO<sub>2</sub>e acumuladas, total e por escopo</div><div class="cv"><canvas id="cAcum"></canvas></div></div>
+    <div class="card w6"><h3>Consumo de combustíveis</h3><div class="cap">Diesel em litros (caminhão e gerador) e GLP em kg (empilhadeiras)</div><div class="cv"><canvas id="cComb"></canvas></div></div>
+    <div class="card w6"><h3>Intensidade de emissão</h3><div class="cap">kgCO<sub>2</sub>e por hora trabalhada e fator do SIN (tCO<sub>2</sub>/MWh)</div><div class="cv"><canvas id="cInt"></canvas></div></div>
+  </div>
+  <div class="note"><b>Atenção:</b> as horas trabalhadas de julho e agosto (5.202 h e 5.600 h) são cerca de duas vezes as dos meses anteriores e reduzem artificialmente o consumo específico e a intensidade. Valide a base de horas antes de avaliar a meta de energia. O fator do SIN de 2026 é provisório (fator de 2025 do mesmo mês).</div>
+
+  <div class="sec-t"><span class="n">04</span><h2>Base de dados mensal</h2><span>edite o bloco DADOS no código-fonte para incluir novos meses</span></div>
+  <div class="card w12">
+    <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:10px"><h3>Memória de cálculo</h3><button class="btn" id="btnCsv">Exportar CSV</button></div>
+    <div class="tbl-wrap"><table id="tbl"></table></div>
+  </div>
+</main>
+
+<footer>
+  <span><b style="color:#fff">ERS Brazil — Environmental Recovery Solutions</b> · Alameda Plutão, 555 · American Park Empresarial NR · Indaiatuba — SP · CEP 13347-656</span>
+  <span class="fl"><img src="../assets/flags/br.png" alt="Brasil"><img src="../assets/flags/ca.png" alt="Canadá"></span>
+</footer>
+
+<script>
+/* =========================================================================
+   DADOS — base editável. Inclua os meses seguintes substituindo null.
+   Fontes: ERS BR 6166 (energia, GLP, diesel, horas) · ERS BR 6003 (objetivos)
+   Fatores: Ferramenta GHG Protocol v2026.0.1 (ver relatório ERS-GEE-001-2026)
+   ========================================================================= */
+const DADOS = {
+  meses:  ['jan','fev','mar','abr','mai','jun','jul','ago','set','out','nov','dez'],
+  kwh:    [11062.62, 9977.4, 11710.08, 9626.4, 6524, 6106, 9315, 7449, null, null, null, null],
+  horas:  [2679.11, 2772.77, 2949.81, 2679.11, 2329.56, 1810.97, 5202.39, 5600, null, null, null, null],
+  diesel: [134.85, 242.72, 223.86, 256.39, 334.88, 128.47, 399.42, 211.35, null, null, null, null],   // litros
+  glp:    [0, 0, 80, 0, 40, 40, 20, 20, null, null, null, null],                                       // kg
+  feSIN:  [0.0237, 0.0248, 0.0215, 0.0289, 0.0309, 0.0455, 0.0603, 0.0667, 0.0563, 0.068, 0.0778, 0.0486], // tCO2/MWh (2025, proxy)
+  feDiesel: 2.268344,  // kgCO2e/L — diesel comercial B15, fonte móvel
+  feGLP:    3.015618,  // kgCO2e/kg
+  metaEnergia: -0.05,  // −5% no consumo específico (kWh/h) — ERS BR 6003
+  baseEnergiaMeses: [0, 1, 2] // linha de base: média jan–mar 2026 (ajuste quando houver base oficial)
+};
+
+/* Objetivos ERS BR 6003. valor = resultado apurado (null = sem registro). */
+const OBJETIVOS = [
+  { area:'Ambiental', cls:'amb', objetivo:'Garantir rastreabilidade total dos resíduos', indicador:'% de resíduos destinados com MTR', meta:100, unid:'%', sentido:'max', valor:null,
+    formula:'(Resíduos destinados ÷ total gerado) × 100', resp:'Gestão Ambiental', freq:'Mensal', medicao:'Planilha mensal de gerenciamento de resíduos', recursos:'CADRI + MTR' },
+  { area:'Ambiental', cls:'amb', objetivo:'Reduzir impactos ambientais da operação', indicador:'Consumo específico de energia (kWh/h)', meta:null, unid:'kWh/h', sentido:'min', valor:null, auto:'energia',
+    formula:'kWh consumidos ÷ horas trabalhadas', resp:'Todos', freq:'Mensal', medicao:'Contas de energia, medição interna e registros de produção', recursos:'Medidores, treinamento, eficiência energética' },
+  { area:'Qualidade', cls:'qua', objetivo:'Melhorar a eficiência operacional', indicador:'Tempo médio de processamento por lote', meta:null, unid:'dias', sentido:'min', valor:null,
+    formula:'Tempo total de processamento ÷ nº de lotes', resp:'Operação', freq:'Mensal', medicao:'Data de chegada × data do relatório de processamento', recursos:'PCP' },
+  { area:'Qualidade', cls:'qua', objetivo:'Aumentar a satisfação dos clientes', indicador:'Índice de satisfação', meta:90, unid:'%', sentido:'max', valor:null,
+    formula:'Notas obtidas ÷ notas máximas × 100', resp:'Comercial', freq:'Anual', medicao:'Pesquisa de satisfação', recursos:'Pesquisa de satisfação' },
+  { area:'Saúde e segurança', cls:'sst', objetivo:'Garantir capacitação anual', indicador:'% de colaboradores treinados', meta:100, unid:'%', sentido:'max', valor:null,
+    formula:'Colaboradores treinados ÷ total × 100', resp:'RH', freq:'Anual', medicao:'Planilhas e certificados', recursos:'Matriz de treinamentos, PCMSO, PGR' },
+  { area:'Saúde e segurança', cls:'sst', objetivo:'Eliminar acidentes relacionados ao trabalho', indicador:'Acidentes de trabalho', meta:0, unid:'acidentes', sentido:'zero', valor:null,
+    formula:'Contagem absoluta', resp:'SSMA', freq:'Mensal', medicao:'Registros de segurança', recursos:'Checklists, EPIs' }
+];
+
+/* ============================ cálculo ============================ */
+const nf = (v, d=2) => v == null || isNaN(v) ? '—' : v.toLocaleString('pt-BR', { minimumFractionDigits:d, maximumFractionDigits:d });
+const C = { petrol:'#043035', green:'#65CE21', green7:'#4ba514', orange:'#F4762F', teal:'#2e7079', gray:'#999999', grid:'#e4e7e6', lite:'#a6e87f' };
+const M = DADOS.meses.map((m, i) => {
+  const has = DADOS.kwh[i] != null;
+  const ee = has ? DADOS.kwh[i] / 1000 * DADOS.feSIN[i] : null;
+  const dsl = DADOS.diesel[i] != null ? DADOS.diesel[i] * DADOS.feDiesel / 1000 : null;
+  const glp = DADOS.glp[i] != null ? DADOS.glp[i] * DADOS.feGLP / 1000 : null;
+  return { m, i, has, kwh: DADOS.kwh[i], h: DADOS.horas[i], L: DADOS.diesel[i], kg: DADOS.glp[i], fe: DADOS.feSIN[i], ee, dsl, glp,
+           esp: has && DADOS.horas[i] ? DADOS.kwh[i] / DADOS.horas[i] : null };
+});
+const base = DADOS.baseEnergiaMeses.map(i => M[i].esp).reduce((a, b) => a + b, 0) / DADOS.baseEnergiaMeses.length;
+const metaEsp = base * (1 + DADOS.metaEnergia);
+const ultimo = M.filter(x => x.has).length - 1;
+
+let src = { dsl: true, ee: true, glp: true };
+const fDe = document.getElementById('fDe'), fAte = document.getElementById('fAte');
+DADOS.meses.forEach((m, i) => { fDe.add(new Option(m, i)); fAte.add(new Option(m, i)); });
+fDe.value = 0; fAte.value = Math.max(ultimo, 0);
+
+Chart.defaults.font.family = "'Montserrat', sans-serif";
+Chart.defaults.font.size = 11;
+Chart.defaults.color = '#4a4f4e';
+Chart.defaults.plugins.legend.labels.boxWidth = 10;
+Chart.defaults.plugins.legend.labels.boxHeight = 10;
+Chart.defaults.plugins.tooltip.backgroundColor = C.petrol;
+const axis = (title, extra={}) => Object.assign({ grid: { color: C.grid }, border: { display: false }, title: { display: !!title, text: title, font: { size: 10, weight: '600' } }, ticks: { callback: v => nf(v, v < 10 ? 2 : 0) } }, extra);
+const charts = {};
+function mk(id, cfg) { if (charts[id]) charts[id].destroy(); charts[id] = new Chart(document.getElementById(id), cfg); }
+
+function render() {
+  let a = +fDe.value, b = +fAte.value; if (a > b) [a, b] = [b, a];
+  const R = M.slice(a, b + 1), lbl = R.map(x => x.m);
+  const s = (k) => R.reduce((t, x) => t + (x[k] || 0), 0);
+  const tEE = src.ee ? s('ee') : 0, tD = src.dsl ? s('dsl') : 0, tG = src.glp ? s('glp') : 0, tot = tEE + tD + tG;
+  const kwh = s('kwh'), hrs = R.filter(x => x.has).reduce((t, x) => t + x.h, 0), esp = hrs ? kwh / hrs : null;
+  document.getElementById('perLbl').textContent = `${DADOS.meses[a]}–${DADOS.meses[b]} 2026 · ${R.filter(x => x.has).length} meses com dados`;
+
+  // ---------- objetivos ----------
+  const objs = OBJETIVOS.map(o => {
+    if (o.auto === 'energia') return Object.assign({}, o, { meta: metaEsp, valor: esp });
+    return o;
+  });
+  const stat = o => {
+    if (o.valor == null) return ['nd', 'Sem dados'];
+    if (o.meta == null) return ['nd', 'Meta a definir'];
+    const ok = o.sentido === 'max' ? o.valor >= o.meta : o.sentido === 'zero' ? o.valor <= 0 : o.valor <= o.meta;
+    return ok ? ['ok', 'No alvo'] : ['risk', 'Em risco'];
+  };
+  const nOk = objs.filter(o => stat(o)[0] === 'ok').length, nNd = objs.filter(o => stat(o)[0] === 'nd').length;
+
+  // ---------- KPIs ----------
+  const dEsp = esp != null ? (esp / base - 1) : null;
+  document.getElementById('kpis').innerHTML = [
+    ['Emissões no período', nf(tot), 'tCO₂e', `Escopo 1: <b>${nf(tD + tG)}</b> · Escopo 2: <b>${nf(tEE)}</b>`, C.petrol],
+    ['Energia elétrica', nf(kwh / 1000, 1), 'MWh', `${nf(kwh, 0)} kWh · ${nf(hrs, 0)} h trabalhadas`, C.green],
+    ['Consumo específico', nf(esp), 'kWh/h', dEsp == null ? '' : `vs. base ${nf(base)}: <b class="${esp <= metaEsp ? 'ok' : 'bad'}">${dEsp > 0 ? '+' : ''}${nf(dEsp * 100, 1)}%</b> · meta ${nf(metaEsp)}`, C.green7],
+    ['Óleo diesel', nf(s('L'), 0), 'L', `${nf(s('dsl'))} tCO₂e · caminhão e gerador`, C.teal],
+    ['GLP', nf(s('kg'), 0), 'kg', `${nf(s('glp'))} tCO₂e · empilhadeiras`, C.orange],
+    ['Objetivos no alvo', `${nOk}/${objs.length}`, '', `<b class="bad">${nNd}</b> sem dados ou meta registrada`, C.gray]
+  ].map(k => `<div class="kpi" style="--c:${k[4]}"><div class="l">${k[0]}</div><div class="v">${k[1]}<small>${k[2]}</small></div><div class="d">${k[3]}</div></div>`).join('');
+
+  document.getElementById('objs').innerHTML = objs.map(o => {
+    const [c, t] = stat(o);
+    let pct = null;
+    if (o.valor != null && o.meta != null) pct = o.sentido === 'max' ? o.valor / o.meta : o.sentido === 'zero' ? (o.valor <= 0 ? 1 : 0) : Math.min(1, o.meta / o.valor);
+    const fmt = v => v == null ? '—' : nf(v, o.unid === 'kWh/h' ? 2 : 0) + (o.unid === '%' ? '%' : ' ' + o.unid);
+    const alert = o.valor == null ? `<div class="alert">Sem registro no período. Lançar em <b>OBJETIVOS</b> (código-fonte) a partir de: ${o.medicao.toLowerCase()}.</div>`
+                : o.auto === 'energia' ? `<div class="alert">Base provisória: média jan–mar 2026 (${nf(base)} kWh/h). Resultado influenciado pelas horas de jul–ago.</div>` : '';
+    return `<div class="obj"><div class="top"><span class="pill ${o.cls}">${o.area}</span><span class="st ${c}">${t}</span></div>
+      <h4>${o.objetivo}</h4>
+      <div class="mv"><div>Meta<b>${o.meta == null ? 'A definir' : (o.sentido === 'min' && o.auto ? '≤ ' : o.sentido === 'max' ? '≥ ' : '') + fmt(o.meta)}</b></div><div>Atual<b>${fmt(o.valor)}</b></div><div>Indicador<b style="font-size:12px;font-weight:600">${o.indicador}</b></div></div>
+      <div class="bar"><i style="width:${pct == null ? 0 : Math.round(pct * 100)}%;background:${c === 'risk' ? C.orange : C.green}"></i></div>
+      <dl><dt>Fórmula</dt><dd>${o.formula}</dd><dt>Responsável</dt><dd>${o.resp}</dd><dt>Frequência</dt><dd>${o.freq}</dd><dt>Recursos</dt><dd>${o.recursos}</dd></dl>${alert}</div>`;
+  }).join('');
+
+  // ---------- gráficos ----------
+  const val = (x, k, on=true) => on && x.has ? +(x[k] || 0).toFixed(4) : null;
+  mk('cEnergia', { data: { labels: lbl, datasets: [
+      { type:'bar', label:'Energia (kWh)', data: R.map(x => x.kwh), backgroundColor: C.petrol, borderRadius: 4, yAxisID:'y', order: 3 },
+      { type:'line', label:'kWh por hora trabalhada', data: R.map(x => x.esp && +x.esp.toFixed(3)), borderColor: C.green, backgroundColor: C.green, tension:.3, pointRadius:4, yAxisID:'y1', order: 1 },
+      { type:'line', label:'Meta (−5%)', data: R.map(() => +metaEsp.toFixed(3)), borderColor: C.orange, borderDash:[6,4], pointRadius:0, yAxisID:'y1', order: 2 } ] },
+    options: { maintainAspectRatio:false, interaction:{ mode:'index', intersect:false }, scales: { x:{ grid:{display:false} }, y: axis('kWh'), y1: axis('kWh/h', { position:'right', grid:{ display:false }, min:0 }) } } });
+
+  mk('cShare', { type:'doughnut', data: { labels:['Diesel','Energia elétrica','GLP'], datasets:[{ data:[tD, tEE, tG].map(v => +v.toFixed(3)), backgroundColor:[C.petrol, C.green, C.orange], borderColor:'#fff', borderWidth:2 }] },
+    options: { maintainAspectRatio:false, cutout:'62%', plugins:{ legend:{ position:'bottom' }, tooltip:{ callbacks:{ label: c => `${c.label}: ${nf(c.raw)} t (${nf(tot ? c.raw / tot * 100 : 0, 1)}%)` } } } },
+    plugins: [{ id:'ctr', afterDraw(ch) { const { ctx, chartArea:ca } = ch; ctx.save(); ctx.textAlign='center'; ctx.fillStyle=C.petrol;
+      ctx.font = "400 34px 'Bebas Neue'"; ctx.fillText(nf(tot), (ca.left + ca.right) / 2, (ca.top + ca.bottom) / 2 + 8);
+      ctx.font = "600 10px Montserrat"; ctx.fillStyle = '#999'; ctx.fillText('tCO₂e', (ca.left + ca.right) / 2, (ca.top + ca.bottom) / 2 + 24); ctx.restore(); } }] });
+
+  mk('cEmiss', { type:'bar', data: { labels: lbl, datasets: [
+      { label:'Diesel', data: R.map(x => val(x, 'dsl', src.dsl)), backgroundColor: C.petrol },
+      { label:'Energia elétrica', data: R.map(x => val(x, 'ee', src.ee)), backgroundColor: C.green },
+      { label:'GLP', data: R.map(x => val(x, 'glp', src.glp)), backgroundColor: C.orange } ] },
+    options: { maintainAspectRatio:false, interaction:{ mode:'index', intersect:false }, scales:{ x:{ stacked:true, grid:{display:false} }, y: axis('tCO₂e', { stacked:true }) } } });
+
+  let c1 = 0, c2 = 0; const ac1 = [], ac2 = [], act = [];
+  R.forEach(x => { if (!x.has) { ac1.push(null); ac2.push(null); act.push(null); return; }
+    c1 += (src.dsl ? x.dsl : 0) + (src.glp ? x.glp : 0); c2 += src.ee ? x.ee : 0; ac1.push(+c1.toFixed(3)); ac2.push(+c2.toFixed(3)); act.push(+(c1 + c2).toFixed(3)); });
+  mk('cAcum', { type:'line', data: { labels: lbl, datasets: [
+      { label:'Total', data: act, borderColor: C.petrol, backgroundColor:'rgba(101,206,33,.14)', fill:true, tension:.25, pointRadius:4, borderWidth:2.5 },
+      { label:'Escopo 1', data: ac1, borderColor: C.teal, borderDash:[5,4], tension:.25, pointRadius:2 },
+      { label:'Escopo 2', data: ac2, borderColor: C.green7, borderDash:[2,3], tension:.25, pointRadius:2 } ] },
+    options: { maintainAspectRatio:false, interaction:{ mode:'index', intersect:false }, scales:{ x:{ grid:{display:false} }, y: axis('tCO₂e acumuladas', { min:0 }) } } });
+
+  mk('cComb', { data: { labels: lbl, datasets: [
+      { type:'bar', label:'Diesel (L)', data: R.map(x => x.L), backgroundColor: C.petrol, borderRadius: 4, yAxisID:'y' },
+      { type:'bar', label:'GLP (kg)', data: R.map(x => x.kg), backgroundColor: C.orange, borderRadius: 4, yAxisID:'y1' } ] },
+    options: { maintainAspectRatio:false, interaction:{ mode:'index', intersect:false }, scales:{ x:{ grid:{display:false} }, y: axis('Diesel (L)'), y1: axis('GLP (kg)', { position:'right', grid:{display:false}, min:0 }) } } });
+
+  mk('cInt', { data: { labels: lbl, datasets: [
+      { type:'line', label:'kgCO₂e por hora trabalhada', data: R.map(x => x.has ? +(((src.ee ? x.ee : 0) + (src.dsl ? x.dsl : 0) + (src.glp ? x.glp : 0)) * 1000 / x.h).toFixed(3) : null), borderColor: C.petrol, backgroundColor: C.petrol, tension:.3, pointRadius:4, yAxisID:'y' },
+      { type:'bar', label:'Fator SIN (tCO₂/MWh)', data: R.map(x => x.has ? x.fe : null), backgroundColor:'rgba(101,206,33,.45)', borderRadius:4, yAxisID:'y1' } ] },
+    options: { maintainAspectRatio:false, interaction:{ mode:'index', intersect:false }, scales:{ x:{ grid:{display:false} }, y: axis('kgCO₂e/h', { min:0 }), y1: axis('tCO₂/MWh', { position:'right', grid:{display:false}, min:0, ticks:{ callback: v => nf(v, 3) } }) } } });
+
+  // ---------- tabela ----------
+  const cols = ['Mês','Energia (kWh)','Horas trab.','kWh/h','FE SIN','Escopo 2 (t)','Diesel (L)','GLP (kg)','Escopo 1 (t)','Total (tCO₂e)'];
+  const row = x => x.has ? [x.m, nf(x.kwh), nf(x.h), nf(x.esp), nf(x.fe, 4), nf(x.ee, 3), nf(x.L), nf(x.kg, 0), nf(x.dsl + x.glp, 3), nf(x.ee + x.dsl + x.glp, 3)] : [x.m, ...Array(9).fill('—')];
+  const tr = R.filter(x => x.has);
+  const T = k => tr.reduce((t, x) => t + x[k], 0);
+  document.getElementById('tbl').innerHTML = `<tr>${cols.map(c => `<th>${c}</th>`).join('')}</tr>` +
+    R.map(x => `<tr>${row(x).map((v, j) => `<td class="${v === '—' && j ? 'na' : ''}">${v}</td>`).join('')}</tr>`).join('') +
+    `<tr class="tot"><td>Total</td><td>${nf(T('kwh'))}</td><td>${nf(T('h'))}</td><td>${nf(T('h') ? T('kwh') / T('h') : null)}</td><td>${nf(T('kwh') ? T('ee') * 1000 / T('kwh') : null, 4)}</td><td>${nf(T('ee'), 3)}</td><td>${nf(T('L'))}</td><td>${nf(T('kg'), 0)}</td><td>${nf(T('dsl') + T('glp'), 3)}</td><td>${nf(T('ee') + T('dsl') + T('glp'), 3)}</td></tr>`;
+  window._csv = [cols, ...R.map(row)].map(r => r.join(';')).join('\n');
+}
+
+fDe.onchange = fAte.onchange = render;
+document.querySelectorAll('.chip-f').forEach(el => el.onclick = () => { const k = el.dataset.src; src[k] = !src[k]; el.classList.toggle('on', src[k]); render(); });
+document.getElementById('btnCsv').onclick = () => { const a = document.createElement('a'); a.href = URL.createObjectURL(new Blob(['﻿' + window._csv], { type:'text/csv' })); a.download = 'ers-painel-2026.csv'; a.click(); };
+(document.fonts ? document.fonts.ready : Promise.resolve()).then(render);
+</script>
+</body>
+</html>

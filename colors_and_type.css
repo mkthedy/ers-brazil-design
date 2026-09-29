@@ -1,0 +1,247 @@
+/* ============================================================
+   ERS BRAZIL — Colors & Type Foundations
+   Environmental Recovery Solutions Brazil
+   Source of truth: Manual de Marca ERS Brazil (MF Marketing, Abr 2025)
+   ============================================================ */
+
+/* Montserrat — self-hosted variable font (uploaded brand file) */
+@font-face {
+  font-family: 'Montserrat';
+  src: url('fonts/Montserrat-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Bebas Neue — self-hosted from uploaded brand font file */
+@font-face {
+  font-family: 'Bebas Neue';
+  src: url('fonts/BebasNeue-Regular.ttf') format('truetype');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* Red Hat Display — self-hosted variable font (uploaded). Alternate display/UI face. */
+@font-face {
+  font-family: 'Red Hat Display';
+  src: url('fonts/RedHatDisplay-VariableFont_wght.ttf') format('truetype-variations');
+  font-weight: 300 900;
+  font-style: normal;
+  font-display: swap;
+}
+
+:root {
+  /* ---------- INSTITUTIONAL COLORS ---------- */
+  /* Petrol — THE brand color. Use intensively. (Pantone 546 C) */
+  --ers-petrol:        #043035;
+  /* Brand green — life, recycling, circular economy (Pantone 2726 C) */
+  --ers-green:         #65CE21;
+
+  /* ---------- COMPLEMENTARY COLORS ---------- */
+  /* Not in the logo, but core to layouts, backgrounds, icons, supporting graphics */
+  --ers-gray-light:    #BFBFBF;   /* Pantone 420 C */
+  --ers-gray-mid:      #999999;   /* Pantone Cool Gray 7 C */
+  --ers-orange:        #F4762F;   /* Pantone 1575 C — energy, attention, callouts */
+
+  /* ---------- EXTENDED / DERIVED RAMP ----------
+     Derived in oklch from the institutional palette for UI surfaces.
+     Use ONLY for interface scaffolding (borders, fills, hovers); never re-color the logo. */
+  --petrol-900:        #02181b;   /* deepest — footers, watermarks */
+  --petrol-800:        #032529;
+  --petrol-700:        #043035;   /* = institutional petrol */
+  --petrol-600:        #0a4148;
+  --petrol-500:        #14555d;
+  --petrol-400:        #2e7079;   /* muted teal for secondary text on dark */
+
+  --green-700:         #4ba514;
+  --green-600:         #58ba1b;
+  --green-500:         #65CE21;   /* = institutional green */
+  --green-400:         #82dc4a;
+  --green-300:         #a6e87f;
+  --green-tint:        #eef9e4;   /* faint green wash for surfaces */
+
+  --orange-600:        #e0631c;
+  --orange-500:        #F4762F;   /* = institutional orange */
+  --orange-400:        #f78f54;
+  --orange-tint:       #fdeee5;
+
+  /* ---------- NEUTRALS ---------- */
+  --white:             #ffffff;
+  --off-white:         #f5f6f5;   /* page background, cool-neutral */
+  --gray-50:           #f0f2f1;
+  --gray-100:          #e4e7e6;
+  --gray-200:          #d2d6d5;
+  --gray-300:          #BFBFBF;   /* = complementary light gray */
+  --gray-400:          #a8acab;
+  --gray-500:          #999999;   /* = complementary mid gray */
+  --gray-600:          #6f7473;
+  --gray-700:          #4a4f4e;
+  --gray-900:          #1c2120;
+
+  /* ---------- SEMANTIC: FOREGROUND ---------- */
+  --fg-1:              #043035;   /* primary text on light — petrol */
+  --fg-2:              #4a4f4e;   /* secondary text */
+  --fg-3:              #999999;   /* tertiary / captions */
+  --fg-on-dark:        #ffffff;   /* primary text on petrol */
+  --fg-on-dark-2:      #b8c4c5;   /* secondary text on petrol */
+  --fg-brand:          #65CE21;   /* green emphasis text */
+  --fg-accent:         #F4762F;   /* orange emphasis text */
+
+  /* ---------- SEMANTIC: BACKGROUND ---------- */
+  --bg-page:           #f5f6f5;
+  --bg-surface:        #ffffff;
+  --bg-dark:           #043035;   /* hero / dark sections */
+  --bg-dark-deep:      #02181b;
+  --bg-accent-band:    #F4762F;   /* orange certification band */
+  --bg-green:          #65CE21;
+
+  /* ---------- SEMANTIC: LINES & STROKES ---------- */
+  --border-subtle:     #e4e7e6;
+  --border-default:    #d2d6d5;
+  --border-strong:     #BFBFBF;
+  --border-on-dark:    rgba(255,255,255,0.14);
+
+  /* ---------- TYPE FAMILIES ---------- */
+  /* Institutional/logo type is a PROPRIETARY custom face (logo only — use the PNG marks).
+     Montserrat is the official complementary typeface for ALL running text. */
+  --font-sans:         'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  /* Bebas Neue — reserved for the tagline "DO WHAT'S RIGHT" and big display moments. */
+  --font-display:      'Bebas Neue', 'Montserrat', sans-serif;
+  /* Red Hat Display — alternate display/UI face (self-hosted). Available for headings/UI where a softer geometric sans is wanted. */
+  --font-alt:          'Red Hat Display', 'Montserrat', sans-serif;
+
+  /* ---------- TYPE SCALE (rem @16px base) ---------- */
+  --text-xs:     0.75rem;   /* 12px — legal, fine print */
+  --text-sm:     0.875rem;  /* 14px — captions, labels */
+  --text-base:   1rem;      /* 16px — body */
+  --text-md:     1.125rem;  /* 18px — lead body */
+  --text-lg:     1.375rem;  /* 22px — small headings */
+  --text-xl:     1.75rem;   /* 28px — h3 */
+  --text-2xl:    2.25rem;   /* 36px — h2 */
+  --text-3xl:    3rem;      /* 48px — h1 */
+  --text-4xl:    4rem;      /* 64px — hero */
+  --text-5xl:    5.5rem;    /* 88px — display / Bebas */
+
+  /* ---------- WEIGHTS ---------- */
+  --fw-light:    300;   /* @kind font */
+  --fw-regular:  400;   /* @kind font */
+  --fw-medium:   500;   /* @kind font */
+  --fw-semibold: 600;   /* @kind font */
+  --fw-bold:     700;   /* @kind font */
+  --fw-black:    900;   /* @kind font */
+
+  /* ---------- LINE HEIGHT / TRACKING ---------- */
+  --lh-tight:    1.05;  /* @kind font */
+  --lh-snug:     1.2;   /* @kind font */
+  --lh-normal:   1.5;   /* @kind font */
+  --lh-relaxed:  1.65;  /* @kind font */
+  --tracking-tagline: 0.01em;  /* @kind font */
+  --tracking-label:   0.12em;  /* @kind font */
+  --tracking-display: 0.02em;  /* @kind font */
+
+  /* ---------- RADII ---------- */
+  --radius-xs:   4px;
+  --radius-sm:   6px;    /* cards on the landing page */
+  --radius-md:   10px;
+  --radius-lg:   16px;
+  --radius-xl:   24px;   /* large dark panels / form blocks */
+  --radius-pill: 999px;  /* orange label pills, buttons */
+
+  /* ---------- SHADOWS / ELEVATION ---------- */
+  --shadow-sm:   0 1px 2px rgba(4,48,53,0.06), 0 1px 3px rgba(4,48,53,0.08);
+  --shadow-md:   0 4px 10px rgba(4,48,53,0.08), 0 2px 4px rgba(4,48,53,0.06);
+  --shadow-lg:   0 12px 28px rgba(4,48,53,0.12), 0 4px 8px rgba(4,48,53,0.06);
+  --shadow-card: 0 6px 18px rgba(4,48,53,0.10);          /* image tiles */
+  --shadow-on-dark: 0 14px 40px rgba(0,0,0,0.35);
+
+  /* ---------- SPACING (8px base) ---------- */
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ---------- TRANSITIONS ---------- */
+  --ease-out:    cubic-bezier(0.22, 0.61, 0.36, 1);  /* @kind other */
+  --ease-std:    cubic-bezier(0.4, 0, 0.2, 1);       /* @kind other */
+  --dur-fast:    140ms;  /* @kind other */
+  --dur-base:    220ms;  /* @kind other */
+  --dur-slow:    400ms;  /* @kind other */
+}
+
+/* ============================================================
+   SEMANTIC ELEMENT STYLES
+   ============================================================ */
+
+.ers-display {            /* Bebas tagline / hero display */
+  font-family: var(--font-display);
+  font-weight: 400;
+  font-size: var(--text-5xl);
+  line-height: var(--lh-tight);
+  letter-spacing: var(--tracking-display);
+  text-transform: uppercase;
+  color: var(--ers-green);
+}
+
+.ers-h1 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-3xl);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+.ers-h2 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-bold);
+  font-size: var(--text-2xl);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+.ers-h3 {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-xl);
+  line-height: var(--lh-snug);
+  color: var(--fg-1);
+}
+
+.ers-lead {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-md);
+  line-height: var(--lh-relaxed);
+  color: var(--fg-2);
+}
+
+.ers-body {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-regular);
+  font-size: var(--text-base);
+  line-height: var(--lh-normal);
+  color: var(--fg-2);
+}
+
+.ers-label {              /* uppercase eyebrow / pill label — Montserrat Semi Bold caps */
+  font-family: var(--font-sans);
+  font-weight: var(--fw-semibold);
+  font-size: var(--text-sm);
+  line-height: 1.2;
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.ers-caption {
+  font-family: var(--font-sans);
+  font-weight: var(--fw-medium);
+  font-size: var(--text-xs);
+  line-height: var(--lh-normal);
+  color: var(--fg-3);
+}

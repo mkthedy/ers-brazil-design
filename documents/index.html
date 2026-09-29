@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<!-- @dsCard group="Brand" name="Sistema de Documentos" subtitle="Document system launcher + brand-use reference" viewport="1080x620" -->
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>ERS Brazil — Sistema de Documentos</title>
+<link rel="stylesheet" href="../colors_and_type.css">
+<style>
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: var(--font-sans); color: var(--fg-1); background: var(--bg-page); }
+  .wrap { max-width: 1080px; margin: 0 auto; padding: 0 32px; }
+
+  /* header */
+  .top { background: var(--ers-petrol); color: #fff; padding: 44px 0 40px; }
+  .top .wrap { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .top img { height: 172px; }
+  .top .eyebrow { font-weight: 700; letter-spacing: .2em; text-transform: uppercase; font-size: 12px; color: var(--ers-orange); }
+  .top h1 { font-size: 30px; font-weight: 800; margin: 8px 0 0; line-height: 1.1; }
+  .top p { color: var(--fg-on-dark-2); font-size: 15px; margin: 10px 0 0; max-width: 560px; line-height: 1.55; }
+
+  /* reference strip */
+  .ref { display: grid; grid-template-columns: repeat(4,1fr); gap: 18px; margin: 36px 0 8px; }
+  .ref .r { background: #fff; border: 1px solid var(--border-subtle); border-radius: 10px; padding: 18px 18px; }
+  .ref .r .h { display: flex; align-items: center; gap: 10px; font-weight: 700; color: var(--ers-petrol); font-size: 14px; }
+  .ref .r .h i { width: 18px; height: 18px; color: var(--green-700); }
+  .ref .r p { margin: 8px 0 0; font-size: 12.5px; line-height: 1.5; color: var(--fg-2); }
+
+  .sec-title { font-weight: 700; letter-spacing: .14em; text-transform: uppercase; font-size: 12px; color: var(--fg-3); margin: 40px 0 18px; }
+
+  /* template grid */
+  .grid { display: grid; grid-template-columns: 1fr 1fr; gap: 24px; padding-bottom: 56px; }
+  .card { background: #fff; border: 1px solid var(--border-subtle); border-radius: 14px; overflow: hidden; box-shadow: var(--shadow-sm); transition: box-shadow var(--dur-base) var(--ease-out), transform var(--dur-base) var(--ease-out); }
+  .card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+  .thumb { height: 268px; background: var(--gray-100); display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--border-subtle); padding: 9px; }
+  .frame { overflow: hidden; border-radius: 4px; box-shadow: 0 6px 16px rgba(4,48,53,.14); }
+  .frame iframe { border: 0; display: block; }
+  .cbody { padding: 20px 22px 22px; }
+  .cbody .fmt { font-weight: 700; letter-spacing: .12em; text-transform: uppercase; font-size: 10px; color: var(--ers-orange); }
+  .cbody h3 { font-size: 19px; font-weight: 700; color: var(--ers-petrol); margin: 6px 0 6px; }
+  .cbody p { margin: 0 0 16px; font-size: 13.5px; line-height: 1.5; color: var(--fg-2); }
+  .actions { display: flex; gap: 10px; }
+  .btn { font-family: var(--font-sans); font-weight: 600; font-size: 13.5px; border-radius: 6px; padding: 11px 18px; cursor: pointer; text-decoration: none; display: inline-flex; align-items: center; gap: 8px; transition: all var(--dur-base) var(--ease-out); border: 1.5px solid transparent; }
+  .btn i { width: 16px; height: 16px; }
+  .btn-green { background: var(--ers-green); color: #fff; }
+  .btn-green:hover { background: var(--green-600); }
+  .btn-ghost { background: #fff; color: var(--ers-petrol); border-color: var(--border-default); }
+  .btn-ghost:hover { border-color: var(--ers-petrol); }
+
+  .footnote { color: var(--fg-3); font-size: 12px; padding: 0 0 48px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <div class="wrap">
+    <div>
+      <div class="eyebrow">Sistema de Documentos</div>
+      <h1>Modelos institucionais ERS Brazil</h1>
+      <p>Templates prontos para impressão (A4), construídos sobre o sistema de marca — cores, tipografia e logotipo oficiais. Abra, edite o conteúdo e imprima ou exporte em PDF.</p>
+    </div>
+    <img src="../assets/logo-primary-white.png" alt="ERS Brazil">
+  </div>
+</header>
+
+<main class="wrap">
+  <!-- brand-use reference -->
+  <section class="ref">
+    <div class="r"><div class="h"><i data-lucide="image"></i> Logotipo</div><p>Marca ERS Brazil (sem descritor) no cabeçalho. Versão branca sobre petróleo; colorida sobre branco.</p></div>
+    <div class="r"><div class="h"><i data-lucide="type"></i> Tipografia</div><p>Montserrat em todo o texto; Bebas Neue apenas para a tagline e números de destaque.</p></div>
+    <div class="r"><div class="h"><i data-lucide="palette"></i> Cores</div><p>Petróleo #043035 como base, verde #65CE21 para ênfase e laranja #F4762F nos rótulos.</p></div>
+    <div class="r"><div class="h"><i data-lucide="ruler"></i> Margens</div><p>A4 com margens de 16–18 mm; rodapé institucional em petróleo com endereço e certificações.</p></div>
+  </section>
+
+  <div class="sec-title">Templates disponíveis</div>
+  <section class="grid">
+
+    <!-- Cert reciclagem (landscape) -->
+    <div class="card">
+      <div class="thumb"><div class="frame" style="width:360px;height:254px"><iframe src="certificado-reciclagem.html" scrolling="no" style="width:1122.5px;height:793.7px;transform:scale(.3207);transform-origin:top left"></iframe></div></div>
+      <div class="cbody">
+        <div class="fmt">Certificado · A4 paisagem</div>
+        <h3>Certificado de Destinação Final</h3>
+        <p>Comprova a destinação ambientalmente adequada dos resíduos eletrônicos, com volume, métodos e certificações.</p>
+        <div class="actions">
+          <a class="btn btn-green" href="certificado-reciclagem.html" target="_blank"><i data-lucide="external-link"></i> Abrir</a>
+          <a class="btn btn-ghost" href="certificado-reciclagem.html" target="_blank"><i data-lucide="printer"></i> Imprimir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cert sanitizacao (landscape) -->
+    <div class="card">
+      <div class="thumb"><div class="frame" style="width:360px;height:254px"><iframe src="certificado-sanitizacao.html" scrolling="no" style="width:1122.5px;height:793.7px;transform:scale(.3207);transform-origin:top left"></iframe></div></div>
+      <div class="cbody">
+        <div class="fmt">Certificado · A4 paisagem</div>
+        <h3>Certificado de Sanitização de Dados</h3>
+        <p>Atesta a destruição segura e irrecuperável de dados (Blancco, DoD/NIST) em conformidade com a LGPD.</p>
+        <div class="actions">
+          <a class="btn btn-green" href="certificado-sanitizacao.html" target="_blank"><i data-lucide="external-link"></i> Abrir</a>
+          <a class="btn btn-ghost" href="certificado-sanitizacao.html" target="_blank"><i data-lucide="printer"></i> Imprimir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Papel timbrado (portrait) -->
+    <div class="card">
+      <div class="thumb"><div class="frame" style="width:180px;height:254px"><iframe src="papel-timbrado.html" scrolling="no" style="width:793.7px;height:1122.5px;transform:scale(.2263);transform-origin:top left"></iframe></div></div>
+      <div class="cbody">
+        <div class="fmt">Papelaria · A4 retrato</div>
+        <h3>Papel Timbrado</h3>
+        <p>Folha institucional com cabeçalho, rodapé em petróleo e área de texto para cartas e propostas.</p>
+        <div class="actions">
+          <a class="btn btn-green" href="papel-timbrado.html" target="_blank"><i data-lucide="external-link"></i> Abrir</a>
+          <a class="btn btn-ghost" href="papel-timbrado.html" target="_blank"><i data-lucide="printer"></i> Imprimir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Relatorio (portrait) -->
+    <div class="card">
+      <div class="thumb"><div class="frame" style="width:180px;height:254px"><iframe src="relatorio-sustentabilidade.html" scrolling="no" style="width:793.7px;height:1122.5px;transform:scale(.2263);transform-origin:top left"></iframe></div></div>
+      <div class="cbody">
+        <div class="fmt">Relatório · A4 retrato</div>
+        <h3>Relatório de Sustentabilidade</h3>
+        <p>Resumo de resultados do período com indicadores de economia circular e conformidade.</p>
+        <div class="actions">
+          <a class="btn btn-green" href="relatorio-sustentabilidade.html" target="_blank"><i data-lucide="external-link"></i> Abrir</a>
+          <a class="btn btn-ghost" href="relatorio-sustentabilidade.html" target="_blank"><i data-lucide="printer"></i> Imprimir</a>
+        </div>
+      </div>
+    </div>
+
+    <!-- Proposta comercial (portrait, multipage) -->
+    <div class="card">
+      <div class="thumb"><div class="frame" style="width:180px;height:254px"><iframe src="proposta-comercial.html" scrolling="no" style="width:793.7px;height:1122.5px;transform:scale(.2263);transform-origin:top left"></iframe></div></div>
+      <div class="cbody">
+        <div class="fmt">Proposta · A4 retrato · 10 páginas</div>
+        <h3>Proposta Comercial (bilíngue)</h3>
+        <p>Proposta comercial EN/PT — escopo, metodologia, precificação e aceite. Modelo a partir do caso Dell / data wipe Blancco.</p>
+        <div class="actions">
+          <a class="btn btn-green" href="proposta-comercial.html" target="_blank"><i data-lucide="external-link"></i> Abrir</a>
+          <a class="btn btn-ghost" href="proposta-comercial.html" target="_blank"><i data-lucide="printer"></i> Imprimir</a>
+        </div>
+      </div>
+    </div>
+
+  </section>
+
+  <p class="footnote">Para gerar PDF: abra o documento e use <b>Imprimir → Salvar como PDF</b> (Ctrl/Cmd + P), com margens “Nenhuma” e a opção “Gráficos de plano de fundo” ativada. Dados exibidos são ilustrativos (modelo).</p>
+</main>
+
+<script src="https://unpkg.com/lucide@latest"></script>
+<script>window.addEventListener('load', () => { if (window.lucide) lucide.createIcons(); });</script>
+</body>
+</html>
